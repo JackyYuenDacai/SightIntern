@@ -1,0 +1,476 @@
+
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta content="IE=edge,chrome=1" http-equiv="X-UA-Compatible">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <title>API Reference</title>
+
+    <style>
+      .highlight table td { padding: 5px; }
+.highlight table pre { margin: 0; }
+.highlight .gh {
+  color: #999999;
+}
+.highlight .sr {
+  color: #f6aa11;
+}
+.highlight .go {
+  color: #888888;
+}
+.highlight .gp {
+  color: #555555;
+}
+.highlight .gs {
+}
+.highlight .gu {
+  color: #aaaaaa;
+}
+.highlight .nb {
+  color: #f6aa11;
+}
+.highlight .cm {
+  color: #75715e;
+}
+.highlight .cp {
+  color: #75715e;
+}
+.highlight .c1 {
+  color: #75715e;
+}
+.highlight .cs {
+  color: #75715e;
+}
+.highlight .c, .highlight .cd {
+  color: #75715e;
+}
+.highlight .err {
+  color: #960050;
+}
+.highlight .gr {
+  color: #960050;
+}
+.highlight .gt {
+  color: #960050;
+}
+.highlight .gd {
+  color: #49483e;
+}
+.highlight .gi {
+  color: #49483e;
+}
+.highlight .ge {
+  color: #49483e;
+}
+.highlight .kc {
+  color: #66d9ef;
+}
+.highlight .kd {
+  color: #66d9ef;
+}
+.highlight .kr {
+  color: #66d9ef;
+}
+.highlight .no {
+  color: #66d9ef;
+}
+.highlight .kt {
+  color: #66d9ef;
+}
+.highlight .mf {
+  color: #ae81ff;
+}
+.highlight .mh {
+  color: #ae81ff;
+}
+.highlight .il {
+  color: #ae81ff;
+}
+.highlight .mi {
+  color: #ae81ff;
+}
+.highlight .mo {
+  color: #ae81ff;
+}
+.highlight .m, .highlight .mb, .highlight .mx {
+  color: #ae81ff;
+}
+.highlight .sc {
+  color: #ae81ff;
+}
+.highlight .se {
+  color: #ae81ff;
+}
+.highlight .ss {
+  color: #ae81ff;
+}
+.highlight .sd {
+  color: #e6db74;
+}
+.highlight .s2 {
+  color: #e6db74;
+}
+.highlight .sb {
+  color: #e6db74;
+}
+.highlight .sh {
+  color: #e6db74;
+}
+.highlight .si {
+  color: #e6db74;
+}
+.highlight .sx {
+  color: #e6db74;
+}
+.highlight .s1 {
+  color: #e6db74;
+}
+.highlight .s {
+  color: #e6db74;
+}
+.highlight .na {
+  color: #a6e22e;
+}
+.highlight .nc {
+  color: #a6e22e;
+}
+.highlight .nd {
+  color: #a6e22e;
+}
+.highlight .ne {
+  color: #a6e22e;
+}
+.highlight .nf {
+  color: #a6e22e;
+}
+.highlight .vc {
+  color: #ffffff;
+}
+.highlight .nn {
+  color: #ffffff;
+}
+.highlight .nl {
+  color: #ffffff;
+}
+.highlight .ni {
+  color: #ffffff;
+}
+.highlight .bp {
+  color: #ffffff;
+}
+.highlight .vg {
+  color: #ffffff;
+}
+.highlight .vi {
+  color: #ffffff;
+}
+.highlight .nv {
+  color: #ffffff;
+}
+.highlight .w {
+  color: #ffffff;
+}
+.highlight {
+  color: #ffffff;
+}
+.highlight .n, .highlight .py, .highlight .nx {
+  color: #ffffff;
+}
+.highlight .ow {
+  color: #f92672;
+}
+.highlight .nt {
+  color: #f92672;
+}
+.highlight .k, .highlight .kv {
+  color: #f92672;
+}
+.highlight .kn {
+  color: #f92672;
+}
+.highlight .kp {
+  color: #f92672;
+}
+.highlight .o {
+  color: #f92672;
+}
+    </style>
+    <link href="stylesheets/screen.css" rel="stylesheet" media="screen" />
+    <link href="stylesheets/print.css" rel="stylesheet" media="print" />
+      <script src="javascripts/all.js"></script>
+  </head>
+
+  <body class="index" data-languages="[&quot;shell&quot;,&quot;ruby&quot;,&quot;python&quot;,&quot;javascript&quot;]">
+    <a href="#" id="nav-button">
+      <span>
+        NAV
+        <img src="images/navbar.png" alt="Navbar" />
+      </span>
+    </a>
+    <div class="toc-wrapper">
+      <img src="images/logo.png" class="logo" alt="Logo" />
+        <div class="lang-selector">
+              <a href="#" data-language-name="shell">shell</a>
+              <a href="#" data-language-name="ruby">ruby</a>
+              <a href="#" data-language-name="python">python</a>
+              <a href="#" data-language-name="javascript">javascript</a>
+        </div>
+        <div class="search">
+          <input type="text" class="search" id="input-search" placeholder="Search">
+        </div>
+        <ul class="search-results"></ul>
+      <ul id="toc" class="toc-list-h1">
+          <li>
+            <a href="#overview" class="toc-h1 toc-link" data-title="Overview">Overview</a>
+          </li>
+          <li>
+            <a href="#request" class="toc-h1 toc-link" data-title="Request">Request</a>
+          </li>
+          <li>
+            <a href="#web-interfaces" class="toc-h1 toc-link" data-title="Web interfaces">Web interfaces</a>
+              <ul class="toc-list-h2">
+                  <li>
+                    <a href="#api-submit" class="toc-h2 toc-link" data-title="/api/submit">/api/submit</a>
+                  </li>
+                  <li>
+                    <a href="#api-records" class="toc-h2 toc-link" data-title="/api/records">/api/records</a>
+                  </li>
+                  <li>
+                    <a href="#api-link_google" class="toc-h2 toc-link" data-title="/api/link_google">/api/link_google</a>
+                  </li>
+                  <li>
+                    <a href="#api-user_config" class="toc-h2 toc-link" data-title="/api/user_config">/api/user_config</a>
+                  </li>
+                  <li>
+                    <a href="#api-update_token" class="toc-h2 toc-link" data-title="/api/update_token">/api/update_token</a>
+                  </li>
+                  <li>
+                    <a href="#api-upload" class="toc-h2 toc-link" data-title="/api/upload">/api/upload</a>
+                  </li>
+              </ul>
+          </li>
+          <li>
+            <a href="#errors" class="toc-h1 toc-link" data-title="Errors">Errors</a>
+          </li>
+      </ul>
+        <ul class="toc-footer">
+            <li><a href='https://github.com/lord/slate'>Documentation Powered by Slate</a></li>
+        </ul>
+    </div>
+    <div class="page-wrapper">
+      <div class="dark-box"></div>
+      <div class="content">
+        <h1 id='overview'>Overview</h1>
+<p>Sight Internship for Caritas School Projects</p>
+
+<p>This is for documentation.</p>
+<h1 id='request'>Request</h1>
+<p>All request towards web interfaces and received data must follow the same format shown here.</p>
+
+<p>Unsuccess request will return with error code and maybe error message.</p>
+
+<blockquote>
+<p>Request json structure</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+    </span><span class="s2">"token"</span><span class="p">:</span><span class="w"> </span><span class="err">login</span><span class="w"> </span><span class="err">token</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="err">Account</span><span class="w"> </span><span class="err">id</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"soc"</span><span class="p">:</span><span class="w"> </span><span class="err">institution</span><span class="w"> </span><span class="err">id</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"parameters"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<blockquote>
+<p>Data recevied json structure</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+    </span><span class="s2">"error"</span><span class="p">:</span><span class="w"> </span><span class="err">Error</span><span class="w"> </span><span class="err">code</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"error_msg"</span><span class="p">:</span><span class="w"> </span><span class="err">Error</span><span class="w"> </span><span class="err">message</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre><h1 id='web-interfaces'>Web interfaces</h1>
+<p>This part will include all interfaces that are going to be used in web app and mobile app.</p>
+
+<p>All the request parameters and data recevied json are wrapped in the format mentioned in <a href="#request">Request</a>.</p>
+<h2 id='api-submit'>/api/submit</h2>
+<blockquote>
+<p>request parameters</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+    </span><span class="s2">"record_token"</span><span class="p">:</span><span class="w"> </span><span class="err">Master</span><span class="w"> </span><span class="err">token</span><span class="w"> </span><span class="err">of</span><span class="w"> </span><span class="err">that</span><span class="w"> </span><span class="err">record</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"form"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"Q_KEY0"</span><span class="p">:</span><span class="w"> </span><span class="err">A_KEY</span><span class="mi">0</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"Q_KEY1"</span><span class="p">:</span><span class="w"> </span><span class="err">A_KEY</span><span class="mi">1</span><span class="p">,</span><span class="w">
+        </span><span class="err">…</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<blockquote>
+<p>data received</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<p>This interface is to submit filled form and form a complete record.</p>
+
+<p>Each submit requires the user to have the master record token of that set of record before submitting.</p>
+<h2 id='api-records'>/api/records</h2>
+<blockquote>
+<p>request parameters</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+    </span><span class="s2">"location"</span><span class="p">:</span><span class="w"> </span><span class="err">Location</span><span class="w"> </span><span class="err">filter</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="err">Name</span><span class="w"> </span><span class="err">filter</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"role"</span><span class="p">:</span><span class="w"> </span><span class="err">Role</span><span class="w"> </span><span class="err">filter</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="err">Status</span><span class="w"> </span><span class="err">filter</span><span class="w"> </span><span class="err">done//ongoing</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"registered"</span><span class="p">:</span><span class="w"> </span><span class="err">If</span><span class="w"> </span><span class="err">the</span><span class="w"> </span><span class="err">tag</span><span class="w"> </span><span class="err">registered</span><span class="w"> </span><span class="kc">true</span><span class="err">//</span><span class="kc">false</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"time_start"</span><span class="p">:</span><span class="w"> </span><span class="err">“YYYY-mm-dd</span><span class="w"> </span><span class="err">hh</span><span class="p">:</span><span class="err">MM</span><span class="p">:</span><span class="err">ss”</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"time_end"</span><span class="p">:</span><span class="w"> </span><span class="err">“YYYY-mm-dd</span><span class="w"> </span><span class="err">hh</span><span class="p">:</span><span class="err">MM</span><span class="p">:</span><span class="err">ss”</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<blockquote>
+<p>data received</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{[</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="err">user</span><span class="w"> </span><span class="err">id</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="err">users’</span><span class="w"> </span><span class="err">name</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"tag_id"</span><span class="p">:</span><span class="w"> </span><span class="p">,</span><span class="w">
+        </span><span class="s2">"time_start"</span><span class="p">:</span><span class="w"> </span><span class="p">,</span><span class="w">
+        </span><span class="s2">"time_end"</span><span class="p">:</span><span class="w"> </span><span class="p">,</span><span class="w">
+        </span><span class="s2">"duration"</span><span class="p">:</span><span class="w"> </span><span class="p">,</span><span class="w">
+        </span><span class="s2">"record_token"</span><span class="p">:</span><span class="w"> </span><span class="err">Master</span><span class="w"> </span><span class="err">token</span><span class="w"> </span><span class="err">of</span><span class="w"> </span><span class="err">that</span><span class="w"> </span><span class="err">record</span><span class="w">
+    </span><span class="p">},{</span><span class="err">…</span><span class="p">},{</span><span class="err">…</span><span class="p">},{</span><span class="err">…</span><span class="p">}</span><span class="w">
+</span><span class="p">]}</span><span class="w">
+</span></code></pre>
+<p>This interface handles all the get request for records, and the parameters in request acts as filter.</p>
+<h2 id='api-link_google'>/api/link_google</h2>
+<blockquote>
+<p>request parameters</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<blockquote>
+<p>data received</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<p>This interface handles all the request related to linking account between google account.</p>
+<h2 id='api-user_config'>/api/user_config</h2>
+<blockquote>
+<p>request parameters</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+    </span><span class="s2">"type"</span><span class="p">:</span><span class="w"> </span><span class="err">add/edit</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"soc"</span><span class="p">:</span><span class="w"> </span><span class="err">Institution</span><span class="w"> </span><span class="err">id</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="err">users’</span><span class="w"> </span><span class="err">id</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="err">users’</span><span class="w"> </span><span class="err">name</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"role"</span><span class="p">:</span><span class="w"> </span><span class="err">users’</span><span class="w"> </span><span class="err">role</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"icon_id"</span><span class="p">:</span><span class="w"> </span><span class="err">id</span><span class="w"> </span><span class="err">of</span><span class="w"> </span><span class="err">the</span><span class="w"> </span><span class="err">icon</span><span class="w"> </span><span class="err">file</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"pwd"</span><span class="p">:</span><span class="w"> </span><span class="err">MD</span><span class="mi">5</span><span class="w"> </span><span class="err">encoded</span><span class="w"> </span><span class="err">password</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"extra"</span><span class="p">:</span><span class="w"> </span><span class="err">extra</span><span class="w"> </span><span class="err">description</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<blockquote>
+<p>data received</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+    </span><span class="s2">"soc"</span><span class="p">:</span><span class="w"> </span><span class="err">Institution</span><span class="w"> </span><span class="err">id</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="err">users’</span><span class="w"> </span><span class="err">id</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="err">users’</span><span class="w"> </span><span class="err">name</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"role"</span><span class="p">:</span><span class="w"> </span><span class="err">users’</span><span class="w"> </span><span class="err">role</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"icon_id"</span><span class="p">:</span><span class="w"> </span><span class="err">id</span><span class="w"> </span><span class="err">of</span><span class="w"> </span><span class="err">the</span><span class="w"> </span><span class="err">icon</span><span class="w"> </span><span class="err">file</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"extra"</span><span class="p">:</span><span class="w"> </span><span class="err">extra</span><span class="w"> </span><span class="err">description</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<p>This interface handles all the request related to edit or add user information.</p>
+<h2 id='api-update_token'>/api/update_token</h2>
+<blockquote>
+<p>request parameters</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<blockquote>
+<p>data received</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<p>This interface updates token and rent token for another 24 hours.</p>
+<h2 id='api-upload'>/api/upload</h2>
+<blockquote>
+<p>request parameters</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+    </span><span class="s2">"file_type"</span><span class="p">:</span><span class="w"> </span><span class="err">img/raw/...</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"file_data"</span><span class="p">:</span><span class="w"> </span><span class="err">Stringifyed</span><span class="w"> </span><span class="err">file</span><span class="w"> </span><span class="err">data</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="err">users'</span><span class="w"> </span><span class="err">id</span><span class="p">,</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<blockquote>
+<p>data received</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+    </span><span class="s2">"file_id"</span><span class="p">:</span><span class="w"> </span><span class="err">Id</span><span class="w"> </span><span class="err">of</span><span class="w"> </span><span class="err">the</span><span class="w"> </span><span class="err">file</span><span class="w"> </span><span class="err">assigned</span><span class="w"> </span><span class="err">by</span><span class="w"> </span><span class="err">server</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<p>This interface upload files toward user.</p>
+
+<p>Files that are going to be upload must first stringifyed and pass through json towards interface.</p>
+<h1 id='errors'>Errors</h1>
+<p>These are the errors that may occur and the error code return in data recevied json package.</p>
+
+<table><thead>
+<tr>
+<th>Error Code</th>
+<th>Meaning</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>0</td>
+<td>Success</td>
+</tr>
+<tr>
+<td>101</td>
+<td>Privilege error</td>
+</tr>
+<tr>
+<td>202</td>
+<td>Parameter error</td>
+</tr>
+<tr>
+<td>303</td>
+<td>Invalid</td>
+</tr>
+<tr>
+<td>401</td>
+<td>Token expired</td>
+</tr>
+<tr>
+<td>502</td>
+<td>Failed</td>
+</tr>
+</tbody></table>
+
+      </div>
+      <div class="dark-box">
+          <div class="lang-selector">
+                <a href="#" data-language-name="shell">shell</a>
+                <a href="#" data-language-name="ruby">ruby</a>
+                <a href="#" data-language-name="python">python</a>
+                <a href="#" data-language-name="javascript">javascript</a>
+          </div>
+      </div>
+    </div>
+  </body>
+</html>

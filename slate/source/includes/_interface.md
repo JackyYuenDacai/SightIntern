@@ -149,3 +149,25 @@ This interface upload files toward user.
 
 Files that are going to be upload must first stringifyed and pass through json towards interface.
 
+##/api/resource
+> request parameters
+
+```json
+{
+    "file_id": Id of the file assigned by server,
+    "id": users' id,
+}
+```
+
+> data received
+
+```json
+{
+    "file_type": img/raw/...,
+    "file_data": Stringifyed file data,
+}
+```
+
+This interface retreat files from server
+
+
