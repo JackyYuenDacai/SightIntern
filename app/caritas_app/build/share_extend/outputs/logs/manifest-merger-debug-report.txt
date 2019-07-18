@@ -1,0 +1,45 @@
+-- Merging decision tree log ---
+manifest
+ADDED from D:\src\flutter\.pub-cache\hosted\pub.dartlang.org\share_extend-1.0.8\android\src\main\AndroidManifest.xml:1:1-20:12
+INJECTED from D:\src\flutter\.pub-cache\hosted\pub.dartlang.org\share_extend-1.0.8\android\src\main\AndroidManifest.xml:1:1-20:12
+INJECTED from D:\src\flutter\.pub-cache\hosted\pub.dartlang.org\share_extend-1.0.8\android\src\main\AndroidManifest.xml:1:1-20:12
+	package
+		ADDED from D:\src\flutter\.pub-cache\hosted\pub.dartlang.org\share_extend-1.0.8\android\src\main\AndroidManifest.xml:2:5-33
+		INJECTED from D:\src\flutter\.pub-cache\hosted\pub.dartlang.org\share_extend-1.0.8\android\src\main\AndroidManifest.xml
+		INJECTED from D:\src\flutter\.pub-cache\hosted\pub.dartlang.org\share_extend-1.0.8\android\src\main\AndroidManifest.xml
+	xmlns:android
+		ADDED from D:\src\flutter\.pub-cache\hosted\pub.dartlang.org\share_extend-1.0.8\android\src\main\AndroidManifest.xml:1:11-69
+uses-permission#android.permission.READ_EXTERNAL_STORAGE
+ADDED from D:\src\flutter\.pub-cache\hosted\pub.dartlang.org\share_extend-1.0.8\android\src\main\AndroidManifest.xml:4:5-79
+	android:name
+		ADDED from D:\src\flutter\.pub-cache\hosted\pub.dartlang.org\share_extend-1.0.8\android\src\main\AndroidManifest.xml:4:22-77
+uses-permission#android.permission.WRITE_EXTERNAL_STORAGE
+ADDED from D:\src\flutter\.pub-cache\hosted\pub.dartlang.org\share_extend-1.0.8\android\src\main\AndroidManifest.xml:5:5-80
+	android:name
+		ADDED from D:\src\flutter\.pub-cache\hosted\pub.dartlang.org\share_extend-1.0.8\android\src\main\AndroidManifest.xml:5:22-78
+application
+ADDED from D:\src\flutter\.pub-cache\hosted\pub.dartlang.org\share_extend-1.0.8\android\src\main\AndroidManifest.xml:7:5-19:19
+provider#com.zt.shareextend.ShareExtendProvider
+ADDED from D:\src\flutter\.pub-cache\hosted\pub.dartlang.org\share_extend-1.0.8\android\src\main\AndroidManifest.xml:9:9-17:20
+	android:grantUriPermissions
+		ADDED from D:\src\flutter\.pub-cache\hosted\pub.dartlang.org\share_extend-1.0.8\android\src\main\AndroidManifest.xml:13:13-47
+	android:authorities
+		ADDED from D:\src\flutter\.pub-cache\hosted\pub.dartlang.org\share_extend-1.0.8\android\src\main\AndroidManifest.xml:11:13-76
+	android:exported
+		ADDED from D:\src\flutter\.pub-cache\hosted\pub.dartlang.org\share_extend-1.0.8\android\src\main\AndroidManifest.xml:12:13-37
+	android:name
+		ADDED from D:\src\flutter\.pub-cache\hosted\pub.dartlang.org\share_extend-1.0.8\android\src\main\AndroidManifest.xml:10:13-66
+meta-data#android.support.FILE_PROVIDER_PATHS
+ADDED from D:\src\flutter\.pub-cache\hosted\pub.dartlang.org\share_extend-1.0.8\android\src\main\AndroidManifest.xml:14:13-16:70
+	android:resource
+		ADDED from D:\src\flutter\.pub-cache\hosted\pub.dartlang.org\share_extend-1.0.8\android\src\main\AndroidManifest.xml:16:17-67
+	android:name
+		ADDED from D:\src\flutter\.pub-cache\hosted\pub.dartlang.org\share_extend-1.0.8\android\src\main\AndroidManifest.xml:15:17-67
+uses-sdk
+INJECTED from D:\src\flutter\.pub-cache\hosted\pub.dartlang.org\share_extend-1.0.8\android\src\main\AndroidManifest.xml reason: use-sdk injection requested
+INJECTED from D:\src\flutter\.pub-cache\hosted\pub.dartlang.org\share_extend-1.0.8\android\src\main\AndroidManifest.xml
+INJECTED from D:\src\flutter\.pub-cache\hosted\pub.dartlang.org\share_extend-1.0.8\android\src\main\AndroidManifest.xml
+	android:minSdkVersion
+		INJECTED from D:\src\flutter\.pub-cache\hosted\pub.dartlang.org\share_extend-1.0.8\android\src\main\AndroidManifest.xml
+		ADDED from D:\src\flutter\.pub-cache\hosted\pub.dartlang.org\share_extend-1.0.8\android\src\main\AndroidManifest.xml
+		INJECTED from D:\src\flutter\.pub-cache\hosted\pub.dartlang.org\share_extend-1.0.8\android\src\main\AndroidManifest.xml
