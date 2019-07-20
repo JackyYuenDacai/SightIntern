@@ -24,6 +24,7 @@ class I8N{
       'add_staff':'Add Staff',
       'location_text':'Location ',
       'submit_text':'Submit',
+      'login':'Sign in'
     },
     'zh':{
       'apptitle':'明愛樂勤應用程式',
@@ -38,6 +39,7 @@ class I8N{
       'add_staff':'添加職員',
       'location_text':'地點 ',
       'submit_text':'提交',
+      'login':'登入'
     },
   };
   String get apptitle{return I8N_values[locale.languageCode]['apptitle'];}
@@ -53,6 +55,7 @@ class I8N{
 
   String get location_text{return I8N_values[locale.languageCode]['location_text'];}
   String get submit_text{return I8N_values[locale.languageCode]['submit_text'];}
+  String get login{return I8N_values[locale.languageCode]['login'];}
 }
 class I8NDelegate extends LocalizationsDelegate<I8N>{
   const I8NDelegate();

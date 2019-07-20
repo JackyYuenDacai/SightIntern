@@ -14,17 +14,17 @@ class MyMenu_RFID extends StatelessWidget{
           children: <Widget>[
             userHeader ,
             ListTile(title: Text(I8N.of(context).rfid_title),
-              leading: new CircleAvatar(child: new Icon(Icons.school),),
+              leading: new CircleAvatar(child: new Icon(Icons.directions_walk),),
               onTap: () {
                // Navigator.of(context).pushNamed('/RFIDPage');
               },),
             ListTile(title: Text(I8N.of(context).students_title),
-              leading: new CircleAvatar(child: new Icon(Icons.school),),
+              leading: new CircleAvatar(child: new Icon(Icons.person_pin),),
               onTap: () {
                 Navigator.of(context).pushNamed('/DataPage');
               },),
             ListTile(title: Text(I8N.of(context).manuel_title),
-              leading: new CircleAvatar(child: new Text('B2'),),
+              leading: new CircleAvatar(child: new Icon(Icons.edit),),
               onTap: () {
                 //Navigator.pop(context);
                 Navigator.of(context).pushNamed('/ManPage');
@@ -52,17 +52,17 @@ class MyMenu_Data extends StatelessWidget{
           children: <Widget>[
             userHeader ,
             ListTile(title: Text(I8N.of(context).rfid_title),
-              leading: new CircleAvatar(child: new Icon(Icons.school),),
+              leading: new CircleAvatar(child: new Icon(Icons.directions_walk),),
               onTap: () {
                 Navigator.of(context).pushNamed('/RFIDPage');
               },),
             ListTile(title: Text(I8N.of(context).students_title),
-              leading: new CircleAvatar(child: new Icon(Icons.school),),
+              leading: new CircleAvatar(child: new Icon(Icons.person_pin),),
               onTap: () {
                 //Navigator.of(context).pushNamed('/DataPage');
               },),
             ListTile(title: Text(I8N.of(context).manuel_title),
-              leading: new CircleAvatar(child: new Text('B2'),),
+              leading: new CircleAvatar(child: new Icon(Icons.edit),),
               onTap: () {
                 //Navigator.pop(context);
                 Navigator.of(context).pushNamed('/ManPage');
@@ -90,17 +90,17 @@ class MyMenu_Manual extends StatelessWidget{
           children: <Widget>[
             userHeader ,
             ListTile(title: Text(I8N.of(context).rfid_title),
-              leading: new CircleAvatar(child: new Icon(Icons.school),),
+              leading: new CircleAvatar(child: new Icon(Icons.directions_walk),),
               onTap: () {
                 Navigator.of(context).pushNamed('/RFIDPage');
               },),
             ListTile(title: Text(I8N.of(context).students_title),
-              leading: new CircleAvatar(child: new Icon(Icons.school),),
+              leading: new CircleAvatar(child: new Icon(Icons.person_pin),),
               onTap: () {
                 Navigator.of(context).pushNamed('/DataPage');
               },),
             ListTile(title: Text(I8N.of(context).manuel_title),
-              leading: new CircleAvatar(child: new Text('B2'),),
+              leading: new CircleAvatar(child: new Icon(Icons.edit),),
               onTap: () {
                 //Navigator.pop(context);
                 //Navigator.of(context).pushNamed('/ManPage');

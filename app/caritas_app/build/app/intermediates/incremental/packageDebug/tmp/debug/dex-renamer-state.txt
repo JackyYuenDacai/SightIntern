@@ -1,4 +1,4 @@
-#Wed Jul 17 17:56:11 CST 2019
+#Sat Jul 20 17:34:32 CST 2019
 base.0=C\:\\Users\\Don\\Documents\\GitHub\\SightIntern\\app\\caritas_app\\build\\app\\intermediates\\transforms\\dexMerger\\debug\\0
 path.0=classes.dex
 renamed.0=classes.dex
