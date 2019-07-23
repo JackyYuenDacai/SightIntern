@@ -27,4 +27,25 @@ public class users_filesSqlProvider {
         
         return sql.toString();
     }
+
+    public String updateByPrimaryKeySelective(users_files record) {
+        SQL sql = new SQL();
+        sql.UPDATE("users_files");
+        
+        if (record.getPid() != null) {
+            sql.SET("pid = #{pid,jdbcType=VARCHAR}");
+        }
+        
+        if (record.getFileType() != null) {
+            sql.SET("file_type = #{fileType,jdbcType=VARCHAR}");
+        }
+        
+        if (record.getFileId() != null) {
+            sql.SET("file_id = #{fileId,jdbcType=VARCHAR}");
+        }
+        
+        sql.WHERE("id = #{id,jdbcType=VARCHAR}");
+        
+        return sql.toString();
+    }
 }

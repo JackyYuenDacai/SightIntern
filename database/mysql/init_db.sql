@@ -45,7 +45,7 @@ create table record_child(
 );
 
 create table users_files(
-  id nvarchar(64) not null,
+  id nvarchar(64) primary key,
   pid nvarchar(64) ,
   file_type nvarchar(64) not null,
   file_id nvarchar(128) not null
@@ -55,4 +55,14 @@ child_status :
 0: get in
 1: get out
 2: not sure
+*/
+
+/*
+users
+users_files
+record_child
+record_master
+soc_list
+users_tag
+users_icon
 */
