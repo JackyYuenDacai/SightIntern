@@ -1,21 +1,20 @@
-drop if exists database caritas_db;
+drop database if exists caritas_db;
 create database caritas_db;
 use caritas_db;
 
 create table users(
-  unique id nvarchar(64) not null,
+  id nvarchar(64) primary key,
   name nvarchar(128),
   role nvarchar(32) not null,
-  privilege INT not null,
+  privilege int not null,
   extra nvarchar(2048),
   pwd nvarchar(512),
   soc nvarchar(512),
-  parent_id nvarchar(64),
-  index [id_index] (id)
+  parent_id nvarchar(64)
 );
 
 create table users_icon(
-  unique id nvarchar(64) not null,
+  id nvarchar(64) primary key,
   icon_id nvarchar(128)
 );
 
@@ -26,14 +25,14 @@ create table users_tag(
 );
 
 create table soc_list(
-  unique soc nvarchar(512) not null,
-  unique name nvarchar(1024) not null,
+  soc nvarchar(512) primary key,
+  name nvarchar(1024)
 );
 
 create table record_master(
   id nvarchar(128) primary key,
-  type nvarchar(128)
-  location nvarchar(128),
+  type nvarchar(128),
+  location nvarchar(128)
 );
 
 create table record_child(
@@ -42,8 +41,14 @@ create table record_child(
   student_id nvarchar(64),
   record_time datetime default now(),
   data nvarchar(2048),
-  status int,
-  index [parent_id_index] (parent_id)
+  status int
+);
+
+create table users_files(
+  id nvarchar(64) not null,
+  pid nvarchar(64) ,
+  file_type nvarchar(64) not null,
+  file_id nvarchar(128) not null
 );
 /*
 child_status :

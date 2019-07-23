@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8"?>  
+<!DOCTYPE generatorConfiguration  
+        PUBLIC "-//mybatis.org//DTD MyBatis Generator Configuration 1.0//EN"  
+        "http://mybatis.org/dtd/mybatis-generator-config_1_0.dtd">  
+<generatorConfiguration>  
+    <context id="DB2Tables"    targetRuntime="MyBatis3">  
+        <commentGenerator>  
+            <property name="suppressDate" value="true"/>  
+            <property name="suppressAllComments" value="true"/>  
+        </commentGenerator>  
+        <!--数据库链接地址账号密码-->  
+        <jdbcConnection driverClass="com.mysql.cj.jdbc.Driver" connectionURL="jdbc:mysql://localhost:3306/caritas_db?characterEncoding=utf-8" userId="root" password="">  
+        </jdbcConnection>  
+        <javaTypeResolver>  
+            <property name="forceBigDecimals" value="false"/>  
+        </javaTypeResolver>  
+        <!--生成Model类存放位置-->  
+        <javaModelGenerator targetPackage="com.sight.WebServer.data.model" targetProject="src/main/java">  
+            <property name="enableSubPackages" value="true"/>  
+            <property name="trimStrings" value="true"/>  
+        </javaModelGenerator>  
+        <!--生成映射文件存放位置-->  
+        <sqlMapGenerator targetPackage="com.sightWebServer.data.mapper" targetProject="src/main/java">  
+            <property name="enableSubPackages" value="true"/>  
+        </sqlMapGenerator>  
+        <!--生成Dao类存放位置-->  
+        <!-- 客户端代码，生成易于使用的针对Model对象和XML配置文件 的代码  
+                type="ANNOTATEDMAPPER",生成Java Model 和基于注解的Mapper对象  
+                type="MIXEDMAPPER",生成基于注解的Java Model 和相应的Mapper对象  
+                type="XMLMAPPER",生成SQLMap XML文件和独立的Mapper接口  
+        -->  
+        <javaClientGenerator type="ANNOTATEDMAPPER" targetPackage="com.sight.WebServer.data.dao" targetProject="src/main/java">  
+            <property name="enableSubPackages" value="true"/>  
+        </javaClientGenerator>  
+        <!--
+        生成对应表及类名
+        users
+		users_files
+		record_child
+		record_master
+		soc_list
+		users_tag
+		users_icon
+        -->  
+        <table tableName="users" domainObjectName="users" 
+        		enableCountByExample="false" enableUpdateByExample="false" 
+        		enableDeleteByExample="false" enableSelectByExample="false" 
+        		selectByExampleQueryId="false"></table> 
+        <table tableName="users_icon" domainObjectName="users_icon" 
+        		enableCountByExample="false" enableUpdateByExample="false" 
+        		enableDeleteByExample="false" enableSelectByExample="false" 
+        		selectByExampleQueryId="false"></table> 
+        <table tableName="users_tag" domainObjectName="users_tag" 
+        		enableCountByExample="false" enableUpdateByExample="false" 
+        		enableDeleteByExample="false" enableSelectByExample="false" 
+        		selectByExampleQueryId="false"></table> 
+        <table tableName="users_files" domainObjectName="users_files" 
+        		enableCountByExample="false" enableUpdateByExample="false" 
+        		enableDeleteByExample="false" enableSelectByExample="false" 
+        		selectByExampleQueryId="false"></table> 
+        <table tableName="record_master" domainObjectName="record_master" 
+        		enableCountByExample="false" enableUpdateByExample="false" 
+        		enableDeleteByExample="false" enableSelectByExample="false" 
+        		selectByExampleQueryId="false"></table> 
+        <table tableName="record_child" domainObjectName="record_child" 
+        		enableCountByExample="false" enableUpdateByExample="false" 
+        		enableDeleteByExample="false" enableSelectByExample="false" 
+        		selectByExampleQueryId="false"></table> 
+        <table tableName="soc_list" domainObjectName="soc_list" 
+        		enableCountByExample="false" enableUpdateByExample="false" 
+        		enableDeleteByExample="false" enableSelectByExample="false" 
+        		selectByExampleQueryId="false"></table> 
+         
+    </context>  
+</generatorConfiguration>

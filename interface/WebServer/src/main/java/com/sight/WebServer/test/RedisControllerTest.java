@@ -4,6 +4,8 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Set;
 
+import javax.servlet.http.HttpServletRequest;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.data.redis.RedisProperties.Jedis;
 import org.springframework.data.redis.core.RedisTemplate;
@@ -23,13 +25,7 @@ public class RedisControllerTest {
 	
 	@RequestMapping("/stringAndHash")
 	@ResponseBody
-	public Map<String, Object> testStringAndHash(){
-		redisTemplate.opsForValue().set("key1","value1");
-		stringRedisTemplate.opsForValue().set("int1", "0");
-		stringRedisTemplate.opsForValue().increment("int1");
-		Jedis jedis = null;
-		Map<String,Object> map = new HashMap<String,Object>();
-		map.put("success", true);
-		return map;
+    public Object uploadFile(HttpServletRequest request) throws Exception {
+		return 0;
 	}
 }
