@@ -43,33 +43,37 @@
 		users_icon
         -->  
         <table tableName="users" domainObjectName="users" 
-        		enableCountByExample="false" enableUpdateByExample="false" 
-        		enableDeleteByExample="false" enableSelectByExample="false" 
-        		selectByExampleQueryId="false"></table> 
+        		enableCountByExample="true" enableUpdateByExample="true" 
+        		enableDeleteByExample="true" enableSelectByExample="true" 
+        		selectByExampleQueryId="true"></table> 
         <table tableName="users_icon" domainObjectName="users_icon" 
-        		enableCountByExample="false" enableUpdateByExample="false" 
-        		enableDeleteByExample="false" enableSelectByExample="false" 
-        		selectByExampleQueryId="false"></table> 
+        		enableCountByExample="true" enableUpdateByExample="true" 
+        		enableDeleteByExample="true" enableSelectByExample="true" 
+        		selectByExampleQueryId="true"></table> 
         <table tableName="users_tag" domainObjectName="users_tag" 
-        		enableCountByExample="false" enableUpdateByExample="false" 
-        		enableDeleteByExample="false" enableSelectByExample="false" 
-        		selectByExampleQueryId="false"></table> 
+        		enableCountByExample="true" enableUpdateByExample="true" 
+        		enableDeleteByExample="true" enableSelectByExample="true" 
+        		selectByExampleQueryId="true"></table> 
         <table tableName="users_files" domainObjectName="users_files" 
-        		enableCountByExample="false" enableUpdateByExample="false" 
-        		enableDeleteByExample="false" enableSelectByExample="false" 
-        		selectByExampleQueryId="false"></table> 
+        		enableCountByExample="true" enableUpdateByExample="true" 
+        		enableDeleteByExample="true" enableSelectByExample="true" 
+        		selectByExampleQueryId="true"></table> 
+        <table tableName="users_token" domainObjectName="users_token" 
+        		enableCountByExample="true" enableUpdateByExample="true" 
+        		enableDeleteByExample="true" enableSelectByExample="true" 
+        		selectByExampleQueryId="true"></table> 
         <table tableName="record_master" domainObjectName="record_master" 
-        		enableCountByExample="false" enableUpdateByExample="false" 
-        		enableDeleteByExample="false" enableSelectByExample="false" 
-        		selectByExampleQueryId="false"></table> 
+        		enableCountByExample="true" enableUpdateByExample="true" 
+        		enableDeleteByExample="true" enableSelectByExample="true" 
+        		selectByExampleQueryId="true"></table> 
         <table tableName="record_child" domainObjectName="record_child" 
-        		enableCountByExample="false" enableUpdateByExample="false" 
-        		enableDeleteByExample="false" enableSelectByExample="false" 
-        		selectByExampleQueryId="false"></table> 
+        		enableCountByExample="true" enableUpdateByExample="true" 
+        		enableDeleteByExample="true" enableSelectByExample="true" 
+        		selectByExampleQueryId="true"></table> 
         <table tableName="soc_list" domainObjectName="soc_list" 
-        		enableCountByExample="false" enableUpdateByExample="false" 
-        		enableDeleteByExample="false" enableSelectByExample="false" 
-        		selectByExampleQueryId="false"></table> 
+        		enableCountByExample="true" enableUpdateByExample="true" 
+        		enableDeleteByExample="true" enableSelectByExample="true" 
+        		selectByExampleQueryId="true"></table> 
          
     </context>  
 </generatorConfiguration>

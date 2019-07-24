@@ -1,73 +1,58 @@
 package com.sight.WebServer.data.dao;
 
-import com.sight.WebServer.data.model.record_child;
-import com.sight.WebServer.data.model.record_childExample.Criteria;
-import com.sight.WebServer.data.model.record_childExample.Criterion;
-import com.sight.WebServer.data.model.record_childExample;
+import com.sight.WebServer.data.model.users_token;
+import com.sight.WebServer.data.model.users_tokenExample.Criteria;
+import com.sight.WebServer.data.model.users_tokenExample.Criterion;
+import com.sight.WebServer.data.model.users_tokenExample;
 import java.util.List;
 import java.util.Map;
 import org.apache.ibatis.jdbc.SQL;
 
-public class record_childSqlProvider {
+public class users_tokenSqlProvider {
 
-    public String countByExample(record_childExample example) {
+    public String countByExample(users_tokenExample example) {
         SQL sql = new SQL();
-        sql.SELECT("count(*)").FROM("record_child");
+        sql.SELECT("count(*)").FROM("users_token");
         applyWhere(sql, example, false);
         return sql.toString();
     }
 
-    public String deleteByExample(record_childExample example) {
+    public String deleteByExample(users_tokenExample example) {
         SQL sql = new SQL();
-        sql.DELETE_FROM("record_child");
+        sql.DELETE_FROM("users_token");
         applyWhere(sql, example, false);
         return sql.toString();
     }
 
-    public String insertSelective(record_child record) {
+    public String insertSelective(users_token record) {
         SQL sql = new SQL();
-        sql.INSERT_INTO("record_child");
+        sql.INSERT_INTO("users_token");
         
         if (record.getId() != null) {
             sql.VALUES("id", "#{id,jdbcType=VARCHAR}");
         }
         
-        if (record.getParentId() != null) {
-            sql.VALUES("parent_id", "#{parentId,jdbcType=VARCHAR}");
+        if (record.getToken() != null) {
+            sql.VALUES("token", "#{token,jdbcType=VARCHAR}");
         }
         
-        if (record.getStudentId() != null) {
-            sql.VALUES("student_id", "#{studentId,jdbcType=VARCHAR}");
-        }
-        
-        if (record.getRecordTime() != null) {
-            sql.VALUES("record_time", "#{recordTime,jdbcType=TIMESTAMP}");
-        }
-        
-        if (record.getData() != null) {
-            sql.VALUES("data", "#{data,jdbcType=VARCHAR}");
-        }
-        
-        if (record.getStatus() != null) {
-            sql.VALUES("status", "#{status,jdbcType=INTEGER}");
+        if (record.getExpire() != null) {
+            sql.VALUES("expire", "#{expire,jdbcType=TIMESTAMP}");
         }
         
         return sql.toString();
     }
 
-    public String selectByExample(record_childExample example) {
+    public String selectByExample(users_tokenExample example) {
         SQL sql = new SQL();
         if (example != null && example.isDistinct()) {
             sql.SELECT_DISTINCT("id");
         } else {
             sql.SELECT("id");
         }
-        sql.SELECT("parent_id");
-        sql.SELECT("student_id");
-        sql.SELECT("record_time");
-        sql.SELECT("data");
-        sql.SELECT("status");
-        sql.FROM("record_child");
+        sql.SELECT("token");
+        sql.SELECT("expire");
+        sql.FROM("users_token");
         applyWhere(sql, example, false);
         
         if (example != null && example.getOrderByClause() != null) {
@@ -78,34 +63,22 @@ public class record_childSqlProvider {
     }
 
     public String updateByExampleSelective(Map<String, Object> parameter) {
-        record_child record = (record_child) parameter.get("record");
-        record_childExample example = (record_childExample) parameter.get("example");
+        users_token record = (users_token) parameter.get("record");
+        users_tokenExample example = (users_tokenExample) parameter.get("example");
         
         SQL sql = new SQL();
-        sql.UPDATE("record_child");
+        sql.UPDATE("users_token");
         
         if (record.getId() != null) {
             sql.SET("id = #{record.id,jdbcType=VARCHAR}");
         }
         
-        if (record.getParentId() != null) {
-            sql.SET("parent_id = #{record.parentId,jdbcType=VARCHAR}");
+        if (record.getToken() != null) {
+            sql.SET("token = #{record.token,jdbcType=VARCHAR}");
         }
         
-        if (record.getStudentId() != null) {
-            sql.SET("student_id = #{record.studentId,jdbcType=VARCHAR}");
-        }
-        
-        if (record.getRecordTime() != null) {
-            sql.SET("record_time = #{record.recordTime,jdbcType=TIMESTAMP}");
-        }
-        
-        if (record.getData() != null) {
-            sql.SET("data = #{record.data,jdbcType=VARCHAR}");
-        }
-        
-        if (record.getStatus() != null) {
-            sql.SET("status = #{record.status,jdbcType=INTEGER}");
+        if (record.getExpire() != null) {
+            sql.SET("expire = #{record.expire,jdbcType=TIMESTAMP}");
         }
         
         applyWhere(sql, example, true);
@@ -114,42 +87,27 @@ public class record_childSqlProvider {
 
     public String updateByExample(Map<String, Object> parameter) {
         SQL sql = new SQL();
-        sql.UPDATE("record_child");
+        sql.UPDATE("users_token");
         
         sql.SET("id = #{record.id,jdbcType=VARCHAR}");
-        sql.SET("parent_id = #{record.parentId,jdbcType=VARCHAR}");
-        sql.SET("student_id = #{record.studentId,jdbcType=VARCHAR}");
-        sql.SET("record_time = #{record.recordTime,jdbcType=TIMESTAMP}");
-        sql.SET("data = #{record.data,jdbcType=VARCHAR}");
-        sql.SET("status = #{record.status,jdbcType=INTEGER}");
+        sql.SET("token = #{record.token,jdbcType=VARCHAR}");
+        sql.SET("expire = #{record.expire,jdbcType=TIMESTAMP}");
         
-        record_childExample example = (record_childExample) parameter.get("example");
+        users_tokenExample example = (users_tokenExample) parameter.get("example");
         applyWhere(sql, example, true);
         return sql.toString();
     }
 
-    public String updateByPrimaryKeySelective(record_child record) {
+    public String updateByPrimaryKeySelective(users_token record) {
         SQL sql = new SQL();
-        sql.UPDATE("record_child");
+        sql.UPDATE("users_token");
         
-        if (record.getParentId() != null) {
-            sql.SET("parent_id = #{parentId,jdbcType=VARCHAR}");
+        if (record.getToken() != null) {
+            sql.SET("token = #{token,jdbcType=VARCHAR}");
         }
         
-        if (record.getStudentId() != null) {
-            sql.SET("student_id = #{studentId,jdbcType=VARCHAR}");
-        }
-        
-        if (record.getRecordTime() != null) {
-            sql.SET("record_time = #{recordTime,jdbcType=TIMESTAMP}");
-        }
-        
-        if (record.getData() != null) {
-            sql.SET("data = #{data,jdbcType=VARCHAR}");
-        }
-        
-        if (record.getStatus() != null) {
-            sql.SET("status = #{status,jdbcType=INTEGER}");
+        if (record.getExpire() != null) {
+            sql.SET("expire = #{expire,jdbcType=TIMESTAMP}");
         }
         
         sql.WHERE("id = #{id,jdbcType=VARCHAR}");
@@ -157,7 +115,7 @@ public class record_childSqlProvider {
         return sql.toString();
     }
 
-    protected void applyWhere(SQL sql, record_childExample example, boolean includeExamplePhrase) {
+    protected void applyWhere(SQL sql, users_tokenExample example, boolean includeExamplePhrase) {
         if (example == null) {
             return;
         }

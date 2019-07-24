@@ -50,6 +50,12 @@ create table users_files(
   file_type nvarchar(64) not null,
   file_id nvarchar(128) not null
 );
+
+create table users_token(
+  id nvarchar(64) primary key,
+  token nvarchar(128),
+  expire datetime
+);
 /*
 child_status :
 0: get in

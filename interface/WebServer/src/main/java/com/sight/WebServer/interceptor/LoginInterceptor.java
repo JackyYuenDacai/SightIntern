@@ -6,19 +6,28 @@ import org.springframework.stereotype.Component;
 import org.springframework.web.servlet.HandlerInterceptor;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.sight.WebServer.data.model.users_token;
+import com.sight.WebServer.data.service.usersService;
+import com.sight.WebServer.data.service.users_tokenService;
+
 import net.sf.json.JSONObject;
 
 import java.io.BufferedReader;
 import java.io.InputStream;
 import java.io.InputStreamReader;
+import java.util.Date;
 
+import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 public class LoginInterceptor implements HandlerInterceptor{
 	
     private static final Logger LOG= LoggerFactory.getLogger(LoginInterceptor.class);
-    
+	@Resource
+	private usersService UsersService;
+	@Resource
+	private users_tokenService UsersTokenService;
     @Override
     public boolean preHandle(HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse, Object o) throws Exception {
         LOG.info("login preHandler");
@@ -35,10 +44,11 @@ public class LoginInterceptor implements HandlerInterceptor{
          */
         String token = jsonObject.getString("token");
         String id = jsonObject.getString("id");
-        if(true) // valid token
-        return true;
+        users_token UsersToken = UsersTokenService.getUserTokenById(id);
+        if(UsersToken.getToken() == token && UsersToken.getExpire().after(new Date()))
+        	return true;
         else
-        return false;
+        	return false;
     }
  
     @Override
