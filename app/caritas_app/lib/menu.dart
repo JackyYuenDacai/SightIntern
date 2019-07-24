@@ -1,6 +1,7 @@
 library menu;
 import 'package:flutter/material.dart';
 import './I8N.dart';
+import './pop.dart';
 
 class MyMenu_RFID extends StatelessWidget{
   Widget userHeader = UserAccountsDrawerHeader(
@@ -41,16 +42,19 @@ class MyMenu_RFID extends StatelessWidget{
 }
 
 class MyMenu_Data extends StatelessWidget{
-  Widget userHeader = UserAccountsDrawerHeader(
-      accountName: new Text('Location'),
+  /*Widget userHeader = UserAccountsDrawerHeader(
+      accountName: new Text('Location' +StaticList.location),
       currentAccountPicture: new CircleAvatar(
-        backgroundImage: AssetImage('images/pic1.jpg'), radius: 35.0,),);
+        backgroundImage: AssetImage('images/pic1.jpg'), radius: 35.0,),);*/
   @override
   Widget build(BuildContext context){
     return ListView(
           padding: EdgeInsets.zero,
           children: <Widget>[
-            userHeader ,
+            UserAccountsDrawerHeader(
+      accountName: new Text('Location' +StaticList.location),
+      currentAccountPicture: new CircleAvatar(
+        backgroundImage: AssetImage('images/pic1.jpg'), radius: 35.0,),) ,
             ListTile(title: Text(I8N.of(context).rfid_title),
               leading: new CircleAvatar(child: new Icon(Icons.directions_walk),),
               onTap: () {
@@ -80,7 +84,7 @@ class MyMenu_Data extends StatelessWidget{
 
 class MyMenu_Manual extends StatelessWidget{
   Widget userHeader = UserAccountsDrawerHeader(
-      accountName: new Text('Location'),
+      accountName: new Text('Location' +StaticList.location),
       currentAccountPicture: new CircleAvatar(
         backgroundImage: AssetImage('images/pic1.jpg'), radius: 35.0,),);
   @override

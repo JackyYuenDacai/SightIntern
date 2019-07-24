@@ -1,3 +1,8 @@
+//todo: print location
+//now:re-organize menu.dart, pop.dart given value will cover value given here?Or not passed?
+//question is: how to set up proper empty value?
+
+
 import 'package:flutter/material.dart';
 import './columnWidget.dart';
 import './RFIDPage.dart';
@@ -8,6 +13,10 @@ import 'package:flutter_localizations/flutter_localizations.dart';
 import './I8N.dart';
 import 'network_request.dart';
 import 'SettingPage.dart';
+
+import 'dart:convert';
+import 'package:convert/convert.dart';
+import 'package:crypto/crypto.dart';
 
 void main() => runApp(MyApp());
 
@@ -71,12 +80,45 @@ class MyHomePage extends StatefulWidget {
 
 class _MyHomePageState extends State<MyHomePage> {
   TextStyle style = TextStyle(fontFamily: 'Montserrat', fontSize: 20.0);
+  final TextEditingController _userFilter = new TextEditingController();
+  final TextEditingController _passwordFilter = new TextEditingController();
+  String _user = "";
+  String _password = "";
 
+
+  _MyHomePageState() {
+    _userFilter.addListener(_userListen);
+    _passwordFilter.addListener(_passwordListen);
+  }
+
+  void _userListen() {
+    if (_userFilter.text.isEmpty) {
+      _user = "";
+    } else {
+      _user = generateMd5(_userFilter.text);
+      //StaticList.location = _user;
+    }
+  }
+
+  void _passwordListen() {
+    if (_passwordFilter.text.isEmpty) {
+      _password = "";
+    } else {
+      _password = generateMd5(_passwordFilter.text);
+    }
+  }
+
+  void _loginPressed () {
+      StaticList.location = _user;
+      print('The user wants to login with $_user and $_password');
+  }
+  
   @override
   Widget build(BuildContext context) {
 
     final userField = TextField(
       //obscureText: true,
+      controller: _userFilter,
       style: style,
       decoration: InputDecoration(
           contentPadding: EdgeInsets.fromLTRB(20.0, 15.0, 20.0, 15.0),
@@ -87,6 +129,7 @@ class _MyHomePageState extends State<MyHomePage> {
 
     final passwordField = TextField(
       obscureText: true,
+      controller: _passwordFilter,
       style: style,
       decoration: InputDecoration(
           contentPadding: EdgeInsets.fromLTRB(20.0, 15.0, 20.0, 15.0),
@@ -102,7 +145,10 @@ class _MyHomePageState extends State<MyHomePage> {
       child: MaterialButton(
         minWidth: MediaQuery.of(context).size.width,
         padding: EdgeInsets.fromLTRB(20.0, 15.0, 20.0, 15.0),
-        onPressed: () => Navigator.pushNamed(context, '/RFIDPage'),
+        onPressed: (){
+          _loginPressed;
+          Navigator.pushNamed(context, '/RFIDPage');
+        }, //=> Navigator.pushNamed(context, '/RFIDPage'),
         child: Text("Login",
             textAlign: TextAlign.center,
             style: style.copyWith(
@@ -110,12 +156,12 @@ class _MyHomePageState extends State<MyHomePage> {
       ),
     );
 
+
     return Scaffold(
       body: SingleChildScrollView(
       child: Center(
         child: Container(
-          //color: Colors.lightGreen,
-          //decoration: new BoxDecoration(color: Colors.lightGreen),
+          color: Colors.white,
           child: Padding(
             padding: const EdgeInsets.all(36.0),
             child: Column(
@@ -148,4 +194,11 @@ class _MyHomePageState extends State<MyHomePage> {
         )
     );
   }
+}
+
+String generateMd5(String data) {
+  var content = new Utf8Encoder().convert(data);
+  var digest = md5.convert(content);
+  // 这里其实就是 digest.toString()
+  return hex.encode(digest.bytes);
 }

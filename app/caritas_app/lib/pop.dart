@@ -122,7 +122,7 @@ class question{
 class StaticList{
   static List<ColForm> colform_list = new List<ColForm>();
   static List<DataForm> datform_list = new List<DataForm>();
-  static String location = 'A';
+  static String location = '?';
   static record_entries entries;
   static List<String> student_id = new List<String>();
   static List<String> student_name = new List<String>();

@@ -54,6 +54,10 @@ class _RFIDPageState extends State<RFIDPage> {
   }
   @override
   Widget build(BuildContext context) {
+    /*Widget userHeader = UserAccountsDrawerHeader(
+      accountName: new Text('Location'),
+      currentAccountPicture: new CircleAvatar(
+        backgroundImage: AssetImage('images/pic1.jpg'), radius: 35.0,),);*/
     return new WillPopScope(
       onWillPop: () async {
         return true;
