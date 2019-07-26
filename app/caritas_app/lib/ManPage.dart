@@ -7,6 +7,7 @@ import 'package:flutter_localizations/flutter_localizations.dart';
 import './I8N.dart';
 import './pop.dart';
 import './menu.dart';
+import './main.dart';
 class ManPage extends StatefulWidget {
   @override
   State<StatefulWidget> createState() {

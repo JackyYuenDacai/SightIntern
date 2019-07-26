@@ -12,6 +12,7 @@ import './DataForm.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import './I8N.dart';
 import 'network_request.dart';
+import './main.dart';
 class SettingPage extends StatefulWidget {
   @override
   State<StatefulWidget> createState() {

@@ -23,6 +23,7 @@ import 'network_request.dart';
 
 import 'I8N.dart';
 
+import './main.dart';
 class ClicksPerYear {
   final int year;
   final double clicks;

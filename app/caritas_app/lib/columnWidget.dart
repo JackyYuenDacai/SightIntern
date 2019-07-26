@@ -8,6 +8,7 @@ import 'package:http/http.dart' as http;
 import 'pop.dart';
 import 'network_request.dart';
 import './I8N.dart';
+import './main.dart';
 class ColForm extends StatefulWidget{
   String name,id,unitok;
   ColForm([String n='Name',String i='Id',String t='']) : name=n,id=i,unitok=t

@@ -6,6 +6,7 @@ import 'dart:io';
 import 'package:http/http.dart' as http;
 import 'columnWidget.dart';
 import 'package:json_annotation/json_annotation.dart';
+import './main.dart';
 typedef ProcessFunc = void Function(http.Response);
 class network_request{
 

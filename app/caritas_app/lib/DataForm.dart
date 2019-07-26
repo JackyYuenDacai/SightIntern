@@ -24,6 +24,8 @@ import 'network_request.dart';
 import 'I8N.dart';
 
 import 'RecordChart.dart';
+
+import './main.dart';
 class DataForm extends StatefulWidget{
   String name,id;
   DataForm([String n='Name',String i='Id']) : name=n,id=i

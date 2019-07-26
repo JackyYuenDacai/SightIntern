@@ -2,6 +2,7 @@ import 'package:json_annotation/json_annotation.dart';
 import 'columnWidget.dart';
 import 'package:intl/intl.dart';
 import 'DataForm.dart';
+import './main.dart';
 class pop{
   pop(this.name,this.id,this.status,this.unitok);
   final String name;

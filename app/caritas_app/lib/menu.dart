@@ -2,6 +2,7 @@ library menu;
 import 'package:flutter/material.dart';
 import './I8N.dart';
 import './pop.dart';
+import './main.dart';
 
 class MyMenu_RFID extends StatelessWidget{
   Widget userHeader = UserAccountsDrawerHeader(
@@ -52,7 +53,7 @@ class MyMenu_Data extends StatelessWidget{
           padding: EdgeInsets.zero,
           children: <Widget>[
             UserAccountsDrawerHeader(
-      accountName: new Text('Location' +StaticList.location),
+      accountName: new Text(StaticList.location),
       currentAccountPicture: new CircleAvatar(
         backgroundImage: AssetImage('images/pic1.jpg'), radius: 35.0,),) ,
             ListTile(title: Text(I8N.of(context).rfid_title),
@@ -84,7 +85,7 @@ class MyMenu_Data extends StatelessWidget{
 
 class MyMenu_Manual extends StatelessWidget{
   Widget userHeader = UserAccountsDrawerHeader(
-      accountName: new Text('Location' +StaticList.location),
+      accountName: new Text('Location '+StaticList.location),
       currentAccountPicture: new CircleAvatar(
         backgroundImage: AssetImage('images/pic1.jpg'), radius: 35.0,),);
   @override
