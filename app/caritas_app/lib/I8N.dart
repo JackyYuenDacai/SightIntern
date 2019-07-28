@@ -14,6 +14,7 @@ class I8N{
   static Map<String,Map<String,String>> I8N_values = {
     'en':{
       'apptitle':'CaritasApp',
+      'title':'Lavatory Management System',
       'students_title':'Students',
       'home':'Home',
       'rfid_title':'RFID Page',
@@ -25,10 +26,13 @@ class I8N{
       'add_staff':'Add Staff',
       'location_text':'Location ',
       'submit_text':'Submit',
-      'login':'Sign in'
+      'login':'Sign in',
+      'username':'Username',
+      'password':'Password',
     },
     'zh':{
       'apptitle':'明愛樂勤應用程式',
+      'title':'如廁管理系統',
       'students_title':'學生',
       'home':'主頁',
       'rfid_title':'無線感應頁面',
@@ -40,10 +44,13 @@ class I8N{
       'add_staff':'添加職員',
       'location_text':'地點 ',
       'submit_text':'提交',
-      'login':'登入'
+      'login':'登入',
+      'username':'帳戶名稱',
+      'password':'密碼',
     },
   };
   String get apptitle{return I8N_values[locale.languageCode]['apptitle'];}
+  String get title{return I8N_values[locale.languageCode]['title'];}
   String get home{return I8N_values[locale.languageCode]['home'];}
   String get students_title{return I8N_values[locale.languageCode]['students_title'];}
   String get manuel_title{return I8N_values[locale.languageCode]['manuel_title'];}
@@ -57,6 +64,9 @@ class I8N{
   String get location_text{return I8N_values[locale.languageCode]['location_text'];}
   String get submit_text{return I8N_values[locale.languageCode]['submit_text'];}
   String get login{return I8N_values[locale.languageCode]['login'];}
+
+  String get username{return I8N_values[locale.languageCode]['username'];}
+  String get password{return I8N_values[locale.languageCode]['password'];}
 }
 class I8NDelegate extends LocalizationsDelegate<I8N>{
   const I8NDelegate();

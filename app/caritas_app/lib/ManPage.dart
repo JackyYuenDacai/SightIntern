@@ -151,7 +151,7 @@ class _ManPageState extends State<ManPage> {
                                       },
                                       child: Text(
                                           'Entry time',
-                                          style: TextStyle(color: Colors.blue,fontSize:25.0,),
+                                          style: TextStyle(color: Colors.orangeAccent,fontSize:25.0,),
                                       )),
                                   FlatButton(
                                     onPressed: () {
@@ -165,7 +165,7 @@ class _ManPageState extends State<ManPage> {
                                     },
                                     child: Text(
                                         'Exit time',
-                                        style: TextStyle(color: Colors.blue,fontSize:25.0,),
+                                        style: TextStyle(color: Colors.orangeAccent,fontSize:25.0,),
                                     )),
                             ]
                           ),
@@ -188,7 +188,7 @@ class _ManPageState extends State<ManPage> {
                                         return new DropdownMenuItem<String>(
                                         value: value,
                                         child: new Text(value, textAlign: TextAlign.left,style:  TextStyle(
-                                                          color: Colors.blue,
+                                                          color: Colors.orangeAccent,
                                                           fontSize: 20.0,
                                                         )),
                                                       );
@@ -200,7 +200,7 @@ class _ManPageState extends State<ManPage> {
                                           );
                                         },
                                         style:  TextStyle(
-                                              color: Colors.blue,
+                                              color: Colors.orangeAccent,
                                               fontSize: 20.0,
                                               )
                                             ),
@@ -213,7 +213,7 @@ class _ManPageState extends State<ManPage> {
                                           new CheckboxListTile(
                                             title: new Text(list_val.title,
                                               style: TextStyle(
-                                                color:Colors.blue,
+                                                color:Colors.orangeAccent,
                                                 fontSize:17.0,
                                               )
                                             ),

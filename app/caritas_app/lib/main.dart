@@ -1,20 +1,3 @@
-//import 'package:flutter/material.dart';
-
-/*void main() => runApp(new MyApp());
-
-class MyApp extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    return new MaterialApp(
-      title: 'Flutter Simple Login Demo',
-      theme: new ThemeData(
-        primarySwatch: Colors.blue
-      ),
-      home: new LoginPage(),
-    );
-  }
-}*/
-
 import 'package:flutter/material.dart';
 import './columnWidget.dart';
 import './RFIDPage.dart';
@@ -25,54 +8,11 @@ import 'package:flutter_localizations/flutter_localizations.dart';
 import './I8N.dart';
 import 'network_request.dart';
 import 'SettingPage.dart';
-
-import 'DataForm.dart';
-
 import 'dart:convert';
 import 'package:convert/convert.dart';
 import 'package:crypto/crypto.dart';
 
 void main() => runApp(MyApp());
-
-/*class StaticList{
-  static List<ColForm> colform_list = new List<ColForm>();
-  static List<DataForm> datform_list = new List<DataForm>();
-  static String location = '?';
-  static record_entries entries;
-  static List<String> student_id = new List<String>();
-  static List<String> student_name = new List<String>();
-
-  static List<String> staff_id = new List<String>();
-  static List<String> staff_list = new List<String>();
-
-  static List<String> tag_list = new List<String>();
-
-  static String server_addr = 'http://192.168.31.2:8080';//'http://192.168.31.2:8080';
-  static String getpop_api_url = server_addr+'/WebInterface/get_pops_list?location=';
-  static String getstaff_api_url = server_addr+'/WebInterface/get_staff_list?location=';
-  static String submit_form_api_url = server_addr+'/WebInterface/submit_form?';
-  static String get_student_list = server_addr+'/WebInterface/get_student_list';
-  static String get_record_data_url = server_addr+'/WebInterface/getRecordData?';
-  static String get_tags_url = server_addr+'/WebInterface/get_tags_list?location=';
-  static String add_student_api_url = server_addr+'/WebInterface/add_student?';
-  static String del_student_api_url = server_addr+'/WebInterface/del_student?';
-  static String get_record_export_url = server_addr+'/WebInterface/record_export?';
-  static String add_staff_api_url = server_addr+'/WebInterface/add_staff?';
-  static List<question> QuestionList = <question>[
-    new question('Check','diaper',<String>['N/A','Clean','Dirty'],<String>['na','clean','dirty'],0),
-    new question('Mistake','mistake',<String>['N/A','Wee','Poo','Both'],<String>['na','wee','poo','both'],0),
-    new question('Toilet','toilet',<String>['N/A','Nothing','Wee','Poo','Both'],<String>['na','nothing','wee','poo','both'],0),
-    new question('Poo','poo',<String>['N/A','Few','Normal','Much'],<String>['na','few','normal','much'],0),
-    new question('Consistency','poo_consistency',<String>['Soft','Hard','Rot','Dilute'],<String>['soft','hard','rot','dilute'],0),
-    new question('Color','poo_color',<String>['true','false'],<String>['true','false'],2),
-    new question('Yellow','poo_color_yellow',<String>['true','false'],<String>['true','false'],1),
-    new question('Brown','poo_color_brown',<String>['true','false'],<String>['true','false'],1),
-    new question('Black','poo_color_black',<String>['true','false'],<String>['true','false'],1),
-    new question('Blood','poo_consist_blood',<String>['true','false'],<String>['true','false'],1),
-    new question('Goo','poo_consist_goo',<String>['true','false'],<String>['true','false'],1),
-  ];
-
-}*/
 
 class MyApp extends StatelessWidget{
   @override
@@ -117,7 +57,6 @@ class MyApp extends StatelessWidget{
 String generateMd5(String data) {
   var content = new Utf8Encoder().convert(data);
   var digest = md5.convert(content);
-  // 这里其实就是 digest.toString()
   return hex.encode(digest.bytes);
 }
 
@@ -126,30 +65,23 @@ class LoginPage extends StatefulWidget {
   State<StatefulWidget> createState() => new _LoginPageState();
 }
 
-// Used for controlling whether the user is loggin or creating an account
-enum FormType {
-  login,
-  register
-}
-
 class _LoginPageState extends State<LoginPage> {
-
-  final TextEditingController _emailFilter = new TextEditingController();
+  TextStyle style = TextStyle(fontFamily: 'Montserrat', fontSize: 20.0);
+  final TextEditingController _userFilter = new TextEditingController();
   final TextEditingController _passwordFilter = new TextEditingController();
-  String _email = "";
+  String _user = "";
   String _password = "";
-  FormType _form = FormType.login; // our default setting is to login, and we should switch to creating an account when the user chooses to
 
   _LoginPageState() {
-    _emailFilter.addListener(_emailListen);
+    _userFilter.addListener(_userListen);
     _passwordFilter.addListener(_passwordListen);
   }
 
-  void _emailListen() {
-    if (_emailFilter.text.isEmpty) {
-      _email = "";
+  void _userListen() {
+    if (_userFilter.text.isEmpty) {
+      _user = "";
     } else {
-      _email = _emailFilter.text;
+      _user = _userFilter.text;
     }
   }
 
@@ -161,17 +93,6 @@ class _LoginPageState extends State<LoginPage> {
     }
   }
 
-  // Swap in between our two forms, registering and logging in
-  void _formChange () async {
-    setState(() {
-      if (_form == FormType.register) {
-        _form = FormType.login;
-      } else {
-        _form = FormType.register;
-      }
-    });
-  }
-
   @override
   Widget build(BuildContext context) {
     return new Scaffold(
@@ -180,8 +101,18 @@ class _LoginPageState extends State<LoginPage> {
         padding: EdgeInsets.all(16.0),
         child: new Column(
           children: <Widget>[
+            SizedBox(
+                  height: 155.0,
+                  child: Image.asset(
+                    "assets/logo.png",
+                    fit: BoxFit.contain,
+                  ),
+                ),
+            SizedBox(height: 45.0),
             _buildTextFields(),
+            SizedBox(height: 35.0),
             _buildButtons(),
+            SizedBox(height: 15.0),
           ],
         ),
       ),
@@ -190,7 +121,7 @@ class _LoginPageState extends State<LoginPage> {
 
   Widget _buildBar(BuildContext context) {
     return new AppBar(
-      title: new Text("Simple Login Example"),
+      title: new Text(I8N.of(context).title),
       centerTitle: true,
     );
   }
@@ -201,20 +132,26 @@ class _LoginPageState extends State<LoginPage> {
         children: <Widget>[
           new Container(
             child: new TextField(
-              controller: _emailFilter,
-              decoration: new InputDecoration(
-                labelText: 'Email'
-              ),
+              controller: _userFilter,
+              style: style,
+              decoration: InputDecoration(
+                contentPadding: EdgeInsets.fromLTRB(20.0, 15.0, 20.0, 15.0),
+                hintText: I8N.of(context).username,
+                border:
+                  OutlineInputBorder(borderRadius: BorderRadius.circular(32.0))),
             ),
           ),
           new Container(
             child: new TextField(
               controller: _passwordFilter,
-              decoration: new InputDecoration(
-                labelText: 'Password'
-              ),
               obscureText: true,
-            ),
+              style: style,
+              decoration: InputDecoration(
+                contentPadding: EdgeInsets.fromLTRB(20.0, 15.0, 20.0, 15.0),
+                hintText: I8N.of(context).password,
+                border:
+                  OutlineInputBorder(borderRadius: BorderRadius.circular(32.0))),
+            )
           )
         ],
       ),
@@ -222,60 +159,30 @@ class _LoginPageState extends State<LoginPage> {
   }
 
   Widget _buildButtons() {
-    if (_form == FormType.login) {
       return new Container(
         child: new Column(
           children: <Widget>[
-            new RaisedButton(
-              child: new Text('Login'),
-              onPressed: _loginPressed,
+            new Material(
+              elevation: 5.0,
+              borderRadius: BorderRadius.circular(30.0),
+              color: Color(0xffFFA500),
+              child: MaterialButton(
+                minWidth: MediaQuery.of(context).size.width,
+                padding: EdgeInsets.fromLTRB(20.0, 15.0, 20.0, 15.0),
+                onPressed: (){
+                  StaticList.location = _user;
+                  _password = generateMd5(_password);
+                  print('The user wants to login with $_user and $_password');
+                  Navigator.pushNamed(context, '/RFIDPage');
+                },
+                child: Text("Login",
+                  textAlign: TextAlign.center,
+                  style: style.copyWith(
+                  color: Colors.white, fontWeight: FontWeight.bold)),
+              ),
             ),
-            new FlatButton(
-              child: new Text('Dont have an account? Tap here to register.'),
-              onPressed: _formChange,
-            ),
-            new FlatButton(
-              child: new Text('Forgot Password?'),
-              onPressed: _passwordReset,
-            )
           ],
         ),
       );
-    } else {
-      return new Container(
-        child: new Column(
-          children: <Widget>[
-            new RaisedButton(
-              child: new Text('Create an Account'),
-              onPressed: _createAccountPressed,
-            ),
-            new FlatButton(
-              child: new Text('Have an account? Click here to login.'),
-              onPressed: _formChange,
-            )
-          ],
-        ),
-      );
-    }
   }
-
-  // These functions can self contain any user auth logic required, they all have access to _email and _password
-
-  void _loginPressed () {
-    StaticList.location = _email;
-    _password = generateMd5(_password);
-    print('The user wants to login with $_email and $_password');
-    Navigator.pushNamed(context, '/RFIDPage');
-  }
-
-  void _createAccountPressed () {
-    print('The user wants to create an accoutn with $_email and $_password');
-
-  }
-
-  void _passwordReset () {
-    print("The user wants a password reset request sent to $_email");
-  }
-
-
 }
