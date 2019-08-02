@@ -76,4 +76,21 @@ public class LoginController {
         }
         return ret;
     }
+    
+	@RequestMapping(value = "/token_update")
+    @ResponseBody
+    public Map<String, Object> token_update(HttpServletRequest request) throws Exception {
+    	Map<String,Object> ret = new HashMap<String,Object>();
+    	String soc,id,pwd,token = null,name = null,priority = null;
+    	InputStream inputStreamObject = request.getInputStream();
+        BufferedReader streamReader = new BufferedReader(new InputStreamReader(inputStreamObject, "UTF-8"));
+        StringBuilder responseStrBuilder = new StringBuilder();
+        String inputStr;
+        while ((inputStr = streamReader.readLine()) != null)
+            responseStrBuilder.append(inputStr);
+	    JSONObject jsonObject = JSONObject.fromObject(responseStrBuilder.toString());
+	    JSONObject parameters = JSONObject.fromObject(jsonObject.get("parameters"));
+	    //TODO: update by example
+		return ret;
+	}	
 }

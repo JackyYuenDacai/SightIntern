@@ -70,4 +70,11 @@ public class ResourceController {
 		ret.put("error", 0);
 		return ret;
     }
+    @RequestMapping(value = "/resource")
+    @ResponseBody
+    public Map<String, Object> resource_get(HttpServletRequest request) throws Exception {
+    	Map<String,Object> ret = new HashMap<String,Object>();
+    	ret.put("error", 0);
+    	return ret;
+    }
 }
