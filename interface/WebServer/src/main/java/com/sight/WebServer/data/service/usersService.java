@@ -1,5 +1,6 @@
 package com.sight.WebServer.data.service;
 
+import java.util.Date;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,4 +23,15 @@ public class usersService {
 		UsersExample.createCriteria().andIdEqualTo(id);
 		return UsersMapper.selectByExample(UsersExample).get(0);
 	}
+	public boolean addUser(users User) {
+		boolean ret = false;
+		try {
+			UsersMapper.insertSelective(User);
+			ret = true;
+		}catch(Exception ex) {
+			ex.printStackTrace();
+		}
+		return ret;
+	}
+
 }
