@@ -11,7 +11,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.sight.WebServer.data.model.users;
+import com.sight.WebServer.data.model.users_icon;
 import com.sight.WebServer.data.service.usersService;
+import com.sight.WebServer.data.service.users_iconService;
 import com.sight.WebServer.data.service.users_tokenService;
 import com.sight.WebServer.utils.General;
 
@@ -24,6 +26,8 @@ public class UserController {
 	private usersService UsersService;
 	@Resource
 	private users_tokenService UsersTokenService;
+	@Resource 
+	private users_iconService UsersIconService;
 	
 	@RequestMapping(value = "/user_config")
     @ResponseBody
@@ -32,18 +36,21 @@ public class UserController {
 		JSONObject jsonObject = General.getRequest(request.getInputStream());
 		JSONObject parameters = JSONObject.fromObject(jsonObject.get("parameters"));
 		String type = parameters.getString("type");
+		String soc = parameters.getString("soc");
+		String id = parameters.getString("id");
+		String name = parameters.getString("name");
+		String role = parameters.getString("role");
+		String icon_id = parameters.getString("icon_id");
+		String pwd = parameters.getString("pwd");
+		String extra = parameters.getString("extra");
+		
 		if(type == "add") {
-			String soc = parameters.getString("soc");
-			String id = parameters.getString("id");
+
 			if(UsersService.getUserById("id")!=null) {
 				ret.put("error", 502);
 				return ret;
 			}
-			String name = parameters.getString("name");
-			String role = parameters.getString("role");
-			String icon_id = parameters.getString("icon_id");
-			String pwd = parameters.getString("pwd");
-			String extra = parameters.getString("extra");
+
 			users User = new users();
 			User.setExtra(extra);
 			User.setId(id);
@@ -52,10 +59,26 @@ public class UserController {
 			User.setPwd(pwd);
 			
 			UsersService.addUser(User);
+			UsersIconService.addUserIcon(id, icon_id);
+			
 			ret.put("error", 0);
 			return ret;
 		}else if(type == "edit"){
 			
+			if(name != "") {
+				UsersService.updateUserName(id, name);
+			}
+			if(extra != "") {
+				UsersService.updateUserExtra(id, extra);
+			}
+			if(pwd != "") {
+				UsersService.updateUserPwd(id,pwd);
+			}
+			if(icon_id !="") {
+				UsersIconService.updateUserIcon(id, icon_id);
+			}
+			ret.put("error", 0);
+			return ret;
 		}
 		ret.put("error", 502);
 		return ret;

@@ -33,5 +33,46 @@ public class usersService {
 		}
 		return ret;
 	}
-
+	public boolean updateUserName(String id, String name) {
+		boolean ret = false;
+		try {
+			usersExample UsersExample = new usersExample();
+			UsersExample.createCriteria().andIdEqualTo(id);
+			users User = UsersMapper.selectByExample(UsersExample).get(0);
+			User.setName(name);
+			UsersMapper.updateByExampleSelective(User, UsersExample);
+			ret = true;
+		}catch(Exception ex) {
+			ex.printStackTrace();
+		}
+		return ret;
+	}
+	public boolean updateUserExtra(String id, String extra) {
+		boolean ret = false;
+		try {
+			usersExample UsersExample = new usersExample();
+			UsersExample.createCriteria().andIdEqualTo(id);
+			users User = UsersMapper.selectByExample(UsersExample).get(0);
+			User.setExtra(extra);
+			UsersMapper.updateByExampleSelective(User, UsersExample);
+			ret = true;
+		}catch(Exception ex) {
+			ex.printStackTrace();
+		}
+		return ret;
+	}
+	public boolean updateUserPwd(String id, String pwd) {
+		boolean ret = false;
+		try {
+			usersExample UsersExample = new usersExample();
+			UsersExample.createCriteria().andIdEqualTo(id);
+			users User = UsersMapper.selectByExample(UsersExample).get(0);
+			User.setPwd(pwd);
+			UsersMapper.updateByExampleSelective(User, UsersExample);
+			ret = true;
+		}catch(Exception ex) {
+			ex.printStackTrace();
+		}
+		return ret;
+	}
 }

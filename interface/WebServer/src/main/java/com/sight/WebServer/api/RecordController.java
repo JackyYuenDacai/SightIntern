@@ -30,7 +30,7 @@ public class RecordController {
 		Map<String,Object> ret = new HashMap<String,Object>();
 		JSONObject jsonObject = General.getRequest(request.getInputStream());
 		JSONObject parameters = JSONObject.fromObject(jsonObject.get("parameters"));
-		User
+		
 		ret.put("error", 0);
 		return ret;
 	}
