@@ -9,6 +9,7 @@ import java.util.Map;
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -25,9 +26,9 @@ import net.sf.json.JSONObject;
 @RequestMapping("/api")
 public class LoginController {
 	
-	@Resource
+	@Autowired
 	private usersService UsersService;
-	@Resource
+	@Autowired
 	private users_tokenService UsersTokenService;
 	
     @RequestMapping(value = "/login")

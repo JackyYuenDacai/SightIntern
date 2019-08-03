@@ -10,8 +10,10 @@ import com.sight.WebServer.data.dao.usersMapper;
 import com.sight.WebServer.data.model.*;
 @Service
 public class usersService {
+	
 	@Autowired
 	private usersMapper UsersMapper;
+	
 	public List<users> getUserByName(String name){
 		usersExample UsersExample = new usersExample();
 		UsersExample.createCriteria().andNameEqualTo(name);

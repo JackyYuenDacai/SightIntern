@@ -6,6 +6,7 @@ import java.util.Map;
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -21,11 +22,11 @@ import net.sf.json.JSONObject;
 @RequestMapping("/api")
 public class TagController {
 	
-	@Resource
+	@Autowired
 	private usersService UsersService;
-	@Resource
+	@Autowired
 	private users_tokenService UsersTokenService;
-	@Resource
+	@Autowired
 	private users_tagService UsersTagService;
 	
 	@RequestMapping(value = "/tag_scanned")
@@ -56,7 +57,8 @@ public class TagController {
 				UsersTagService.deleteUsersTagByTagId(tag_id);
 				ret.put("error", 0);
 				return ret;
-			}else if(type == "add") {
+			}else 
+			if(type == "add") {
 				if(UsersTagService.getUsersTagByTagId(tag_id)== null) {
 					UsersTagService.addUsersTag(id, tag_type, tag_id);
 					ret.put("error", 0);
