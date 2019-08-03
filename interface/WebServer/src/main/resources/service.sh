@@ -1,0 +1,2 @@
+mysql.server start
+mongod

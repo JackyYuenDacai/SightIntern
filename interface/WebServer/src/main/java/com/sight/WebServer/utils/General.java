@@ -1,5 +1,8 @@
 package com.sight.WebServer.utils;
 
+import java.io.BufferedReader;
+import java.io.InputStream;
+import java.io.InputStreamReader;
 import java.io.UnsupportedEncodingException;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
@@ -11,6 +14,8 @@ import java.util.Map;
 import java.util.TimeZone;
 
 import com.sun.org.apache.xml.internal.security.utils.Base64;
+
+import net.sf.json.JSONObject;
 
 import java.util.Random;
 public class General {
@@ -56,5 +61,14 @@ public class General {
 		gc.setTime(new Date()); 
 		gc.add(5,1); 
 		return gc.getTime();
+	}
+	public static JSONObject getRequest(InputStream inputStreamObject) throws Exception{
+		 
+        BufferedReader streamReader = new BufferedReader(new InputStreamReader(inputStreamObject, "UTF-8"));
+        StringBuilder responseStrBuilder = new StringBuilder();
+        String inputStr;
+        while ((inputStr = streamReader.readLine()) != null)
+            responseStrBuilder.append(inputStr);
+	    return JSONObject.fromObject(responseStrBuilder.toString());
 	}
 }

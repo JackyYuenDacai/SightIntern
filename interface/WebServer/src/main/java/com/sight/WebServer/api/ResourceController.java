@@ -34,14 +34,8 @@ public class ResourceController {
     public Map<String, Object> uploadFile(HttpServletRequest request) throws Exception {
     	//JSONObject request_para = JSONObject.request.getInputStream().
     	Map<String,Object> ret = new HashMap<String,Object>();
-    	InputStream inputStreamObject = request.getInputStream();
-        BufferedReader streamReader = new BufferedReader(new InputStreamReader(inputStreamObject, "UTF-8"));
-        StringBuilder responseStrBuilder = new StringBuilder();
-        String inputStr;
-        while ((inputStr = streamReader.readLine()) != null)
-            responseStrBuilder.append(inputStr);
+    	JSONObject jsonObject = General.getRequest(request.getInputStream());
         try {
-	        JSONObject jsonObject = JSONObject.fromObject(responseStrBuilder.toString());
 	        JSONObject parameters = JSONObject.fromObject(jsonObject.get("parameters"));
 	        String file_type = parameters.getString("file_type");
 	        String user_id = parameters.getString("id");

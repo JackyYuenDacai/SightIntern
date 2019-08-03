@@ -8,6 +8,10 @@ import javax.servlet.http.HttpServletRequest;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
+
+import com.sight.WebServer.utils.General;
+
+import net.sf.json.JSONObject;
 @Controller
 @RequestMapping("/api")
 public class RecordController {
@@ -15,6 +19,8 @@ public class RecordController {
     @ResponseBody
     public Map<String, Object> record_query(HttpServletRequest request) throws Exception {
 		Map<String,Object> ret = new HashMap<String,Object>();
+		JSONObject jsonObject = General.getRequest(request.getInputStream());
+		JSONObject parameters = JSONObject.fromObject(jsonObject.get("parameters"));
 		ret.put("error", 0);
 		return ret;
 	}
