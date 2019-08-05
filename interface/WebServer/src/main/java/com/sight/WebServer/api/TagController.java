@@ -7,10 +7,12 @@ import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.mongodb.core.MongoTemplate;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.sight.WebServer.data.entity.record_entity;
 import com.sight.WebServer.data.service.usersService;
 import com.sight.WebServer.data.service.users_tagService;
 import com.sight.WebServer.data.service.users_tokenService;
@@ -28,6 +30,8 @@ public class TagController {
 	private users_tokenService UsersTokenService;
 	@Autowired
 	private users_tagService UsersTagService;
+	@Autowired
+	MongoTemplate mongoTemplate;
 	
 	@RequestMapping(value = "/tag_scanned")
     @ResponseBody
@@ -36,8 +40,28 @@ public class TagController {
 		JSONObject jsonObject = General.getRequest(request.getInputStream());
 		JSONObject parameters = JSONObject.fromObject(jsonObject.get("parameters"));
 		
-		ret.put("error", 0);
-		return ret;
+		record_entity RecordEntity = new record_entity();
+		try {
+			String location = parameters.getString("location"),
+					soc = parameters.getString("soc"),
+					tag_id = parameters.getString("tag_id"),
+					time = parameters.getString("time");
+			
+			RecordEntity.setId(General.RandomToken());
+			RecordEntity.setLocation(location);
+			RecordEntity.setSoc(soc);
+			RecordEntity.setTagId(tag_id);
+			RecordEntity.setTime(time);
+			mongoTemplate.save(RecordEntity);
+			ret.put("error", 0);
+			return ret;
+		}catch(Exception ex) {
+			ex.printStackTrace();
+			ret.put("error", 502);
+			
+			return ret;
+		}
+
 	}
 	
 	@RequestMapping(value = "/tag_config")

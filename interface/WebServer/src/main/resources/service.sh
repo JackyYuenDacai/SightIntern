@@ -1,2 +1,3 @@
+/
 mysql.server start
 mongod
