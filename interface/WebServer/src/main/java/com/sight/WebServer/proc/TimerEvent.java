@@ -1,5 +1,6 @@
 package com.sight.WebServer.proc;
 
+import java.text.ParseException;
 import java.util.List;
 
 import org.quartz.JobExecutionContext;
@@ -29,10 +30,14 @@ public class TimerEvent extends QuartzJobBean{
 	TagBufferService tagBufferService;
     @Override
     protected void executeInternal(JobExecutionContext jobExecutionContext) throws JobExecutionException {
-    	tagBufferService.RetrieveTagsBuffer();
-    	tagBufferService.RemoveTimedTags();
-        
-    }
-    
-    
+    	try {
+    		
+    		tagBufferService.RetrieveTagsBuffer();
+			tagBufferService.RemoveTimedTags();
+			
+		} catch (ParseException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} 
+    } 
 }

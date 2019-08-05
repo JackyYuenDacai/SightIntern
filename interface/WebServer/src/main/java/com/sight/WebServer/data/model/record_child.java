@@ -5,15 +5,13 @@ import java.util.Date;
 public class record_child {
     private String id;
 
-    private String parentId;
+    private String parentToken;
 
     private String studentId;
 
     private Date recordTime;
 
-    private String data;
-
-    private Integer status;
+    private Integer childStatus;
 
     public String getId() {
         return id;
@@ -23,12 +21,12 @@ public class record_child {
         this.id = id == null ? null : id.trim();
     }
 
-    public String getParentId() {
-        return parentId;
+    public String getParentToken() {
+        return parentToken;
     }
 
-    public void setParentId(String parentId) {
-        this.parentId = parentId == null ? null : parentId.trim();
+    public void setParentToken(String parentToken) {
+        this.parentToken = parentToken == null ? null : parentToken.trim();
     }
 
     public String getStudentId() {
@@ -47,19 +45,11 @@ public class record_child {
         this.recordTime = recordTime;
     }
 
-    public String getData() {
-        return data;
+    public Integer getChildStatus() {
+        return childStatus;
     }
 
-    public void setData(String data) {
-        this.data = data == null ? null : data.trim();
-    }
-
-    public Integer getStatus() {
-        return status;
-    }
-
-    public void setStatus(Integer status) {
-        this.status = status;
+    public void setChildStatus(Integer childStatus) {
+        this.childStatus = childStatus;
     }
 }

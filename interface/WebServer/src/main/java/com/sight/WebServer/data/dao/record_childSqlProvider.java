@@ -32,8 +32,8 @@ public class record_childSqlProvider {
             sql.VALUES("id", "#{id,jdbcType=VARCHAR}");
         }
         
-        if (record.getParentId() != null) {
-            sql.VALUES("parent_id", "#{parentId,jdbcType=VARCHAR}");
+        if (record.getParentToken() != null) {
+            sql.VALUES("parent_token", "#{parentToken,jdbcType=VARCHAR}");
         }
         
         if (record.getStudentId() != null) {
@@ -44,12 +44,8 @@ public class record_childSqlProvider {
             sql.VALUES("record_time", "#{recordTime,jdbcType=TIMESTAMP}");
         }
         
-        if (record.getData() != null) {
-            sql.VALUES("data", "#{data,jdbcType=VARCHAR}");
-        }
-        
-        if (record.getStatus() != null) {
-            sql.VALUES("status", "#{status,jdbcType=INTEGER}");
+        if (record.getChildStatus() != null) {
+            sql.VALUES("child_status", "#{childStatus,jdbcType=INTEGER}");
         }
         
         return sql.toString();
@@ -62,11 +58,10 @@ public class record_childSqlProvider {
         } else {
             sql.SELECT("id");
         }
-        sql.SELECT("parent_id");
+        sql.SELECT("parent_token");
         sql.SELECT("student_id");
         sql.SELECT("record_time");
-        sql.SELECT("data");
-        sql.SELECT("status");
+        sql.SELECT("child_status");
         sql.FROM("record_child");
         applyWhere(sql, example, false);
         
@@ -88,8 +83,8 @@ public class record_childSqlProvider {
             sql.SET("id = #{record.id,jdbcType=VARCHAR}");
         }
         
-        if (record.getParentId() != null) {
-            sql.SET("parent_id = #{record.parentId,jdbcType=VARCHAR}");
+        if (record.getParentToken() != null) {
+            sql.SET("parent_token = #{record.parentToken,jdbcType=VARCHAR}");
         }
         
         if (record.getStudentId() != null) {
@@ -100,12 +95,8 @@ public class record_childSqlProvider {
             sql.SET("record_time = #{record.recordTime,jdbcType=TIMESTAMP}");
         }
         
-        if (record.getData() != null) {
-            sql.SET("data = #{record.data,jdbcType=VARCHAR}");
-        }
-        
-        if (record.getStatus() != null) {
-            sql.SET("status = #{record.status,jdbcType=INTEGER}");
+        if (record.getChildStatus() != null) {
+            sql.SET("child_status = #{record.childStatus,jdbcType=INTEGER}");
         }
         
         applyWhere(sql, example, true);
@@ -117,11 +108,10 @@ public class record_childSqlProvider {
         sql.UPDATE("record_child");
         
         sql.SET("id = #{record.id,jdbcType=VARCHAR}");
-        sql.SET("parent_id = #{record.parentId,jdbcType=VARCHAR}");
+        sql.SET("parent_token = #{record.parentToken,jdbcType=VARCHAR}");
         sql.SET("student_id = #{record.studentId,jdbcType=VARCHAR}");
         sql.SET("record_time = #{record.recordTime,jdbcType=TIMESTAMP}");
-        sql.SET("data = #{record.data,jdbcType=VARCHAR}");
-        sql.SET("status = #{record.status,jdbcType=INTEGER}");
+        sql.SET("child_status = #{record.childStatus,jdbcType=INTEGER}");
         
         record_childExample example = (record_childExample) parameter.get("example");
         applyWhere(sql, example, true);
@@ -132,8 +122,8 @@ public class record_childSqlProvider {
         SQL sql = new SQL();
         sql.UPDATE("record_child");
         
-        if (record.getParentId() != null) {
-            sql.SET("parent_id = #{parentId,jdbcType=VARCHAR}");
+        if (record.getParentToken() != null) {
+            sql.SET("parent_token = #{parentToken,jdbcType=VARCHAR}");
         }
         
         if (record.getStudentId() != null) {
@@ -144,12 +134,8 @@ public class record_childSqlProvider {
             sql.SET("record_time = #{recordTime,jdbcType=TIMESTAMP}");
         }
         
-        if (record.getData() != null) {
-            sql.SET("data = #{data,jdbcType=VARCHAR}");
-        }
-        
-        if (record.getStatus() != null) {
-            sql.SET("status = #{status,jdbcType=INTEGER}");
+        if (record.getChildStatus() != null) {
+            sql.SET("child_status = #{childStatus,jdbcType=INTEGER}");
         }
         
         sql.WHERE("id = #{id,jdbcType=VARCHAR}");

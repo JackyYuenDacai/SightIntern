@@ -32,16 +32,11 @@ create table soc_list(
 create table record_master(
   id nvarchar(128) primary key,
   type nvarchar(128),
-  location nvarchar(128)
-);
-
-create table record_child(
-  id nvarchar(64) primary key,
-  parent_id nvarchar(128),
-  student_id nvarchar(64),
-  record_time datetime default now(),
+  location nvarchar(128),
+  record_in datetime,
+  record_out datetime,
   data nvarchar(2048),
-  status int
+  token nvarchar(128)
 );
 
 create table users_files(

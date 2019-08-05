@@ -40,6 +40,22 @@ public class record_masterSqlProvider {
             sql.VALUES("location", "#{location,jdbcType=VARCHAR}");
         }
         
+        if (record.getRecordIn() != null) {
+            sql.VALUES("record_in", "#{recordIn,jdbcType=TIMESTAMP}");
+        }
+        
+        if (record.getRecordOut() != null) {
+            sql.VALUES("record_out", "#{recordOut,jdbcType=TIMESTAMP}");
+        }
+        
+        if (record.getData() != null) {
+            sql.VALUES("data", "#{data,jdbcType=VARCHAR}");
+        }
+        
+        if (record.getToken() != null) {
+            sql.VALUES("token", "#{token,jdbcType=VARCHAR}");
+        }
+        
         return sql.toString();
     }
 
@@ -52,6 +68,10 @@ public class record_masterSqlProvider {
         }
         sql.SELECT("type");
         sql.SELECT("location");
+        sql.SELECT("record_in");
+        sql.SELECT("record_out");
+        sql.SELECT("data");
+        sql.SELECT("token");
         sql.FROM("record_master");
         applyWhere(sql, example, false);
         
@@ -81,6 +101,22 @@ public class record_masterSqlProvider {
             sql.SET("location = #{record.location,jdbcType=VARCHAR}");
         }
         
+        if (record.getRecordIn() != null) {
+            sql.SET("record_in = #{record.recordIn,jdbcType=TIMESTAMP}");
+        }
+        
+        if (record.getRecordOut() != null) {
+            sql.SET("record_out = #{record.recordOut,jdbcType=TIMESTAMP}");
+        }
+        
+        if (record.getData() != null) {
+            sql.SET("data = #{record.data,jdbcType=VARCHAR}");
+        }
+        
+        if (record.getToken() != null) {
+            sql.SET("token = #{record.token,jdbcType=VARCHAR}");
+        }
+        
         applyWhere(sql, example, true);
         return sql.toString();
     }
@@ -92,6 +128,10 @@ public class record_masterSqlProvider {
         sql.SET("id = #{record.id,jdbcType=VARCHAR}");
         sql.SET("type = #{record.type,jdbcType=VARCHAR}");
         sql.SET("location = #{record.location,jdbcType=VARCHAR}");
+        sql.SET("record_in = #{record.recordIn,jdbcType=TIMESTAMP}");
+        sql.SET("record_out = #{record.recordOut,jdbcType=TIMESTAMP}");
+        sql.SET("data = #{record.data,jdbcType=VARCHAR}");
+        sql.SET("token = #{record.token,jdbcType=VARCHAR}");
         
         record_masterExample example = (record_masterExample) parameter.get("example");
         applyWhere(sql, example, true);
@@ -108,6 +148,22 @@ public class record_masterSqlProvider {
         
         if (record.getLocation() != null) {
             sql.SET("location = #{location,jdbcType=VARCHAR}");
+        }
+        
+        if (record.getRecordIn() != null) {
+            sql.SET("record_in = #{recordIn,jdbcType=TIMESTAMP}");
+        }
+        
+        if (record.getRecordOut() != null) {
+            sql.SET("record_out = #{recordOut,jdbcType=TIMESTAMP}");
+        }
+        
+        if (record.getData() != null) {
+            sql.SET("data = #{data,jdbcType=VARCHAR}");
+        }
+        
+        if (record.getToken() != null) {
+            sql.SET("token = #{token,jdbcType=VARCHAR}");
         }
         
         sql.WHERE("id = #{id,jdbcType=VARCHAR}");

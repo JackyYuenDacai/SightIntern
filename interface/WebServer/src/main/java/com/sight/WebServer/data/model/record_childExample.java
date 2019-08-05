@@ -175,73 +175,73 @@ public class record_childExample {
             return (Criteria) this;
         }
 
-        public Criteria andParentIdIsNull() {
-            addCriterion("parent_id is null");
+        public Criteria andParentTokenIsNull() {
+            addCriterion("parent_token is null");
             return (Criteria) this;
         }
 
-        public Criteria andParentIdIsNotNull() {
-            addCriterion("parent_id is not null");
+        public Criteria andParentTokenIsNotNull() {
+            addCriterion("parent_token is not null");
             return (Criteria) this;
         }
 
-        public Criteria andParentIdEqualTo(String value) {
-            addCriterion("parent_id =", value, "parentId");
+        public Criteria andParentTokenEqualTo(String value) {
+            addCriterion("parent_token =", value, "parentToken");
             return (Criteria) this;
         }
 
-        public Criteria andParentIdNotEqualTo(String value) {
-            addCriterion("parent_id <>", value, "parentId");
+        public Criteria andParentTokenNotEqualTo(String value) {
+            addCriterion("parent_token <>", value, "parentToken");
             return (Criteria) this;
         }
 
-        public Criteria andParentIdGreaterThan(String value) {
-            addCriterion("parent_id >", value, "parentId");
+        public Criteria andParentTokenGreaterThan(String value) {
+            addCriterion("parent_token >", value, "parentToken");
             return (Criteria) this;
         }
 
-        public Criteria andParentIdGreaterThanOrEqualTo(String value) {
-            addCriterion("parent_id >=", value, "parentId");
+        public Criteria andParentTokenGreaterThanOrEqualTo(String value) {
+            addCriterion("parent_token >=", value, "parentToken");
             return (Criteria) this;
         }
 
-        public Criteria andParentIdLessThan(String value) {
-            addCriterion("parent_id <", value, "parentId");
+        public Criteria andParentTokenLessThan(String value) {
+            addCriterion("parent_token <", value, "parentToken");
             return (Criteria) this;
         }
 
-        public Criteria andParentIdLessThanOrEqualTo(String value) {
-            addCriterion("parent_id <=", value, "parentId");
+        public Criteria andParentTokenLessThanOrEqualTo(String value) {
+            addCriterion("parent_token <=", value, "parentToken");
             return (Criteria) this;
         }
 
-        public Criteria andParentIdLike(String value) {
-            addCriterion("parent_id like", value, "parentId");
+        public Criteria andParentTokenLike(String value) {
+            addCriterion("parent_token like", value, "parentToken");
             return (Criteria) this;
         }
 
-        public Criteria andParentIdNotLike(String value) {
-            addCriterion("parent_id not like", value, "parentId");
+        public Criteria andParentTokenNotLike(String value) {
+            addCriterion("parent_token not like", value, "parentToken");
             return (Criteria) this;
         }
 
-        public Criteria andParentIdIn(List<String> values) {
-            addCriterion("parent_id in", values, "parentId");
+        public Criteria andParentTokenIn(List<String> values) {
+            addCriterion("parent_token in", values, "parentToken");
             return (Criteria) this;
         }
 
-        public Criteria andParentIdNotIn(List<String> values) {
-            addCriterion("parent_id not in", values, "parentId");
+        public Criteria andParentTokenNotIn(List<String> values) {
+            addCriterion("parent_token not in", values, "parentToken");
             return (Criteria) this;
         }
 
-        public Criteria andParentIdBetween(String value1, String value2) {
-            addCriterion("parent_id between", value1, value2, "parentId");
+        public Criteria andParentTokenBetween(String value1, String value2) {
+            addCriterion("parent_token between", value1, value2, "parentToken");
             return (Criteria) this;
         }
 
-        public Criteria andParentIdNotBetween(String value1, String value2) {
-            addCriterion("parent_id not between", value1, value2, "parentId");
+        public Criteria andParentTokenNotBetween(String value1, String value2) {
+            addCriterion("parent_token not between", value1, value2, "parentToken");
             return (Criteria) this;
         }
 
@@ -375,133 +375,63 @@ public class record_childExample {
             return (Criteria) this;
         }
 
-        public Criteria andDataIsNull() {
-            addCriterion("data is null");
+        public Criteria andChildStatusIsNull() {
+            addCriterion("child_status is null");
             return (Criteria) this;
         }
 
-        public Criteria andDataIsNotNull() {
-            addCriterion("data is not null");
+        public Criteria andChildStatusIsNotNull() {
+            addCriterion("child_status is not null");
             return (Criteria) this;
         }
 
-        public Criteria andDataEqualTo(String value) {
-            addCriterion("data =", value, "data");
+        public Criteria andChildStatusEqualTo(Integer value) {
+            addCriterion("child_status =", value, "childStatus");
             return (Criteria) this;
         }
 
-        public Criteria andDataNotEqualTo(String value) {
-            addCriterion("data <>", value, "data");
+        public Criteria andChildStatusNotEqualTo(Integer value) {
+            addCriterion("child_status <>", value, "childStatus");
             return (Criteria) this;
         }
 
-        public Criteria andDataGreaterThan(String value) {
-            addCriterion("data >", value, "data");
+        public Criteria andChildStatusGreaterThan(Integer value) {
+            addCriterion("child_status >", value, "childStatus");
             return (Criteria) this;
         }
 
-        public Criteria andDataGreaterThanOrEqualTo(String value) {
-            addCriterion("data >=", value, "data");
+        public Criteria andChildStatusGreaterThanOrEqualTo(Integer value) {
+            addCriterion("child_status >=", value, "childStatus");
             return (Criteria) this;
         }
 
-        public Criteria andDataLessThan(String value) {
-            addCriterion("data <", value, "data");
+        public Criteria andChildStatusLessThan(Integer value) {
+            addCriterion("child_status <", value, "childStatus");
             return (Criteria) this;
         }
 
-        public Criteria andDataLessThanOrEqualTo(String value) {
-            addCriterion("data <=", value, "data");
+        public Criteria andChildStatusLessThanOrEqualTo(Integer value) {
+            addCriterion("child_status <=", value, "childStatus");
             return (Criteria) this;
         }
 
-        public Criteria andDataLike(String value) {
-            addCriterion("data like", value, "data");
+        public Criteria andChildStatusIn(List<Integer> values) {
+            addCriterion("child_status in", values, "childStatus");
             return (Criteria) this;
         }
 
-        public Criteria andDataNotLike(String value) {
-            addCriterion("data not like", value, "data");
+        public Criteria andChildStatusNotIn(List<Integer> values) {
+            addCriterion("child_status not in", values, "childStatus");
             return (Criteria) this;
         }
 
-        public Criteria andDataIn(List<String> values) {
-            addCriterion("data in", values, "data");
+        public Criteria andChildStatusBetween(Integer value1, Integer value2) {
+            addCriterion("child_status between", value1, value2, "childStatus");
             return (Criteria) this;
         }
 
-        public Criteria andDataNotIn(List<String> values) {
-            addCriterion("data not in", values, "data");
-            return (Criteria) this;
-        }
-
-        public Criteria andDataBetween(String value1, String value2) {
-            addCriterion("data between", value1, value2, "data");
-            return (Criteria) this;
-        }
-
-        public Criteria andDataNotBetween(String value1, String value2) {
-            addCriterion("data not between", value1, value2, "data");
-            return (Criteria) this;
-        }
-
-        public Criteria andStatusIsNull() {
-            addCriterion("status is null");
-            return (Criteria) this;
-        }
-
-        public Criteria andStatusIsNotNull() {
-            addCriterion("status is not null");
-            return (Criteria) this;
-        }
-
-        public Criteria andStatusEqualTo(Integer value) {
-            addCriterion("status =", value, "status");
-            return (Criteria) this;
-        }
-
-        public Criteria andStatusNotEqualTo(Integer value) {
-            addCriterion("status <>", value, "status");
-            return (Criteria) this;
-        }
-
-        public Criteria andStatusGreaterThan(Integer value) {
-            addCriterion("status >", value, "status");
-            return (Criteria) this;
-        }
-
-        public Criteria andStatusGreaterThanOrEqualTo(Integer value) {
-            addCriterion("status >=", value, "status");
-            return (Criteria) this;
-        }
-
-        public Criteria andStatusLessThan(Integer value) {
-            addCriterion("status <", value, "status");
-            return (Criteria) this;
-        }
-
-        public Criteria andStatusLessThanOrEqualTo(Integer value) {
-            addCriterion("status <=", value, "status");
-            return (Criteria) this;
-        }
-
-        public Criteria andStatusIn(List<Integer> values) {
-            addCriterion("status in", values, "status");
-            return (Criteria) this;
-        }
-
-        public Criteria andStatusNotIn(List<Integer> values) {
-            addCriterion("status not in", values, "status");
-            return (Criteria) this;
-        }
-
-        public Criteria andStatusBetween(Integer value1, Integer value2) {
-            addCriterion("status between", value1, value2, "status");
-            return (Criteria) this;
-        }
-
-        public Criteria andStatusNotBetween(Integer value1, Integer value2) {
-            addCriterion("status not between", value1, value2, "status");
+        public Criteria andChildStatusNotBetween(Integer value1, Integer value2) {
+            addCriterion("child_status not between", value1, value2, "childStatus");
             return (Criteria) this;
         }
     }

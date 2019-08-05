@@ -31,9 +31,13 @@ public interface record_masterMapper {
 
     @Insert({
         "insert into record_master (id, type, ",
-        "location)",
+        "location, record_in, ",
+        "record_out, data, ",
+        "token)",
         "values (#{id,jdbcType=VARCHAR}, #{type,jdbcType=VARCHAR}, ",
-        "#{location,jdbcType=VARCHAR})"
+        "#{location,jdbcType=VARCHAR}, #{recordIn,jdbcType=TIMESTAMP}, ",
+        "#{recordOut,jdbcType=TIMESTAMP}, #{data,jdbcType=VARCHAR}, ",
+        "#{token,jdbcType=VARCHAR})"
     })
     int insert(record_master record);
 
@@ -44,20 +48,28 @@ public interface record_masterMapper {
     @Results({
         @Result(column="id", property="id", jdbcType=JdbcType.VARCHAR, id=true),
         @Result(column="type", property="type", jdbcType=JdbcType.VARCHAR),
-        @Result(column="location", property="location", jdbcType=JdbcType.VARCHAR)
+        @Result(column="location", property="location", jdbcType=JdbcType.VARCHAR),
+        @Result(column="record_in", property="recordIn", jdbcType=JdbcType.TIMESTAMP),
+        @Result(column="record_out", property="recordOut", jdbcType=JdbcType.TIMESTAMP),
+        @Result(column="data", property="data", jdbcType=JdbcType.VARCHAR),
+        @Result(column="token", property="token", jdbcType=JdbcType.VARCHAR)
     })
     List<record_master> selectByExample(record_masterExample example);
 
     @Select({
         "select",
-        "id, type, location",
+        "id, type, location, record_in, record_out, data, token",
         "from record_master",
         "where id = #{id,jdbcType=VARCHAR}"
     })
     @Results({
         @Result(column="id", property="id", jdbcType=JdbcType.VARCHAR, id=true),
         @Result(column="type", property="type", jdbcType=JdbcType.VARCHAR),
-        @Result(column="location", property="location", jdbcType=JdbcType.VARCHAR)
+        @Result(column="location", property="location", jdbcType=JdbcType.VARCHAR),
+        @Result(column="record_in", property="recordIn", jdbcType=JdbcType.TIMESTAMP),
+        @Result(column="record_out", property="recordOut", jdbcType=JdbcType.TIMESTAMP),
+        @Result(column="data", property="data", jdbcType=JdbcType.VARCHAR),
+        @Result(column="token", property="token", jdbcType=JdbcType.VARCHAR)
     })
     record_master selectByPrimaryKey(String id);
 
@@ -73,7 +85,11 @@ public interface record_masterMapper {
     @Update({
         "update record_master",
         "set type = #{type,jdbcType=VARCHAR},",
-          "location = #{location,jdbcType=VARCHAR}",
+          "location = #{location,jdbcType=VARCHAR},",
+          "record_in = #{recordIn,jdbcType=TIMESTAMP},",
+          "record_out = #{recordOut,jdbcType=TIMESTAMP},",
+          "data = #{data,jdbcType=VARCHAR},",
+          "token = #{token,jdbcType=VARCHAR}",
         "where id = #{id,jdbcType=VARCHAR}"
     })
     int updateByPrimaryKey(record_master record);

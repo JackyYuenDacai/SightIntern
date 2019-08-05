@@ -30,12 +30,12 @@ public interface record_childMapper {
     int deleteByPrimaryKey(String id);
 
     @Insert({
-        "insert into record_child (id, parent_id, ",
+        "insert into record_child (id, parent_token, ",
         "student_id, record_time, ",
-        "data, status)",
-        "values (#{id,jdbcType=VARCHAR}, #{parentId,jdbcType=VARCHAR}, ",
+        "child_status)",
+        "values (#{id,jdbcType=VARCHAR}, #{parentToken,jdbcType=VARCHAR}, ",
         "#{studentId,jdbcType=VARCHAR}, #{recordTime,jdbcType=TIMESTAMP}, ",
-        "#{data,jdbcType=VARCHAR}, #{status,jdbcType=INTEGER})"
+        "#{childStatus,jdbcType=INTEGER})"
     })
     int insert(record_child record);
 
@@ -45,27 +45,25 @@ public interface record_childMapper {
     @SelectProvider(type=record_childSqlProvider.class, method="selectByExample")
     @Results({
         @Result(column="id", property="id", jdbcType=JdbcType.VARCHAR, id=true),
-        @Result(column="parent_id", property="parentId", jdbcType=JdbcType.VARCHAR),
+        @Result(column="parent_token", property="parentToken", jdbcType=JdbcType.VARCHAR),
         @Result(column="student_id", property="studentId", jdbcType=JdbcType.VARCHAR),
         @Result(column="record_time", property="recordTime", jdbcType=JdbcType.TIMESTAMP),
-        @Result(column="data", property="data", jdbcType=JdbcType.VARCHAR),
-        @Result(column="status", property="status", jdbcType=JdbcType.INTEGER)
+        @Result(column="child_status", property="childStatus", jdbcType=JdbcType.INTEGER)
     })
     List<record_child> selectByExample(record_childExample example);
 
     @Select({
         "select",
-        "id, parent_id, student_id, record_time, data, status",
+        "id, parent_token, student_id, record_time, child_status",
         "from record_child",
         "where id = #{id,jdbcType=VARCHAR}"
     })
     @Results({
         @Result(column="id", property="id", jdbcType=JdbcType.VARCHAR, id=true),
-        @Result(column="parent_id", property="parentId", jdbcType=JdbcType.VARCHAR),
+        @Result(column="parent_token", property="parentToken", jdbcType=JdbcType.VARCHAR),
         @Result(column="student_id", property="studentId", jdbcType=JdbcType.VARCHAR),
         @Result(column="record_time", property="recordTime", jdbcType=JdbcType.TIMESTAMP),
-        @Result(column="data", property="data", jdbcType=JdbcType.VARCHAR),
-        @Result(column="status", property="status", jdbcType=JdbcType.INTEGER)
+        @Result(column="child_status", property="childStatus", jdbcType=JdbcType.INTEGER)
     })
     record_child selectByPrimaryKey(String id);
 
@@ -80,11 +78,10 @@ public interface record_childMapper {
 
     @Update({
         "update record_child",
-        "set parent_id = #{parentId,jdbcType=VARCHAR},",
+        "set parent_token = #{parentToken,jdbcType=VARCHAR},",
           "student_id = #{studentId,jdbcType=VARCHAR},",
           "record_time = #{recordTime,jdbcType=TIMESTAMP},",
-          "data = #{data,jdbcType=VARCHAR},",
-          "status = #{status,jdbcType=INTEGER}",
+          "child_status = #{childStatus,jdbcType=INTEGER}",
         "where id = #{id,jdbcType=VARCHAR}"
     })
     int updateByPrimaryKey(record_child record);

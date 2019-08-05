@@ -1,6 +1,7 @@
 package com.sight.WebServer.data.service;
 
 import java.text.ParseException;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -12,7 +13,7 @@ import com.sight.WebServer.utils.General;
 
 @Service
 public class RecordBufferService {
-	List<RecordBuffer> RecordList;
+	List<RecordBuffer> RecordList = new ArrayList<RecordBuffer>();
 	public RecordBuffer getById(String Id) {
 		RecordBuffer ret = null;
 		for(RecordBuffer RB : RecordList) {
@@ -23,7 +24,17 @@ public class RecordBufferService {
 		}
 		return ret;
 	}
-	
+	public RecordBuffer findByTokenAndRemove(String token) {
+		RecordBuffer ret = null;
+		for(RecordBuffer RB : RecordList) {
+			if(RB.token == token) {
+				ret = RB;
+				RecordList.remove(RB);
+				break;
+			}
+		}
+		return ret;
+	}
 	public void updateById(String Id,record_entity RecordEntity) {
 		RecordBuffer ret = null;
 		for(RecordBuffer RB : RecordList) {
@@ -62,5 +73,14 @@ public class RecordBufferService {
 				RecordList.remove(RB);
 			}
 		}
+	}
+	public List<RecordBuffer> findUnattached() {
+		List<RecordBuffer> RetList = new ArrayList<RecordBuffer>();
+		for(RecordBuffer RB : RecordList) {
+			if(RB.id == "UN") {
+				RetList.add(RB);
+			}
+		}
+		return RetList;
 	}
 }

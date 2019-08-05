@@ -1,6 +1,7 @@
 package com.sight.WebServer.data.model;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 public class record_masterExample {
@@ -311,6 +312,266 @@ public class record_masterExample {
 
         public Criteria andLocationNotBetween(String value1, String value2) {
             addCriterion("location not between", value1, value2, "location");
+            return (Criteria) this;
+        }
+
+        public Criteria andRecordInIsNull() {
+            addCriterion("record_in is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andRecordInIsNotNull() {
+            addCriterion("record_in is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andRecordInEqualTo(Date value) {
+            addCriterion("record_in =", value, "recordIn");
+            return (Criteria) this;
+        }
+
+        public Criteria andRecordInNotEqualTo(Date value) {
+            addCriterion("record_in <>", value, "recordIn");
+            return (Criteria) this;
+        }
+
+        public Criteria andRecordInGreaterThan(Date value) {
+            addCriterion("record_in >", value, "recordIn");
+            return (Criteria) this;
+        }
+
+        public Criteria andRecordInGreaterThanOrEqualTo(Date value) {
+            addCriterion("record_in >=", value, "recordIn");
+            return (Criteria) this;
+        }
+
+        public Criteria andRecordInLessThan(Date value) {
+            addCriterion("record_in <", value, "recordIn");
+            return (Criteria) this;
+        }
+
+        public Criteria andRecordInLessThanOrEqualTo(Date value) {
+            addCriterion("record_in <=", value, "recordIn");
+            return (Criteria) this;
+        }
+
+        public Criteria andRecordInIn(List<Date> values) {
+            addCriterion("record_in in", values, "recordIn");
+            return (Criteria) this;
+        }
+
+        public Criteria andRecordInNotIn(List<Date> values) {
+            addCriterion("record_in not in", values, "recordIn");
+            return (Criteria) this;
+        }
+
+        public Criteria andRecordInBetween(Date value1, Date value2) {
+            addCriterion("record_in between", value1, value2, "recordIn");
+            return (Criteria) this;
+        }
+
+        public Criteria andRecordInNotBetween(Date value1, Date value2) {
+            addCriterion("record_in not between", value1, value2, "recordIn");
+            return (Criteria) this;
+        }
+
+        public Criteria andRecordOutIsNull() {
+            addCriterion("record_out is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andRecordOutIsNotNull() {
+            addCriterion("record_out is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andRecordOutEqualTo(Date value) {
+            addCriterion("record_out =", value, "recordOut");
+            return (Criteria) this;
+        }
+
+        public Criteria andRecordOutNotEqualTo(Date value) {
+            addCriterion("record_out <>", value, "recordOut");
+            return (Criteria) this;
+        }
+
+        public Criteria andRecordOutGreaterThan(Date value) {
+            addCriterion("record_out >", value, "recordOut");
+            return (Criteria) this;
+        }
+
+        public Criteria andRecordOutGreaterThanOrEqualTo(Date value) {
+            addCriterion("record_out >=", value, "recordOut");
+            return (Criteria) this;
+        }
+
+        public Criteria andRecordOutLessThan(Date value) {
+            addCriterion("record_out <", value, "recordOut");
+            return (Criteria) this;
+        }
+
+        public Criteria andRecordOutLessThanOrEqualTo(Date value) {
+            addCriterion("record_out <=", value, "recordOut");
+            return (Criteria) this;
+        }
+
+        public Criteria andRecordOutIn(List<Date> values) {
+            addCriterion("record_out in", values, "recordOut");
+            return (Criteria) this;
+        }
+
+        public Criteria andRecordOutNotIn(List<Date> values) {
+            addCriterion("record_out not in", values, "recordOut");
+            return (Criteria) this;
+        }
+
+        public Criteria andRecordOutBetween(Date value1, Date value2) {
+            addCriterion("record_out between", value1, value2, "recordOut");
+            return (Criteria) this;
+        }
+
+        public Criteria andRecordOutNotBetween(Date value1, Date value2) {
+            addCriterion("record_out not between", value1, value2, "recordOut");
+            return (Criteria) this;
+        }
+
+        public Criteria andDataIsNull() {
+            addCriterion("data is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andDataIsNotNull() {
+            addCriterion("data is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andDataEqualTo(String value) {
+            addCriterion("data =", value, "data");
+            return (Criteria) this;
+        }
+
+        public Criteria andDataNotEqualTo(String value) {
+            addCriterion("data <>", value, "data");
+            return (Criteria) this;
+        }
+
+        public Criteria andDataGreaterThan(String value) {
+            addCriterion("data >", value, "data");
+            return (Criteria) this;
+        }
+
+        public Criteria andDataGreaterThanOrEqualTo(String value) {
+            addCriterion("data >=", value, "data");
+            return (Criteria) this;
+        }
+
+        public Criteria andDataLessThan(String value) {
+            addCriterion("data <", value, "data");
+            return (Criteria) this;
+        }
+
+        public Criteria andDataLessThanOrEqualTo(String value) {
+            addCriterion("data <=", value, "data");
+            return (Criteria) this;
+        }
+
+        public Criteria andDataLike(String value) {
+            addCriterion("data like", value, "data");
+            return (Criteria) this;
+        }
+
+        public Criteria andDataNotLike(String value) {
+            addCriterion("data not like", value, "data");
+            return (Criteria) this;
+        }
+
+        public Criteria andDataIn(List<String> values) {
+            addCriterion("data in", values, "data");
+            return (Criteria) this;
+        }
+
+        public Criteria andDataNotIn(List<String> values) {
+            addCriterion("data not in", values, "data");
+            return (Criteria) this;
+        }
+
+        public Criteria andDataBetween(String value1, String value2) {
+            addCriterion("data between", value1, value2, "data");
+            return (Criteria) this;
+        }
+
+        public Criteria andDataNotBetween(String value1, String value2) {
+            addCriterion("data not between", value1, value2, "data");
+            return (Criteria) this;
+        }
+
+        public Criteria andTokenIsNull() {
+            addCriterion("token is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andTokenIsNotNull() {
+            addCriterion("token is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andTokenEqualTo(String value) {
+            addCriterion("token =", value, "token");
+            return (Criteria) this;
+        }
+
+        public Criteria andTokenNotEqualTo(String value) {
+            addCriterion("token <>", value, "token");
+            return (Criteria) this;
+        }
+
+        public Criteria andTokenGreaterThan(String value) {
+            addCriterion("token >", value, "token");
+            return (Criteria) this;
+        }
+
+        public Criteria andTokenGreaterThanOrEqualTo(String value) {
+            addCriterion("token >=", value, "token");
+            return (Criteria) this;
+        }
+
+        public Criteria andTokenLessThan(String value) {
+            addCriterion("token <", value, "token");
+            return (Criteria) this;
+        }
+
+        public Criteria andTokenLessThanOrEqualTo(String value) {
+            addCriterion("token <=", value, "token");
+            return (Criteria) this;
+        }
+
+        public Criteria andTokenLike(String value) {
+            addCriterion("token like", value, "token");
+            return (Criteria) this;
+        }
+
+        public Criteria andTokenNotLike(String value) {
+            addCriterion("token not like", value, "token");
+            return (Criteria) this;
+        }
+
+        public Criteria andTokenIn(List<String> values) {
+            addCriterion("token in", values, "token");
+            return (Criteria) this;
+        }
+
+        public Criteria andTokenNotIn(List<String> values) {
+            addCriterion("token not in", values, "token");
+            return (Criteria) this;
+        }
+
+        public Criteria andTokenBetween(String value1, String value2) {
+            addCriterion("token between", value1, value2, "token");
+            return (Criteria) this;
+        }
+
+        public Criteria andTokenNotBetween(String value1, String value2) {
+            addCriterion("token not between", value1, value2, "token");
             return (Criteria) this;
         }
     }
