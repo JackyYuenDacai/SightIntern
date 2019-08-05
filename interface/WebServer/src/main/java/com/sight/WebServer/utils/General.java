@@ -6,7 +6,9 @@ import java.io.InputStreamReader;
 import java.io.UnsupportedEncodingException;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.GregorianCalendar;
 import java.util.HashMap;
@@ -70,5 +72,18 @@ public class General {
         while ((inputStr = streamReader.readLine()) != null)
             responseStrBuilder.append(inputStr);
 	    return JSONObject.fromObject(responseStrBuilder.toString());
+	}
+	public static Date StringToDate(String time) throws ParseException {
+		SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+		Date date = simpleDateFormat.parse(time);
+		return date;
+	}
+	public static Date DateMinusMinutes(Date date,int n) {
+		Calendar calendar=Calendar.getInstance();   
+		calendar.setTime(date); 
+		calendar.add(Calendar.MINUTE, -n); 
+		 
+		return calendar.getTime();
+		 
 	}
 }
