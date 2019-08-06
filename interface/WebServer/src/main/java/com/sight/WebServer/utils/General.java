@@ -78,6 +78,12 @@ public class General {
 		Date date = simpleDateFormat.parse(time);
 		return date;
 	}
+	public static String DateToString(Date time) {
+	
+	    SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd kk:mm:ss");
+	    sdf.setTimeZone(TimeZone.getTimeZone(TimeZoneCode));
+	    return sdf.format(time);
+	}
 	public static Date DateMinusMinutes(Date date,int n) {
 		Calendar calendar=Calendar.getInstance();   
 		calendar.setTime(date); 

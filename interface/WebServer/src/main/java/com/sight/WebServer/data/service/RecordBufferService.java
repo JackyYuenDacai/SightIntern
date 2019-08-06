@@ -83,4 +83,23 @@ public class RecordBufferService {
 		}
 		return RetList;
 	}
+	public List<RecordBuffer> findOngoingRecord(String id,String location){
+		List<RecordBuffer> RetList = new ArrayList<RecordBuffer>();
+		if(id == null || id == "") {
+			//NOT ACORDING TO ID
+			for(RecordBuffer RB : RecordList) {
+				if(RB.location == location) {
+					RetList.add(RB);
+				}
+			}
+		}else {
+			for(RecordBuffer RB : RecordList) {
+				if(RB.id == id && RB.location == location) {
+					RetList.add(RB);
+				}
+			}
+		}
+		
+		return RetList;
+	}
 }

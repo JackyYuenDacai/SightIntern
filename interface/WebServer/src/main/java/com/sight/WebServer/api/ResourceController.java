@@ -62,7 +62,7 @@ public class ResourceController {
 	        //success
 	        users_filesSqlProvider UsersFilesSqlProvider = new users_filesSqlProvider();
 	        users_files UsersFiles = new users_files();
-	        UsersFiles.setId(file_name);
+	        UsersFiles.setId(ObjectId.get().toString());
 	        UsersFiles.setPid(user_id);
 	        UsersFiles.setFileType(contentType);
 	        UsersFilesSqlProvider.insertSelective(UsersFiles);
