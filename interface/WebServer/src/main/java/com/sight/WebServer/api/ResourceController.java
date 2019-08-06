@@ -16,6 +16,7 @@ import org.bson.types.ObjectId;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.mongodb.core.query.Criteria;
 import org.springframework.data.mongodb.core.query.Query;
+import org.springframework.data.mongodb.gridfs.GridFsResource;
 import org.springframework.data.mongodb.gridfs.GridFsTemplate;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -76,6 +77,7 @@ public class ResourceController {
 		return ret;
 
     }
+    
     @SuppressWarnings("deprecation")
 	@RequestMapping(value = "/resource")
     @ResponseBody
@@ -95,11 +97,13 @@ public class ResourceController {
                 || request.getHeader("User-Agent").toUpperCase().contains("EDGE")) {
             fileName = java.net.URLEncoder.encode(fileName, "UTF-8");
         } else {
-            //非IE浏览器的处理：
+            //NOT IE BROWSER?
             fileName = new String(fileName.getBytes("UTF-8"), "ISO-8859-1");
         }
-        // 通知浏览器进行文件下载
+        //NOTIFY BROWSER TO DOWNLOAD
         response.setContentType(gfsfile.getContentType());
         response.setHeader("Content-Disposition", "attachment;filename=\"" + fileName + "\"");	
+        GridFsResource gridfsResource = gridFsTemplate.getResource(gfsfile);
+        gridfsResource.getInputStream().transferTo(response.getOutputStream());
     }
 }
