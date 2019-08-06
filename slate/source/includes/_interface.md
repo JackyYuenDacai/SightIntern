@@ -156,9 +156,6 @@ This interface updates token and rent token for another 24 hours.
 
 ```json
 {
-    "file_type": img/raw/...,
-    "file_data": Stringifyed file data,
-    "id": users' id,
 }
 ```
 
@@ -173,7 +170,7 @@ POST method
 
 This interface upload files toward user.
 
-Files that are going to be upload must first stringifyed and pass through json towards interface.
+Directly upload file through conventional upload method
 
 Cookies Needed: id token
 
