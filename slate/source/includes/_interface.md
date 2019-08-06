@@ -3,6 +3,8 @@ This part will include all interfaces that are going to be used in web app and m
 
 All the request parameters and data recevied json are wrapped in the format mentioned in [Request](#request).
 
+Exclude the interfaces related to resources, which they need id and token noted in cookies.
+
 ##/api/submit
 > request parameters
 
@@ -109,6 +111,28 @@ This interface handles all the request related to linking account between google
 ```
 This interface handles all the request related to edit or add user information.
 
+##/api/tag_config
+> request parameters
+
+```json
+{
+	"type": add/del,
+	"soc": Institution id,
+	"id": users’ id,
+	"role": users’ role,
+	"tag_id": tags' id,
+	"tag_type": Tag type,
+}
+```
+
+> data received
+
+```json
+{
+}
+```
+This interface handles all the request related to edit or add tag information.
+
 ##/api/update_token
 > request parameters
 
@@ -145,29 +169,29 @@ This interface updates token and rent token for another 24 hours.
     "file_id": Id of the file assigned by server
 }
 ```
+POST method
+
 This interface upload files toward user.
 
 Files that are going to be upload must first stringifyed and pass through json towards interface.
+
+Cookies Needed: id token
 
 ##/api/resource
 > request parameters
 
 ```json
-{
-    "file_id": Id of the file assigned by server,
-    "id": users' id,
-}
+https://localhost/api/resource?file_id=XXXX
 ```
 
 > data received
 
 ```json
-{
-    "file_type": img/raw/...,
-    "file_data": Stringifyed file data,
-}
+receive raw file data.
 ```
 
 This interface retreat files from server
 
+And can directly used the link as resource in html.
 
+Cookies Needed: id token

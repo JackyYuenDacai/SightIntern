@@ -243,15 +243,29 @@
                     <a href="#api-user_config" class="toc-h2 toc-link" data-title="/api/user_config">/api/user_config</a>
                   </li>
                   <li>
+                    <a href="#api-tag_config" class="toc-h2 toc-link" data-title="/api/tag_config">/api/tag_config</a>
+                  </li>
+                  <li>
                     <a href="#api-update_token" class="toc-h2 toc-link" data-title="/api/update_token">/api/update_token</a>
                   </li>
                   <li>
                     <a href="#api-upload" class="toc-h2 toc-link" data-title="/api/upload">/api/upload</a>
                   </li>
+                  <li>
+                    <a href="#api-resource" class="toc-h2 toc-link" data-title="/api/resource">/api/resource</a>
+                  </li>
               </ul>
           </li>
           <li>
             <a href="#errors" class="toc-h1 toc-link" data-title="Errors">Errors</a>
+              <ul class="toc-list-h2">
+                  <li>
+                    <a href="#101-privilege-error" class="toc-h2 toc-link" data-title="101 Privilege error">101 Privilege error</a>
+                  </li>
+                  <li>
+                    <a href="#202-parameter-error" class="toc-h2 toc-link" data-title="202 Parameter error">202 Parameter error</a>
+                  </li>
+              </ul>
           </li>
       </ul>
         <ul class="toc-footer">
@@ -294,6 +308,8 @@
 <p>This part will include all interfaces that are going to be used in web app and mobile app.</p>
 
 <p>All the request parameters and data recevied json are wrapped in the format mentioned in <a href="#request">Request</a>.</p>
+
+<p>Exclude the interfaces related to resources, which they need id and token noted in cookies.</p>
 <h2 id='api-submit'>/api/submit</h2>
 <blockquote>
 <p>request parameters</p>
@@ -391,6 +407,26 @@
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
 <p>This interface handles all the request related to edit or add user information.</p>
+<h2 id='api-tag_config'>/api/tag_config</h2>
+<blockquote>
+<p>request parameters</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+    </span><span class="s2">"type"</span><span class="p">:</span><span class="w"> </span><span class="err">add/del</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"soc"</span><span class="p">:</span><span class="w"> </span><span class="err">Institution</span><span class="w"> </span><span class="err">id</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="err">users’</span><span class="w"> </span><span class="err">id</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"role"</span><span class="p">:</span><span class="w"> </span><span class="err">users’</span><span class="w"> </span><span class="err">role</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"tag_id"</span><span class="p">:</span><span class="w"> </span><span class="err">tags'</span><span class="w"> </span><span class="err">id</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"tag_type"</span><span class="p">:</span><span class="w"> </span><span class="err">Tag</span><span class="w"> </span><span class="err">type</span><span class="p">,</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<blockquote>
+<p>data received</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<p>This interface handles all the request related to edit or add tag information.</p>
 <h2 id='api-update_token'>/api/update_token</h2>
 <blockquote>
 <p>request parameters</p>
@@ -424,9 +460,29 @@
     </span><span class="s2">"file_id"</span><span class="p">:</span><span class="w"> </span><span class="err">Id</span><span class="w"> </span><span class="err">of</span><span class="w"> </span><span class="err">the</span><span class="w"> </span><span class="err">file</span><span class="w"> </span><span class="err">assigned</span><span class="w"> </span><span class="err">by</span><span class="w"> </span><span class="err">server</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
+<p>POST method</p>
+
 <p>This interface upload files toward user.</p>
 
 <p>Files that are going to be upload must first stringifyed and pass through json towards interface.</p>
+
+<p>Cookies Needed: id token</p>
+<h2 id='api-resource'>/api/resource</h2>
+<blockquote>
+<p>request parameters</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="err">https</span><span class="p">:</span><span class="err">//localhost/api/resource?file_id=XXXX</span><span class="w">
+</span></code></pre>
+<blockquote>
+<p>data received</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="err">receive</span><span class="w"> </span><span class="err">raw</span><span class="w"> </span><span class="err">file</span><span class="w"> </span><span class="err">data.</span><span class="w">
+</span></code></pre>
+<p>This interface retreat files from server</p>
+
+<p>And can directly used the link as resource in html.</p>
+
+<p>Cookies Needed: id token</p>
 <h1 id='errors'>Errors</h1>
 <p>These are the errors that may occur and the error code return in data recevied json package.</p>
 
@@ -461,6 +517,46 @@
 <td>Failed</td>
 </tr>
 </tbody></table>
+<h2 id='101-privilege-error'>101 Privilege error</h2>
+<p>Occur when lower/equal privilege user request for edit/view information of equal/higher privilege level user.</p>
+
+<p>When privilege level are equal, user must have parental relationship towards another user to view another user&#39;s information.</p>
+
+<p>Below is the table of privilege level of different roles, lower the privilege level number means higher privilege.</p>
+
+<table><thead>
+<tr>
+<th>Privilege Level</th>
+<th>Role</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>0</td>
+<td>Administrator</td>
+</tr>
+<tr>
+<td>1</td>
+<td>Teacher</td>
+</tr>
+<tr>
+<td>2</td>
+<td>Staff</td>
+</tr>
+<tr>
+<td>3</td>
+<td>Parents</td>
+</tr>
+<tr>
+<td>4</td>
+<td>Student</td>
+</tr>
+<tr>
+<td>5</td>
+<td>Point</td>
+</tr>
+</tbody></table>
+<h2 id='202-parameter-error'>202 Parameter error</h2>
+<p>Occur when lack of parameters needed for the request to proceed.</p>
 
       </div>
       <div class="dark-box">
