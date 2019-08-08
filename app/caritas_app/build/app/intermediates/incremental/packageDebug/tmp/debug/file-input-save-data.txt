@@ -1,5 +1,5 @@
 #Internal package file, do not edit.
-#Sat Jul 20 11:21:53 CST 2019
+#Thu Aug 01 20:20:24 CST 2019
 4.path=flutter_assets/assets/logo.png
 13.baseType=DIRECTORY
 8.set=ASSET

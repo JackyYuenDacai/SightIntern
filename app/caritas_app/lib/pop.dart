@@ -67,6 +67,7 @@ class student{
   student(this.id,this.name);
   final String name;
   final String id;
+  
 
   factory student.fromJson(Map<String,dynamic> json){
     return new student(json['id'],json['name']);
@@ -120,6 +121,18 @@ class question{
   question(this.title,this.id,this.answer,this.answer_id,[this.type=0]);
 }
 
+class user_config{
+  String type;
+  String soc;
+  String id;
+  String name;
+  String role;
+  String icon_id;
+  String pwd;
+  List<String> extra;
+  user_config(this.type,this.soc,this.id,this.name,this.role,this.icon_id,this.pwd,this.extra);
+}
+
 class StaticList{
   static List<ColForm> colform_list = new List<ColForm>();
   static List<DataForm> datform_list = new List<DataForm>();
@@ -132,6 +145,8 @@ class StaticList{
   static List<String> staff_list = new List<String>();
 
   static List<String> tag_list = new List<String>();
+
+  static List<String> password = new List<String>();
 
   static String server_addr = 'http://192.168.31.2:8080';//'http://192.168.31.2:8080';
   static String getpop_api_url = server_addr+'/WebInterface/get_pops_list?location=';

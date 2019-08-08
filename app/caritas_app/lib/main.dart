@@ -97,7 +97,7 @@ class _LoginPageState extends State<LoginPage> {
   Widget build(BuildContext context) {
     return new Scaffold(
       appBar: _buildBar(context),
-      body: new Container(
+      body: new SingleChildScrollView(
         padding: EdgeInsets.all(16.0),
         child: new Column(
           children: <Widget>[
@@ -144,7 +144,7 @@ class _LoginPageState extends State<LoginPage> {
           new Container(
             child: new TextField(
               controller: _passwordFilter,
-              obscureText: true,
+              obscureText: true,//*****need to be checked if works with iOS*****
               style: style,
               decoration: InputDecoration(
                 contentPadding: EdgeInsets.fromLTRB(20.0, 15.0, 20.0, 15.0),

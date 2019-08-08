@@ -1,3 +1,4 @@
+//TODO: use the request JSON format to pack a JSON for login request
 import 'pop.dart';
 import 'dart:async';
 import 'package:async/async.dart';
@@ -14,6 +15,9 @@ class network_request{
 
   static http.Response ajaxResponse = new http.Response("",200);
   static String server_addr = 'http://192.168.31.2:8080';//'http://192.168.31.2:8080';
+
+  static String full_server_addr = 'http://192.168.31.2:8080/WebInterface';
+
   static String getpop_api_url = server_addr+'/WebInterface/get_pops_list?location=';
   static String getstaff_api_url = server_addr+'/WebInterface/get_staff_list?location=';
   static String submit_form_api_url = server_addr+'/WebInterface/submit_form?';
@@ -24,6 +28,9 @@ class network_request{
   static String del_student_api_url = server_addr+'/WebInterface/del_student?';
   static String get_record_export_url = server_addr+'/WebInterface/record_export?';
   static String add_staff_api_url = server_addr+'/WebInterface/add_staff?';
+  
+  static String config = full_server_addr+'/api/user_config';
+
   static void get_staff_list(String location){
     var url = StaticList.getstaff_api_url+location;
     requestWrap(url,(response)=>get_staff_list_proc(response));
@@ -124,6 +131,21 @@ class network_request{
         print('name:'+wid.name);
         StaticList.staff_list.add(wid.name);
     }
+  }
+
+  static void check_password(String id, String time)async{
+    var url = StaticList.+"id="+id+"&time=${time}";
+    await requestWrap(url,(response)=>check_password_proc(response));
+  }
+
+  static void check_password_proc(http.Response response){
+    user_config user = new user_config.fromJson(json.decode(response.body));
+    //StaticList.staff_id.clear();
+    StaticList.password.clear();
+    for(user_config user in user.pwd){
+        StaticList.password.add(user.name);
+    }
+    
   }
 
 

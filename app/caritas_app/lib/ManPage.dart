@@ -1,4 +1,3 @@
-//I8N.of(context).manuel_title//
 import 'package:flutter/material.dart';
 import 'package:connectivity/connectivity.dart';
 import 'package:flutter_datetime_picker/flutter_datetime_picker.dart';
@@ -8,6 +7,7 @@ import './I8N.dart';
 import './pop.dart';
 import './menu.dart';
 import './main.dart';
+
 class ManPage extends StatefulWidget {
   @override
   State<StatefulWidget> createState() {
@@ -106,7 +106,7 @@ class _ManPageState extends State<ManPage> {
                             direction: Axis.horizontal,
                             children:
                               <Widget>[
-                                new Text('Student\'s Name',textAlign:TextAlign.center,
+                                new Text(I8N.of(context).student_name,textAlign:TextAlign.center,
                                 style:TextStyle(
                                   fontSize:20.0,
                                 )
@@ -114,7 +114,7 @@ class _ManPageState extends State<ManPage> {
                                 new TextField(
                                   decoration: InputDecoration(
                                     border: InputBorder.none,
-                                    hintText: 'Please enter student\'s name',
+                                    hintText: I8N.of(context).student_hint,
                                   ),
                                 ),
                               ]
@@ -123,14 +123,14 @@ class _ManPageState extends State<ManPage> {
                             direction: Axis.horizontal,
                             children:
                               <Widget>[
-                                new Text('Staff Name',textAlign:TextAlign.center,
+                                new Text(I8N.of(context).staff_name,textAlign:TextAlign.center,
                                 style:TextStyle(
                                   fontSize:20.0,
                                 )),
                                 new TextField(
                                   decoration: InputDecoration(
                                     border: InputBorder.none,
-                                    hintText: 'Please enter staff\'s name',
+                                    hintText: I8N.of(context).staff_hint,
                                   ),
                                 ),
                               ]
@@ -150,7 +150,7 @@ class _ManPageState extends State<ManPage> {
                                             }, currentTime: DateTime.now(), locale: LocaleType.zh);
                                       },
                                       child: Text(
-                                          'Entry time',
+                                          I8N.of(context).in_time,
                                           style: TextStyle(color: Colors.orangeAccent,fontSize:25.0,),
                                       )),
                                   FlatButton(
@@ -164,7 +164,7 @@ class _ManPageState extends State<ManPage> {
                                                           }, currentTime: DateTime.now(), locale: LocaleType.zh);
                                     },
                                     child: Text(
-                                        'Exit time',
+                                        I8N.of(context).out_time,
                                         style: TextStyle(color: Colors.orangeAccent,fontSize:25.0,),
                                     )),
                             ]

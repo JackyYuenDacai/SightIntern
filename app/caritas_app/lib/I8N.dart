@@ -29,6 +29,12 @@ class I8N{
       'login':'Sign in',
       'username':'Username',
       'password':'Password',
+      'student_name':'Student\'s Name',
+      'student_hint':'Please enter student\'s name',
+      'staff_name':'Staff\'s Name',
+      'staff_hint':'Please enter staff\'s name',
+      'in_time':'Entry Time',
+      'out_time':'Exit time',
     },
     'zh':{
       'apptitle':'明愛樂勤應用程式',
@@ -47,6 +53,12 @@ class I8N{
       'login':'登入',
       'username':'帳戶名稱',
       'password':'密碼',
+      'student_name':'學生姓名',
+      'student_hint':'請輸入學生姓名',
+      'staff_name':'職員姓名',
+      'staff_hint':'請輸入職員姓名',
+      'in_time':'進入時間',
+      'out_time':'離開時間',
     },
   };
   String get apptitle{return I8N_values[locale.languageCode]['apptitle'];}
@@ -67,6 +79,12 @@ class I8N{
 
   String get username{return I8N_values[locale.languageCode]['username'];}
   String get password{return I8N_values[locale.languageCode]['password'];}
+  String get student_name{return I8N_values[locale.languageCode]['student_name'];}
+  String get student_hint{return I8N_values[locale.languageCode]['student_hint'];}
+  String get staff_name{return I8N_values[locale.languageCode]['staff_name'];}
+  String get staff_hint{return I8N_values[locale.languageCode]['staff_hint'];}
+  String get in_time{return I8N_values[locale.languageCode]['in_time'];}
+  String get out_time{return I8N_values[locale.languageCode]['out_time'];}
 }
 class I8NDelegate extends LocalizationsDelegate<I8N>{
   const I8NDelegate();
