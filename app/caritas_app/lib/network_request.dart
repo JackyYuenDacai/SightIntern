@@ -133,7 +133,7 @@ class network_request{
     }
   }
 
-  static void check_password(String id, String time)async{
+  /*static void check_password(String id, String time)async{
     var url = StaticList.+"id="+id+"&time=${time}";
     await requestWrap(url,(response)=>check_password_proc(response));
   }
@@ -146,7 +146,7 @@ class network_request{
         StaticList.password.add(user.name);
     }
     
-  }
+  }*/
 
 
 }

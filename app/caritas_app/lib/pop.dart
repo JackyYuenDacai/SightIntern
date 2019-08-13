@@ -3,6 +3,7 @@ import 'columnWidget.dart';
 import 'package:intl/intl.dart';
 import 'DataForm.dart';
 import './main.dart';
+import './I8N.dart';
 class pop{
   pop(this.name,this.id,this.status,this.unitok);
   final String name;
@@ -160,7 +161,7 @@ class StaticList{
   static String get_record_export_url = server_addr+'/WebInterface/record_export?';
   static String add_staff_api_url = server_addr+'/WebInterface/add_staff?';
   static List<question> QuestionList = <question>[
-    new question('Check','diaper',<String>['N/A','Clean','Dirty'],<String>['na','clean','dirty'],0),
+    new question(I8N.of(context).check,'diaper',<String>[I8N.of(context).na,I8N.of(context).clean,I8N.of(context).dirty],<String>['na','clean','dirty'],0),
     new question('Mistake','mistake',<String>['N/A','Wee','Poo','Both'],<String>['na','wee','poo','both'],0),
     new question('Toilet','toilet',<String>['N/A','Nothing','Wee','Poo','Both'],<String>['na','nothing','wee','poo','both'],0),
     new question('Poo','poo',<String>['N/A','Few','Normal','Much'],<String>['na','few','normal','much'],0),
