@@ -166,7 +166,7 @@ class StaticList{
   static String del_student_api_url = server_addr+'/WebInterface/del_student?';
   static String get_record_export_url = server_addr+'/WebInterface/record_export?';
   static String add_staff_api_url = server_addr+'/WebInterface/add_staff?';
-  
+  //https://github.com/flutter/flutter/issues/14518 
   static List<question> QuestionList = <question>[
     new question('驗片','diaper',<String>['不適用','淨片','污片'],<String>['na','clean','dirty'],0),
       new question('遺便','mistake',<String>['不適用','小便','大便','大、小便'],<String>['na','wee','poo','both'],0),
