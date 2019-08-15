@@ -90,7 +90,7 @@ class I8N{
       'mistake':'遺便',
       'toilet':'如廁',
       'poo_a':'大便量',
-      'consistency':'大便量',
+      'consistency':'大便質',
       'na':'不適用',
       'clean':'淨片',
       'dirty':'污片',

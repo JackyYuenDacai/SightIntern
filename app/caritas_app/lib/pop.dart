@@ -167,28 +167,28 @@ class StaticList{
   static String get_record_export_url = server_addr+'/WebInterface/record_export?';
   static String add_staff_api_url = server_addr+'/WebInterface/add_staff?';
   
-  /*static List<question> QuestionList = <question>[
-    new question(I8N.check,'diaper',<String>[I8N.of(context).na,I8N.of(context).clean,I8N.of(context).dirty],<String>['na','clean','dirty'],0),
-    new question('Mistake','mistake',<String>['N/A','Wee','Poo','Both'],<String>['na','wee','poo','both'],0),
-    new question('Toilet','toilet',<String>['N/A','Nothing','Wee','Poo','Both'],<String>['na','nothing','wee','poo','both'],0),
-    new question('Poo','poo',<String>['N/A','Few','Normal','Much'],<String>['na','few','normal','much'],0),
-    new question('Consistency','poo_consistency',<String>['Soft','Hard','Rot','Dilute'],<String>['soft','hard','rot','dilute'],0),
-    new question('Color','poo_color',<String>['true','false'],<String>['true','false'],2),
-    new question('Yellow','poo_color_yellow',<String>['true','false'],<String>['true','false'],1),
-    new question('Brown','poo_color_brown',<String>['true','false'],<String>['true','false'],1),
-    new question('Black','poo_color_black',<String>['true','false'],<String>['true','false'],1),
-    new question('Blood','poo_consist_blood',<String>['true','false'],<String>['true','false'],1),
-    new question('Goo','poo_consist_goo',<String>['true','false'],<String>['true','false'],1),
-  ];*/
+  static List<question> QuestionList = <question>[
+    new question('驗片','diaper',<String>['不適用','淨片','污片'],<String>['na','clean','dirty'],0),
+      new question('遺便','mistake',<String>['不適用','小便','大便','大、小便'],<String>['na','wee','poo','both'],0),
+      new question('如廁','toilet',<String>['不適用','無排出','小便','大便','大、小便'],<String>['na','nothing','wee','poo','both'],0),
+      new question('大便量','poo',<String>['不適用','少','中','多'],<String>['na','few','normal','much'],0),
+      new question('大便質','poo_consistency',<String>['軟','硬','爛','稀'],<String>['soft','hard','rot','dilute'],0),
+      new question('大便色','poo_color',<String>['true','false'],<String>['true','false'],2),
+      new question('黃','poo_color_yellow',<String>['true','false'],<String>['true','false'],1),
+      new question('棕','poo_color_brown',<String>['true','false'],<String>['true','false'],1),
+      new question('黑','poo_color_black',<String>['true','false'],<String>['true','false'],1),
+      new question('含血','poo_consist_blood',<String>['true','false'],<String>['true','false'],1),
+      new question('含潺','poo_consist_goo',<String>['true','false'],<String>['true','false'],1),
+  ];
 }
 
-class Q_List extends StatelessWidget {
+/*class Q_List extends StatelessWidget {
   static get QuestionList => ;
 
   @override
   Widget build(BuildContext context) {
     List<question> TheQuestionList = <question>[
-      new question(I8N.of(context).check,'diaper',<String>[I8N.of(context).na,I8N.of(context).clean,I8N.of(context).dirty],<String>['na','clean','dirty'],0),
+      new question('驗片','diaper',<String>['不適用','淨片','污片'],<String>['na','clean','dirty'],0),
       new question('Mistake','mistake',<String>['N/A','Wee','Poo','Both'],<String>['na','wee','poo','both'],0),
       new question('Toilet','toilet',<String>['N/A','Nothing','Wee','Poo','Both'],<String>['na','nothing','wee','poo','both'],0),
       new question('Poo','poo',<String>['N/A','Few','Normal','Much'],<String>['na','few','normal','much'],0),
@@ -201,4 +201,4 @@ class Q_List extends StatelessWidget {
       new question('Goo','poo_consist_goo',<String>['true','false'],<String>['true','false'],1),
     ];
   } 
-}
+}*/
