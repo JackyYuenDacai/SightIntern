@@ -64,7 +64,7 @@ class _ManPageState extends State<ManPage> {
   answerSelected(String title,String value){
     //print(title);
     //print(value);
-    for(question i in Q_List.QuestionList){
+    for(question i in StaticList.QuestionList){
       if(i.title == title){
         for(int j = 0; j < i.answer.length;j++){
           if(i.answer[j] == value){
@@ -76,7 +76,7 @@ class _ManPageState extends State<ManPage> {
     }
   }
   String answerValue(String title){
-    for(question i in Q_List.QuestionList){
+    for(question i in StaticList.QuestionList){
       if(i.title == title){
         //print(i.id);
         for(int j = 0; j < i.answer.length;j++){
@@ -172,7 +172,7 @@ class _ManPageState extends State<ManPage> {
                           Align(alignment: Alignment.topLeft,child:
                           new Column(children:
                             //question(this.title,this.answer,this.answer_id);
-                          Q_List.QuestionList.map((question list_val){
+                          StaticList.QuestionList.map((question list_val){
                             switch(list_val.type){
                               case null:
                               case 0:

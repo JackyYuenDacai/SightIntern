@@ -1,3 +1,5 @@
+import 'dart:io';
+import 'dart:ui';
 import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/framework.dart';
 import 'package:json_annotation/json_annotation.dart';
@@ -6,6 +8,7 @@ import 'package:intl/intl.dart';
 import 'DataForm.dart';
 import './main.dart';
 import './I8N.dart';
+//Widget build(BuildContext context) { var loc = MyLocalizations.of(context);}
 class pop{
   pop(this.name,this.id,this.status,this.unitok);
   final String name;
@@ -110,6 +113,7 @@ class record_entries{
   }
 }
 class question{
+  //BuildContext q_list=loc;
   String title;
   String id;
   List<String> answer;
@@ -166,9 +170,9 @@ class StaticList{
   static String del_student_api_url = server_addr+'/WebInterface/del_student?';
   static String get_record_export_url = server_addr+'/WebInterface/record_export?';
   static String add_staff_api_url = server_addr+'/WebInterface/add_staff?';
-  
-  /*static List<question> QuestionList = <question>[
-    new question(I8N.check,'diaper',<String>[I8N.of(context).na,I8N.of(context).clean,I8N.of(context).dirty],<String>['na','clean','dirty'],0),
+  //https://github.com/flutter/flutter/issues/14518 let's play with localization of this stuff later
+  static List<question> QuestionList = <question>[
+    new question('Check','diaper',<String>['N/A','Clean','Dirty'],<String>['na','clean','dirty'],0),
     new question('Mistake','mistake',<String>['N/A','Wee','Poo','Both'],<String>['na','wee','poo','both'],0),
     new question('Toilet','toilet',<String>['N/A','Nothing','Wee','Poo','Both'],<String>['na','nothing','wee','poo','both'],0),
     new question('Poo','poo',<String>['N/A','Few','Normal','Much'],<String>['na','few','normal','much'],0),
@@ -179,26 +183,14 @@ class StaticList{
     new question('Black','poo_color_black',<String>['true','false'],<String>['true','false'],1),
     new question('Blood','poo_consist_blood',<String>['true','false'],<String>['true','false'],1),
     new question('Goo','poo_consist_goo',<String>['true','false'],<String>['true','false'],1),
-  ];*/
+  ];
+
+  /*static List Q_List;
+  Future<List> get  async {
+  if(_db == null) {
+    _db = await initializeDB();
+  }
+  return _db;
+  }*/
 }
 
-class Q_List extends StatelessWidget {
-  static get QuestionList => ;
-
-  @override
-  Widget build(BuildContext context) {
-    List<question> TheQuestionList = <question>[
-      new question(I8N.of(context).check,'diaper',<String>[I8N.of(context).na,I8N.of(context).clean,I8N.of(context).dirty],<String>['na','clean','dirty'],0),
-      new question('Mistake','mistake',<String>['N/A','Wee','Poo','Both'],<String>['na','wee','poo','both'],0),
-      new question('Toilet','toilet',<String>['N/A','Nothing','Wee','Poo','Both'],<String>['na','nothing','wee','poo','both'],0),
-      new question('Poo','poo',<String>['N/A','Few','Normal','Much'],<String>['na','few','normal','much'],0),
-      new question('Consistency','poo_consistency',<String>['Soft','Hard','Rot','Dilute'],<String>['soft','hard','rot','dilute'],0),
-      new question('Color','poo_color',<String>['true','false'],<String>['true','false'],2),
-      new question('Yellow','poo_color_yellow',<String>['true','false'],<String>['true','false'],1),
-      new question('Brown','poo_color_brown',<String>['true','false'],<String>['true','false'],1),
-      new question('Black','poo_color_black',<String>['true','false'],<String>['true','false'],1),
-      new question('Blood','poo_consist_blood',<String>['true','false'],<String>['true','false'],1),
-      new question('Goo','poo_consist_goo',<String>['true','false'],<String>['true','false'],1),
-    ];
-  } 
-}
