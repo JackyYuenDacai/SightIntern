@@ -1,0 +1,15 @@
+C:\Users\ccyuenae\source\repos\CaritasWin\DaemonConfig\bin\Debug\DaemonConfig.exe.config
+C:\Users\ccyuenae\source\repos\CaritasWin\DaemonConfig\bin\Debug\DaemonConfig.exe
+C:\Users\ccyuenae\source\repos\CaritasWin\DaemonConfig\bin\Debug\DaemonConfig.pdb
+C:\Users\ccyuenae\source\repos\CaritasWin\DaemonConfig\obj\Debug\DaemonConfig.csprojAssemblyReference.cache
+C:\Users\ccyuenae\source\repos\CaritasWin\DaemonConfig\obj\Debug\DaemonConfig.Login.resources
+C:\Users\ccyuenae\source\repos\CaritasWin\DaemonConfig\obj\Debug\DaemonConfig.Properties.Resources.resources
+C:\Users\ccyuenae\source\repos\CaritasWin\DaemonConfig\obj\Debug\DaemonConfig.csproj.GenerateResource.cache
+C:\Users\ccyuenae\source\repos\CaritasWin\DaemonConfig\obj\Debug\DaemonConfig.csproj.CoreCompileInputs.cache
+C:\Users\ccyuenae\source\repos\CaritasWin\DaemonConfig\obj\Debug\DaemonConfig.exe
+C:\Users\ccyuenae\source\repos\CaritasWin\DaemonConfig\obj\Debug\DaemonConfig.pdb
+C:\Users\ccyuenae\source\repos\CaritasWin\DaemonConfig\obj\Debug\DaemonConfig.Main.resources
+C:\Users\ccyuenae\source\repos\CaritasWin\DaemonConfig\bin\Debug\Newtonsoft.Json.dll
+C:\Users\ccyuenae\source\repos\CaritasWin\DaemonConfig\bin\Debug\Newtonsoft.Json.xml
+C:\Users\ccyuenae\source\repos\CaritasWin\DaemonConfig\obj\Debug\DaemonConfig.csproj.CopyComplete
+C:\Users\ccyuenae\source\repos\CaritasWin\DaemonConfig\bin\Debug\UHFReader18CSharp.dll
