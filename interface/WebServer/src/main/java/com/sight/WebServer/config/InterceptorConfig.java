@@ -16,8 +16,12 @@ public class InterceptorConfig extends WebMvcConfigurationSupport{
 	@Override
     public void addInterceptors(InterceptorRegistry registry) {
 		//Execute order are the same as register order.
-		registry.addInterceptor(new ValidPathInterceptor()).addPathPatterns("/api/**");
-		registry.addInterceptor(new LoginInterceptor()).addPathPatterns("/**");
-		registry.addInterceptor(new PrivilegeInterceptor()).addPathPatterns("/**");
+		registry.addInterceptor(new ValidPathInterceptor())
+			.addPathPatterns("/api/**")
+			.addPathPatterns("/api/**");
+		registry.addInterceptor(new LoginInterceptor())
+			.addPathPatterns("/resources/**");
+		registry.addInterceptor(new PrivilegeInterceptor())
+			.addPathPatterns("/**");
     }
 }

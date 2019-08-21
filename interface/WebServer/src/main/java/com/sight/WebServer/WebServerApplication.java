@@ -11,6 +11,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.web.embedded.tomcat.TomcatServletWebServerFactory;
+import org.springframework.boot.web.servlet.ServletComponentScan;
 import org.springframework.context.annotation.Bean;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.data.redis.serializer.RedisSerializer;
@@ -18,6 +19,7 @@ import org.springframework.data.redis.serializer.RedisSerializer;
 import com.sight.WebServer.WebServerApplication;
 
 @MapperScan(value = "com.sight.WebServer.data.dao")
+@ServletComponentScan(basePackages = "com.sight.WebServer.filter")
 @SpringBootApplication
 public class WebServerApplication {
 	@Autowired

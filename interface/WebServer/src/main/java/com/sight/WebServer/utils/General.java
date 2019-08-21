@@ -15,14 +15,20 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.TimeZone;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
+import com.sight.WebServer.interceptor.LoginInterceptor;
 import com.sun.org.apache.xml.internal.security.utils.Base64;
 
+import jdk.internal.jline.internal.Log;
 import net.sf.json.JSONObject;
 
 import java.util.Random;
 public class General {
 	static String TimeZoneCode = "Asia/Shanghai";
 	static Map<String,Boolean> tokenList = new HashMap<String,Boolean>();
+	private static final Logger LOG= LoggerFactory.getLogger(LoginInterceptor.class);
 	public static String getDateTime() {
 	    Date d = new Date();
 	    SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd kk:mm:ss");
@@ -71,7 +77,12 @@ public class General {
         String inputStr;
         while ((inputStr = streamReader.readLine()) != null)
             responseStrBuilder.append(inputStr);
-	    return JSONObject.fromObject(responseStrBuilder.toString());
+        String outputStr = responseStrBuilder.toString();
+        LOG.info(outputStr);
+        if(outputStr.length()>0)
+        	return JSONObject.fromObject(outputStr);
+        else
+        	return new JSONObject();
 	}
 	public static Date StringToDate(String time) throws ParseException {
 		SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");

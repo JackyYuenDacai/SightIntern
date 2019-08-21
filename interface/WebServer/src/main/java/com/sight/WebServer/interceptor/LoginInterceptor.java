@@ -9,6 +9,7 @@ import org.springframework.web.servlet.ModelAndView;
 import com.sight.WebServer.data.model.users_token;
 import com.sight.WebServer.data.service.usersService;
 import com.sight.WebServer.data.service.users_tokenService;
+import com.sight.WebServer.utils.RequestWrapper;
 
 import net.sf.json.JSONObject;
 
@@ -31,13 +32,9 @@ public class LoginInterceptor implements HandlerInterceptor{
     @Override
     public boolean preHandle(HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse, Object o) throws Exception {
         LOG.info("login preHandler");
-    	InputStream inputStreamObject = httpServletRequest.getInputStream();
-        BufferedReader streamReader = new BufferedReader(new InputStreamReader(inputStreamObject, "UTF-8"));
-        StringBuilder responseStrBuilder = new StringBuilder();
-        String inputStr;
-        while ((inputStr = streamReader.readLine()) != null)
-            responseStrBuilder.append(inputStr);
-        JSONObject jsonObject = JSONObject.fromObject(responseStrBuilder.toString());
+        RequestWrapper requestWrapper = new RequestWrapper(httpServletRequest);
+        String body = requestWrapper.getBody();
+        JSONObject jsonObject = JSONObject.fromObject(body);
         /*
     	"token": login token,
     	"id": Account id,
@@ -49,15 +46,22 @@ public class LoginInterceptor implements HandlerInterceptor{
         	return true;
         else
         	return false;
+ 
     }
  
     @Override
     public void postHandle(HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse, Object o, ModelAndView modelAndView) throws Exception {
         LOG.info("login postHandler");
+        RequestWrapper requestWrapper = new RequestWrapper(httpServletRequest);
+        String body = requestWrapper.getBody();
+        JSONObject jsonObject = JSONObject.fromObject(body);
     }
  
     @Override
     public void afterCompletion(HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse, Object o, Exception e) throws Exception {
     	LOG.info("login afterCompletionHandler");
+        RequestWrapper requestWrapper = new RequestWrapper(httpServletRequest);
+        String body = requestWrapper.getBody();
+        JSONObject jsonObject = JSONObject.fromObject(body);
     }
 }
