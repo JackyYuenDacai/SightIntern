@@ -37,7 +37,7 @@ public class General {
 	}
 	public static String RandomPostfix() {
 		Random rnd = new Random();
-		String ret = getDateTime() + rnd.nextInt(10) + rnd.nextInt(10) + rnd.nextInt(10) ;
+		String ret = getDateTime().toString() + rnd.nextInt(10) + rnd.nextInt(10) + rnd.nextInt(10) ;
         return ret;
 	}
 	public static String RandomToken() {
@@ -45,7 +45,7 @@ public class General {
 		try {
 			do{
 				token = encodeByMd5(RandomPostfix());
-			}while(tokenList.containsKey(token)==false);
+			}while(tokenList.containsKey(token));
 			tokenList.put(token,true);
 		} catch (NoSuchAlgorithmException | UnsupportedEncodingException e) {
 			// TODO Auto-generated catch block
@@ -54,6 +54,7 @@ public class General {
 		return token;
 	}
 	public static void EraseToken(String token) {
+		if(tokenList.containsKey(token))
 		tokenList.remove(token);
 	}
 	public static String encodeByMd5(String string) throws NoSuchAlgorithmException, UnsupportedEncodingException {
@@ -78,7 +79,7 @@ public class General {
         while ((inputStr = streamReader.readLine()) != null)
             responseStrBuilder.append(inputStr);
         String outputStr = responseStrBuilder.toString();
-        LOG.info(outputStr);
+        
         if(outputStr.length()>0)
         	return JSONObject.fromObject(outputStr);
         else

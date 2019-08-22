@@ -2,16 +2,23 @@ package com.sight.WebServer.data.service;
 import java.util.Date;
 import java.util.List;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.sight.WebServer.data.dao.usersMapper;
 import com.sight.WebServer.data.dao.users_tokenMapper;
 import com.sight.WebServer.data.model.*;
+import com.sight.WebServer.interceptor.LoginInterceptor;
+
+import jdk.internal.jline.internal.Log;
 @Service
 public class users_tokenService {
 	@Autowired
 	private users_tokenMapper UsersTokenMapper;
+	
+	private static final Logger LOG= LoggerFactory.getLogger(LoginInterceptor.class);
 	
 	public boolean addUsersToken(users_token UsersToken) {
 		boolean ret = false;
@@ -30,10 +37,11 @@ public class users_tokenService {
 		record.setToken(token);
 		record.setExpire(expire);
 		try {
+			UsersTokenMapper.deleteByPrimaryKey(id);
 			UsersTokenMapper.insertSelective(record);
 			ret = true;
 		}catch(Exception ex) {
-			ex.printStackTrace();
+			LOG.info(ex.getMessage());
 		}
 		return ret;
 	}

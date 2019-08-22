@@ -14,17 +14,17 @@ public class PrivilegeInterceptor implements HandlerInterceptor{
     
     @Override
     public boolean preHandle(HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse, Object o) throws Exception {
-        LOG.info("login preHandler");
+        LOG.info("privilege preHandler");
         return true;
     }
  
     @Override
     public void postHandle(HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse, Object o, ModelAndView modelAndView) throws Exception {
-        LOG.info("login postHandler");
+        LOG.info("privilege postHandler");
     }
  
     @Override
     public void afterCompletion(HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse, Object o, Exception e) throws Exception {
-    	LOG.info("login afterCompletionHandler");
+    	LOG.info("privilege afterCompletionHandler");
     }
 }

@@ -49,8 +49,7 @@ public class LoginController {
     	LOG.info("login:entry");
     	//dLOG.info("content:"+params);
     	JSONObject jsonObject = General.getRequest(request.getInputStream());
-    	
-    	LOG.info(jsonObject.toString());
+  
     	
         try {
 	    
@@ -59,24 +58,32 @@ public class LoginController {
 	        soc = parameters.getString("soc");
 	        id = parameters.getString("id");
 	        pwd = parameters.getString("pwd");
+	        LOG.info("pwd:"+pwd);
 	        token = null;
 	        users RequiredUser = UsersService.getUserById(id);
+	        
+	        
 	        if(RequiredUser == null) {
 	        	ret.put("error", 502);
-	        	ret.put("error_msg", "Wrong id/password");
-	        	LOG.info("login:wrong id/pwd");
+	        	ret.put("error_msg", "No such user");
+	        	LOG.info("login:no such user");
 	        }
-	        else if(RequiredUser.getPwd()==pwd) {
+	        else if(RequiredUser.getPwd().compareTo(pwd)==0) {
 	        	token = General.RandomToken();
 	        	name = RequiredUser.getName();
 	        	priority = RequiredUser.getRole();
+	        	
 	        	UsersTokenService.addUsersToken(id, token, General.getTokenExpireDate());
 	        	ret.put("error", 0);
 	        	Map<String,Object> data = new  HashMap<String,Object>();
 	        	data.put("token", token);
+	        	
 	        	data.put("name", name);
 	        	data.put("privilege", priority);
 	        	ret.put("data", data);
+	        	LOG.info("login:Success");
+	        	LOG.info("ID:"+id+" TOKEN:"+token);
+	        	return ret;
 	        }else {
 	        	ret.put("error", 502);
 	        	ret.put("error_msg", "Wrong id/password");
@@ -100,6 +107,7 @@ public class LoginController {
     	JSONObject jsonObject = General.getRequest(request.getInputStream());
 	    JSONObject parameters = JSONObject.fromObject(jsonObject.get("parameters"));
 	    //TODO: update by example
+	    
 		return ret;
 	}	
 }

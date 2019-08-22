@@ -31,9 +31,10 @@ public class LoginInterceptor implements HandlerInterceptor{
 	private users_tokenService UsersTokenService;
     @Override
     public boolean preHandle(HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse, Object o) throws Exception {
-        LOG.info("login preHandler");
+        
         RequestWrapper requestWrapper = new RequestWrapper(httpServletRequest);
         String body = requestWrapper.getBody();
+        LOG.info("login preHandler: "+body);
         JSONObject jsonObject = JSONObject.fromObject(body);
         /*
     	"token": login token,
@@ -42,11 +43,11 @@ public class LoginInterceptor implements HandlerInterceptor{
         String token = jsonObject.getString("token");
         String id = jsonObject.getString("id");
         users_token UsersToken = UsersTokenService.getUserTokenById(id);
-        if(UsersToken.getToken() == token && UsersToken.getExpire().after(new Date()))
+        if(UsersToken.getToken() .compareTo(token) == 0 && UsersToken.getExpire().after(new Date()))
         	return true;
         else
         	return false;
- 
+        
     }
  
     @Override

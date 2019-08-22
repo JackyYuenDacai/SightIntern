@@ -37,6 +37,7 @@ public class WebServerApplication {
 		redisTemplate .setHashKeySerializer(stringSerializer);
 	}
 	
+	/*
     @Bean
     public Connector connector(){
         Connector connector=new Connector("org.apache.coyote.http11.Http11NioProtocol");
@@ -63,4 +64,5 @@ public class WebServerApplication {
         tomcat.addAdditionalTomcatConnectors(connector);
         return tomcat;
     }
+    */
 }
