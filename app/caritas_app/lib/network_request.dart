@@ -29,7 +29,9 @@ class network_request{
   static String get_record_export_url = server_addr+'/WebInterface/record_export?';
   static String add_staff_api_url = server_addr+'/WebInterface/add_staff?';
   
-  static String config = full_server_addr+'/api/user_config';
+  static String login = full_server_addr+'/api/login?';
+
+  static String auth = full_server_addr+'/api/update_token';
 
   static void get_staff_list(String location){
     var url = StaticList.getstaff_api_url+location;
@@ -64,6 +66,7 @@ class network_request{
         ;
       });
   }
+  ///what is it doing? Send request to url, call function (process) with response given as parameter///
   static void requestWrap(String url,ProcessFunc process) async{
 
     await http.get(url)
@@ -80,6 +83,8 @@ class network_request{
           process(response);
     });
   }
+
+  ///what is it doing? Post something to the api, call function (process) with response given as parameter///
   static void postWrap(String url,var header,var body_data, ProcessFunc process) async{
     print(body_data);
     print(url);
@@ -134,7 +139,7 @@ class network_request{
   }
 
   /*static void check_password(String id, String time)async{
-    var url = StaticList.+"id="+id+"&time=${time}";
+    var url = StaticList.login;
     await requestWrap(url,(response)=>check_password_proc(response));
   }
 

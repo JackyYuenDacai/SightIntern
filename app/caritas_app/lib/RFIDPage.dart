@@ -31,8 +31,8 @@ class _RFIDPageState extends State<RFIDPage> {
 
     try{
       this.setState((){
-        network_request.get_pop_list(StaticList.location);
-        network_request.get_staff_list(StaticList.location);
+        network_request.get_pop_list(StaticList.location);////////////////////here get pop list
+        network_request.get_staff_list(StaticList.location);////////////////////////////////////////////////////////////////////
       });
       ajaxCall.reset();
     }catch(e){

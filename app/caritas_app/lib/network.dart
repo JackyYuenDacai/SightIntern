@@ -1,0 +1,98 @@
+import 'pop.dart';
+import 'dart:async';
+import 'package:async/async.dart';
+import 'dart:convert';
+import 'dart:io';
+import 'package:http/http.dart' as http;
+import 'columnWidget.dart';
+import 'package:json_annotation/json_annotation.dart';
+import './main.dart';
+import './json.dart';
+
+typedef ProcessFunc = void Function(http.Response);
+
+class connection{
+
+  static var client = new http.Client();
+  static http.Response ajaxResponse = new http.Response("",200);
+  static String full_server_addr = 'http://192.168.31.2:8080/WebInterface';
+  
+  static String token_update = full_server_addr+'/api/token_update';
+  static String login = full_server_addr+'/api/login';
+  static String records = full_server_addr+'/api/records';
+  static String submit = full_server_addr+'/api/submit';
+
+    ///what is it doing? Send request to url, call function (process) with response given as parameter///
+  static void requestWrap(String url,ProcessFunc process) async{
+
+    await http.get(url)
+        .then((response) {
+          if(response.body.length<=0){
+            return;
+          }
+          if(response.statusCode != 200){
+            print('Server exception');
+            print(response.body);
+            return;
+          }
+          ajaxResponse = response;
+          process(response);
+    });
+  }
+
+  ///what is it doing? Post something to the api, call function (process) with response given as parameter///
+  static void postWrap(String url,var header,var body_data, ProcessFunc process) async{
+    print(body_data);
+    print(url);
+    await http.post(
+      url,
+      body:body_data,
+      headers:header
+    ).then((response) {
+      if(response.body.length<=0){
+        return;
+      }
+      if(response.statusCode != 200){
+        print('Server exception');
+        print(response.body);
+        return;
+      }
+      ajaxResponse = response;
+      process(response);
+    });
+  }
+
+  static void get_staff_list(String location){
+    records_send filter = new records_send(location, null, 2, null, null, null, null);
+    request_basic_send data = new request_basic_send(token, id, soc, JSON.encode(filter));
+    String url = records;
+
+    postWrap(url,{
+        HttpHeaders.contentTypeHeader: "application/json",
+        "callMethod" : "DOCTOR_AVAILABILITY"
+      },
+      JSON.encode(data),
+      (response)=>get_staff_list_proc(response)
+    );  
+  }
+
+  static void get_staff_list_proc(http.Response response){
+    Map basicMap = JSON.decode(response);
+    var basic_response = new request_basic_receive.fromJson(basicMap);
+    Map listMap = JSON.decode(basic_response.data);
+    var user_list = new record_list_content.fromJson(listMap);
+    Map userMap = JSON.decode(user_list);
+    var list = new record_list_content.fromJson(userMap);
+    //staffList staffs = new staffList(Staffs: new List(2).add(value));
+    StaticList.staff_id.clear();
+    StaticList.staff_list.clear();
+    for(int i = userMap.length;i>0;i--){
+        staff wid = new staff(list.id, list.name);
+        StaticList.staff_id.add(wid.id);
+        print('name:'+wid.name);
+        StaticList.staff_list.add(wid.name);
+    }
+  }
+
+}
+

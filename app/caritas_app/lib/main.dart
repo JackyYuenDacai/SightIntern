@@ -11,12 +11,14 @@ import 'SettingPage.dart';
 import 'dart:convert';
 import 'package:convert/convert.dart';
 import 'package:crypto/crypto.dart';
+import 'package:http/http.dart' as http;
 
 void main() => runApp(MyApp());
 
 class MyApp extends StatelessWidget{
   @override
   Widget build(BuildContext context) {
+
     return MaterialApp(
       title: 'CaritasApp',
       debugShowCheckedModeBanner: false,
@@ -172,8 +174,20 @@ class _LoginPageState extends State<LoginPage> {
                 onPressed: (){
                   StaticList.location = _user;
                   _password = generateMd5(_password);
-                  print('The user wants to login with $_user and $_password');
-                  Navigator.pushNamed(context, '/RFIDPage');
+                  String soc = "Caritas";
+                  String url = network_request.login+"soc="+soc+"&id=${_user}&pwd=${_password}";
+                  http.get(url)
+                    .then((response) {
+                      //print("Submit Response status: ${response.statusCode}");
+                      print("Submit: ${response.body}");
+                      if(response.body.startsWith("error", 0)){
+                        print('The user wants to login with $_user and $_password');
+                        Navigator.pushNamed(context, '/RFIDPage');
+                      }
+                    }
+                  );
+                  /*print('The user wants to login with $_user and $_password');
+                  Navigator.pushNamed(context, '/RFIDPage');*/
                 },
                 child: Text("Login",
                   textAlign: TextAlign.center,
@@ -184,5 +198,5 @@ class _LoginPageState extends State<LoginPage> {
           ],
         ),
       );
+    } 
   }
-}

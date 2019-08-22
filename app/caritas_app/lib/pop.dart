@@ -43,11 +43,11 @@ class staff{
 class staffList{
   final List<staff> Staffs;
   staffList({this.Staffs,});
-  factory staffList.fromJson(List<dynamic> json){
+  /*factory staffList.fromJson(List<dynamic> json){
     List<staff> Staffs = new List<staff>();
     Staffs = json.map((i)=>staff.fromJson(i)).toList();
     return new staffList(Staffs:Staffs);
-  }
+  }*/
 }
 
 class Tag{
