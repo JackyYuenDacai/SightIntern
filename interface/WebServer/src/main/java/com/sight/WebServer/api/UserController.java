@@ -1,6 +1,7 @@
 package com.sight.WebServer.api;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import javax.annotation.Resource;
@@ -92,4 +93,25 @@ public class UserController {
 		ret.put("error", 0);
 		return ret;
 	}	
+	
+	@RequestMapping(value = "/search_user")
+	@ResponseBody
+	public Map<String, Object> SearchUser(HttpServletRequest request) throws Exception {
+		Map<String,Object> ret = new HashMap<String,Object>();
+		JSONObject jsonObject = General.getRequest(request.getInputStream());
+		JSONObject parameters = JSONObject.fromObject(jsonObject.get("parameters"));
+		String type = parameters.getString("type");
+		String id = parameters.getString("id");
+		String name = parameters.getString("name");
+		List<users> UsersList = null;
+		switch(type) {
+		case "id":	UsersList=UsersService.searchUserById(id);		break;
+		case "name":UsersList=UsersService.searchUserByName(name);	break;
+		}
+		for(users US : UsersList) {
+			
+		}
+		return ret;
+	
+	}
 }

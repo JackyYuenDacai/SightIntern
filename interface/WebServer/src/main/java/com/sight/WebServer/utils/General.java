@@ -57,11 +57,11 @@ public class General {
 		if(tokenList.containsKey(token))
 		tokenList.remove(token);
 	}
-	public static String encodeByMd5(String string) throws NoSuchAlgorithmException, UnsupportedEncodingException {
+	public static String encodeByMd5(String STR) throws NoSuchAlgorithmException, UnsupportedEncodingException {
         // 确定计算方法
         MessageDigest md5 = MessageDigest.getInstance("MD5");
         // 加密字符串
-        return md5.digest(Base64.encode(string.getBytes("utf-8")).getBytes()).toString();
+        return new String(md5.digest(Base64.encode(STR.getBytes("utf-8")).getBytes()));
        
     }
 	public static Date getTokenExpireDate() {

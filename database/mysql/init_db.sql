@@ -51,6 +51,9 @@ create table users_token(
   token nvarchar(128),
   expire datetime
 );
+
+insert into users values('test','Test user','Test',0,'Test user',md5('test'),'TEST','');
+insert into soc_list values('CARITAS','Caritas School');
 /*
 child_status :
 0: get in

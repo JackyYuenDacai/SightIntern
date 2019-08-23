@@ -25,6 +25,16 @@ public class usersService {
 		UsersExample.createCriteria().andIdEqualTo(id);
 		return UsersMapper.selectByExample(UsersExample).get(0);
 	}
+	public List<users> searchUserById(String id) {
+		usersExample UsersExample = new usersExample();
+		UsersExample.createCriteria().andIdLike("%"+id+"%");
+		return UsersMapper.selectByExample(UsersExample);
+	}
+	public List<users> searchUserByName(String name) {
+		usersExample UsersExample = new usersExample();
+		UsersExample.createCriteria().andNameLike("%"+name+"%");
+		return UsersMapper.selectByExample(UsersExample);
+	}
 	public boolean addUser(users User) {
 		boolean ret = false;
 		try {
