@@ -1,5 +1,6 @@
 package com.sight.WebServer.api;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -101,15 +102,29 @@ public class UserController {
 		JSONObject jsonObject = General.getRequest(request.getInputStream());
 		JSONObject parameters = JSONObject.fromObject(jsonObject.get("parameters"));
 		String type = parameters.getString("type");
-		String id = parameters.getString("id");
-		String name = parameters.getString("name");
+		
+		try {
 		List<users> UsersList = null;
 		switch(type) {
-		case "id":	UsersList=UsersService.searchUserById(id);		break;
-		case "name":UsersList=UsersService.searchUserByName(name);	break;
+		case "id":	String id = parameters.getString("id"); UsersList=UsersService.searchUserById(id);		break;
+		case "name":String name = parameters.getString("name");UsersList=UsersService.searchUserByName(name);	break;
 		}
+		Map<String,Object> data = new HashMap<String,Object>();
+		List<JSONObject> users =  new ArrayList<JSONObject>();
 		for(users US : UsersList) {
-			
+			JSONObject u = new JSONObject();
+			u.put("id", US.getId());
+			u.put("name", US.getName());
+			u.put("extra", US.getExtra());
+			u.put("role", US.getRole());
+			users.add(u);
+		}
+		data.put("users", users);
+		ret.put("data", data);
+		ret.put("error", 0);
+		}catch(Exception ex) {
+			ret.put("error", 502);
+			ret.put("error_msg", ex.getMessage());
 		}
 		return ret;
 	

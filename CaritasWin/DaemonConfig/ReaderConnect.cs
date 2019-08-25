@@ -33,7 +33,7 @@ namespace DaemonConfig
         public static int numOfReader = 0;
         public static Timer[] reg;
         public static Timer counterThread;
-         
+
         public static Dictionary<String, int>[] counter = new Dictionary<string, int>[50];
         public static void ClearCounter()
         {
@@ -52,7 +52,7 @@ namespace DaemonConfig
         }
         public static void AsyncConnectRetry()
         {
-            
+
         }
         public static void Connect()
         {
@@ -78,7 +78,8 @@ namespace DaemonConfig
                     {
                         RC.status = 3;
                     }
-                }catch(Exception ex)
+                }
+                catch (Exception ex)
                 {
                     RC.status = 3;
                     Log.Add(ex.Message);
@@ -123,13 +124,11 @@ namespace DaemonConfig
             {
                 if (RC.status == 1)
                 {
-                    Timer ScanThread = new Timer(new System.Threading.TimerCallback(state=>
+                    RC.ScanThread = new Timer(new System.Threading.TimerCallback(state =>
                     {
                         byte[] epclenandepc = new byte[80000];
                         byte[] data = new byte[80000];
-                        int datalen = 0;
                         int EPCLEN = 12;
-                        int errorcode = 0;
                         int CountTH = 5;
                         //EPC  len  == 12
                         int cardnum = 0;
@@ -164,14 +163,14 @@ namespace DaemonConfig
                                     RC.counter[BitConverter.ToString(ReaderConnect.TagsNear[j].EPC)] = 0;
 
                                     Console.WriteLine("TAG RECORDED:" + BitConverter.ToString(ReaderConnect.TagsNear[j].EPC));
-                                    
+
 
                                     //SENDING DATA TO DATABASE
                                     try
                                     {
 
-                                         
-                                        Request.TagScanned(RC.location, 
+
+                                        Request.TagScanned(RC.location,
                                             BitConverter.ToString(ReaderConnect.TagsNear[j].EPC), //EPC data
                                             Utils.currentTime()); //Time
 
@@ -191,6 +190,133 @@ namespace DaemonConfig
                     50);
                 }
             });
+        }
+        static public void Disconnect()
+        {
+            Config.Readers.ForEach(RC =>
+            {
+                if (RC.status == 1)
+                {
+
+                    RC.ScanThread.Dispose();
+                    StaticClassReaderB.CloseNetPort(RC.PortHandle);
+                    RC.status = 0;
+                    RC.ScanThread = null;
+                    
+                }
+            });
+
+        }
+    }
+
+    
+
+    static class LocalReaderConnect
+    {
+        static private bool fAppClosed;
+        static private byte fComAdr = 0xff;
+        static private int ferrorcode;
+        static private byte fBaud;
+        static private int fOpenComIndex; //COM PORT INDEX
+        static int port = 0;
+        static public Boolean ComOpen = false;
+        static public int fCmdRet = 0;
+        static private byte AdrTID = 0;
+        static private byte LenTID = 12;
+        static private byte TIDFlag = 0;
+        static private int CardNum = 0;
+        static private int Totallen = 0;
+        static private byte[] EPC = new byte[2048];
+        static private Timer timer;
+        static public TAGS[] TagsNear = new TAGS[50];
+        static public void Connect()
+        {
+            fOpenComIndex = -1;
+            fComAdr = 0;
+            ferrorcode = -1;
+            fBaud = 5;
+            fCmdRet = StaticClassReaderB.AutoOpenComPort(ref port, ref fComAdr, fBaud, ref fOpenComIndex);
+            if (fCmdRet == 0)
+            {
+                ComOpen = true;
+            }
+            else
+            {
+                ComOpen = false;
+            }
+        }
+        static private int EPCLEN = 12;
+        static public Dictionary<String, int> counter = new Dictionary<string, int>();
+        static public int CountTH = 4;
+        static public void Disconnect()
+        {
+
+            if (ComOpen )
+            {
+                timer.Dispose();
+                StaticClassReaderB.CloseSpecComPort(port);
+            }
+        }
+        static public void RegularScan()
+        {
+            if (ComOpen == true)
+            {
+                timer = new Timer(new TimerCallback(state =>
+                {
+                    fCmdRet = StaticClassReaderB.Inventory_G2(ref fComAdr, AdrTID, LenTID, TIDFlag, EPC, ref Totallen, ref CardNum, fOpenComIndex);
+                    if ((fCmdRet == 1) | (fCmdRet == 2) | (fCmdRet == 3) | (fCmdRet == 4) | (fCmdRet == 0xFB))//End scanning
+                    {
+                        for (int j = 0; j < CardNum; j++)
+                        {
+                            ReaderConnect.TagsNear[j].EPC = new byte[EPCLEN];
+                            for (int a = 0; a < EPCLEN; a++)
+                                ReaderConnect.TagsNear[j].EPC[a] = EPC[(j + 1) + j * EPCLEN + a];
+                            if (counter.ContainsKey(BitConverter.ToString(LocalReaderConnect.TagsNear[j].EPC)))
+                            {
+                                counter[BitConverter.ToString(LocalReaderConnect.TagsNear[j].EPC)] += 1;
+                            }
+                            else
+                            {
+                                counter.Add(BitConverter.ToString(LocalReaderConnect.TagsNear[j].EPC), 1);
+                            }
+                        }
+                        for (int j = 0; j < CardNum; j++)
+                        {
+
+                            if (counter.ContainsKey(BitConverter.ToString(LocalReaderConnect.TagsNear[j].EPC)))
+                                if (counter[BitConverter.ToString(LocalReaderConnect.TagsNear[j].EPC)] >= CountTH)
+                                {
+                                    counter[BitConverter.ToString(LocalReaderConnect.TagsNear[j].EPC)] = 0;
+
+                                    Console.WriteLine("TAG RECORDED:" + BitConverter.ToString(ReaderConnect.TagsNear[j].EPC));
+
+
+                                    //SENDING DATA TO DATABASE
+                                    try
+                                    {
+
+
+                                        Request.TagScanned(Request.Id,
+                                            BitConverter.ToString(ReaderConnect.TagsNear[j].EPC), //EPC data
+                                            Utils.currentTime()); //Time
+
+                                    }
+                                    catch (Exception ex)
+                                    {
+                                        Console.WriteLine(ex.ToString());
+                                        Log.Add(ex.Message);
+                                    }
+
+                                }
+
+                        }
+                    }
+                }),
+                    null,
+                    0,
+                    50);
+            }
+
         }
     }
 }

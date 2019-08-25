@@ -107,7 +107,23 @@ public class LoginController {
     	JSONObject jsonObject = General.getRequest(request.getInputStream());
 	    JSONObject parameters = JSONObject.fromObject(jsonObject.get("parameters"));
 	    //TODO: update by example
-	    
-		return ret;
+	    id = jsonObject.getString("id");
+	    users RequiredUser = UsersService.getUserById(id);
+		token = General.RandomToken();
+    	name = RequiredUser.getName();
+    	priority = RequiredUser.getRole();
+    	
+    	UsersTokenService.addUsersToken(id, token, General.getTokenExpireDate());
+    	ret.put("error", 0);
+    	Map<String,Object> data = new  HashMap<String,Object>();
+    	data.put("token", token);
+    	
+    	data.put("name", name);
+    	data.put("privilege", priority);
+    	ret.put("data", data);
+    	LOG.info("token:update success");
+    	LOG.info("ID:"+id+" TOKEN:"+token);
+    	return ret;
+		 
 	}	
 }

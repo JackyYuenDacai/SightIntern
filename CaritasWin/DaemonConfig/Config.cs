@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Text;
+ 
+using System.Threading;
 using System.Threading.Tasks;
 
 namespace DaemonConfig
@@ -118,5 +120,6 @@ namespace DaemonConfig
         public int numOfTags;
 
         public Dictionary<String, int> counter = new Dictionary<string, int>();
+        public Timer ScanThread;
     }
 }

@@ -40,11 +40,28 @@ public class General {
 		String ret = getDateTime().toString() + rnd.nextInt(10) + rnd.nextInt(10) + rnd.nextInt(10) ;
         return ret;
 	}
+	public static String bytesToHexString(byte[] src) {
+        StringBuilder stringBuilder = new StringBuilder("");
+        if (src == null || src.length <= 0) {
+            return null;
+        }
+        for (int i = 0; i < src.length; i++) {
+            int v = src[i] & 0xFF;
+            String hv = Integer.toHexString(v);
+            if (hv.length() < 2) {
+                stringBuilder.append(0);
+            }
+            stringBuilder.append(hv);
+        }
+        return stringBuilder.toString();
+    }
+
 	public static String RandomToken() {
 		String token = null;
 		try {
 			do{
 				token = encodeByMd5(RandomPostfix());
+				
 			}while(tokenList.containsKey(token));
 			tokenList.put(token,true);
 		} catch (NoSuchAlgorithmException | UnsupportedEncodingException e) {
@@ -61,7 +78,7 @@ public class General {
         // 确定计算方法
         MessageDigest md5 = MessageDigest.getInstance("MD5");
         // 加密字符串
-        return new String(md5.digest(Base64.encode(STR.getBytes("utf-8")).getBytes()));
+        return bytesToHexString(md5.digest(Base64.encode(STR.getBytes("utf-8")).getBytes()));
        
     }
 	public static Date getTokenExpireDate() {

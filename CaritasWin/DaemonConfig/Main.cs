@@ -8,10 +8,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
+
 namespace DaemonConfig
 {
     public partial class Main : Form
     {
+        private Timer statusUpdate;
         public Main()
         {
             InitializeComponent();
@@ -85,7 +87,7 @@ namespace DaemonConfig
 
             ColumnHeader SearchId = new ColumnHeader();
             SearchId.Text = "Id";
-            SearchId.Width = 65;
+            SearchId.Width = 35;
 
             listView3.Columns.Add(SearchId);
             listView3.Columns.Add(SearchName
@@ -128,6 +130,55 @@ namespace DaemonConfig
             });
 
             LogListview.EndUpdate();
+        }
+
+        private void button7_Click(object sender, EventArgs e)
+        {
+            if(Request.TokenValidate() == 0)
+            {
+                richTextBox1.Text = "Token Validation Success\n" + richTextBox1.Text;
+            }
+            else
+            {
+                richTextBox1.Text = "Token Validation Failed\n" + richTextBox1.Text;
+            }
+        }
+
+        private void button8_Click(object sender, EventArgs e)
+        {
+            if (Request.TokenRefresh() == 0)
+            {
+                richTextBox1.Text = "Token Refresh Success\t" + Request.Token +"\n" + richTextBox1.Text;
+            }
+            else
+            {
+                richTextBox1.Text = "Token Refresh Failed\n" + richTextBox1.Text;
+            }
+        }
+
+        private void button15_Click(object sender, EventArgs e)
+        {
+            LocalReaderConnect.Connect();
+            if (LocalReaderConnect.ComOpen)
+            {
+                LocalReaderConnect.RegularScan();
+                toolStripStatusLabel2.Text = "Local Reader Connected.";
+            }
+            else
+            {
+                toolStripStatusLabel2.Text = "Local Reader failed to connect.";
+            }
+        }
+
+        private void button16_Click(object sender, EventArgs e)
+        {
+            ReaderConnect.Disconnect();
+            LocalReaderConnect.Disconnect();
+        }
+
+        private void AttachTagButton_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

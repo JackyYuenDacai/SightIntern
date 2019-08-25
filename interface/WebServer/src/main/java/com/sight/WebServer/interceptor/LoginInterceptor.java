@@ -43,8 +43,10 @@ public class LoginInterceptor implements HandlerInterceptor{
         String token = jsonObject.getString("token");
         String id = jsonObject.getString("id");
         users_token UsersToken = UsersTokenService.getUserTokenById(id);
-        if(UsersToken.getToken() .compareTo(token) == 0 && UsersToken.getExpire().after(new Date()))
+        if(UsersToken.getToken() .compareTo(token) == 0 && UsersToken.getExpire().after(new Date())) {
+        	LOG.info("login interceptor: valid");
         	return true;
+        }
         else
         	return false;
         

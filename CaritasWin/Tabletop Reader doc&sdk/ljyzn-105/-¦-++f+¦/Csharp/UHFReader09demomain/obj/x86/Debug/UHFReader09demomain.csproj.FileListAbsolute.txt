@@ -1,0 +1,10 @@
+C:\Users\ccyuenae\source\repos\CaritasWin\Tabletop Reader doc&sdk\ljyzn-105\-¦-++f+¦\Csharp\UHFReader09demomain\bin\x86\Debug\UHFReader09demomain.exe
+C:\Users\ccyuenae\source\repos\CaritasWin\Tabletop Reader doc&sdk\ljyzn-105\-¦-++f+¦\Csharp\UHFReader09demomain\bin\x86\Debug\UHFReader09demomain.pdb
+C:\Users\ccyuenae\source\repos\CaritasWin\Tabletop Reader doc&sdk\ljyzn-105\-¦-++f+¦\Csharp\UHFReader09demomain\obj\x86\Debug\UHFReader09demomain.csprojAssemblyReference.cache
+C:\Users\ccyuenae\source\repos\CaritasWin\Tabletop Reader doc&sdk\ljyzn-105\-¦-++f+¦\Csharp\UHFReader09demomain\obj\x86\Debug\UHFReader09demomain.Form1.resources
+C:\Users\ccyuenae\source\repos\CaritasWin\Tabletop Reader doc&sdk\ljyzn-105\-¦-++f+¦\Csharp\UHFReader09demomain\obj\x86\Debug\UHFReader09demomain.Properties.Resources.resources
+C:\Users\ccyuenae\source\repos\CaritasWin\Tabletop Reader doc&sdk\ljyzn-105\-¦-++f+¦\Csharp\UHFReader09demomain\obj\x86\Debug\UHFReader09demomain.csproj.GenerateResource.cache
+C:\Users\ccyuenae\source\repos\CaritasWin\Tabletop Reader doc&sdk\ljyzn-105\-¦-++f+¦\Csharp\UHFReader09demomain\obj\x86\Debug\UHFReader09demomain.csproj.CoreCompileInputs.cache
+C:\Users\ccyuenae\source\repos\CaritasWin\Tabletop Reader doc&sdk\ljyzn-105\-¦-++f+¦\Csharp\UHFReader09demomain\obj\x86\Debug\UHFReader09demomain.csproj.CopyComplete
+C:\Users\ccyuenae\source\repos\CaritasWin\Tabletop Reader doc&sdk\ljyzn-105\-¦-++f+¦\Csharp\UHFReader09demomain\obj\x86\Debug\UHFReader09demomain.exe
+C:\Users\ccyuenae\source\repos\CaritasWin\Tabletop Reader doc&sdk\ljyzn-105\-¦-++f+¦\Csharp\UHFReader09demomain\obj\x86\Debug\UHFReader09demomain.pdb
