@@ -24,11 +24,11 @@ class pop{
 class popList{
   final List<pop> Pops;
   popList({this.Pops,});
-  factory popList.fromJson(List<dynamic> json){
+  /*factory popList.fromJson(List<dynamic> json){
     List<pop> Pops = new List<pop>();
     Pops = json.map((i)=>pop.fromJson(i)).toList();
     return new popList(Pops:Pops);
-  }
+  }*/
 }
 class staff{
   staff(this.id,this.name);
@@ -90,24 +90,24 @@ class record_entry{
   final DateTime time_in;
   final DateTime interval;
   final String location;
-  final Map<String,dynamic> data_json;
-  record_entry(this.time_in,this.interval,this.location,this.data_json);
-  factory record_entry.fromJson(Map<String,dynamic> json){
+  //final Map<String,dynamic> data_json;
+  record_entry(this.time_in,this.interval,this.location/*,this.data_json*/);
+  /*factory record_entry.fromJson(Map<String,dynamic> json){
     return new record_entry(
       new DateFormat("yyyy-MM-dd HH:mm:ss").parse(json['time']),
       new DateFormat("HH:mm:ss").parse(json['interval']),
       json['location'],
       json['data_json']);
-  }
+  }*/
 }
 class record_entries{
   final List<record_entry> entries;
   record_entries({this.entries});
-  factory record_entries.fromJson(List<dynamic> json){
+  /*factory record_entries.fromJson(List<dynamic> json){
     List<record_entry> entries = new List<record_entry>();
     entries = json.map((i)=>record_entry.fromJson(i)).toList();
     return new record_entries(entries:entries);
-  }
+  }*/
 }
 class question{
   String title;

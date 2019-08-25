@@ -78,6 +78,7 @@ class _DialogContentState extends State<DialogContent>{
     clean_diaper_wee = 0;
     //print('DESIRE');
     //print(desire);
+    //////////
     network_request.get_record_data(id,DateFormat('yyyy-MM-dd HH:mm:ss').format(desire));
     List<ClicksPerYear> data =[];
     List<charts.Series<ClicksPerYear,int>> chart_series =[];
