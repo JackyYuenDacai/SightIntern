@@ -49,7 +49,7 @@ class MyApp extends StatelessWidget{
           '/RFIDPage':(BuildContext context) => new RFIDPage(),
           '/ManPage':(BuildContext context) => new ManPage(),
           '/DataPage':(BuildContext context) => new DataPage(),
-          '/SettingPage':(BuildContext context) => new SettingPage(),
+          //'/SettingPage':(BuildContext context) => new SettingPage(),
       },
       home: new LoginPage(),
     );

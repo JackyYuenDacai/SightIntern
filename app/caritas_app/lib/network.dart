@@ -1,3 +1,6 @@
+//TODO: add parameters for request_basic__send!
+//TODO: check new change of API : find records by id? if_form?
+
 import 'pop.dart';
 import 'dart:async';
 import 'package:async/async.dart';
@@ -93,6 +96,75 @@ class connection{
         StaticList.staff_list.add(wid.name);
     }
   }
+
+  static void get_pop_list(String location){
+    records_send filter = new records_send(location, null, 4, null, null, null, null);
+    request_basic_send data = new request_basic_send(token, id, soc, JSON.encode(filter));
+    String url = records;
+
+    postWrap(url,{
+        HttpHeaders.contentTypeHeader: "application/json",
+        "callMethod" : "DOCTOR_AVAILABILITY"
+      },
+      JSON.encode(data),
+      (response)=>get_staff_list_proc(response)
+    );  
+  }
+
+  static void get_pop_list_proc(http.Response response){
+    Map basicMap = JSON.decode(response);
+    var basic_response = new request_basic_receive.fromJson(basicMap);
+    Map listMap = JSON.decode(basic_response.data);
+    var user_list = new record_list_content.fromJson(listMap);
+    Map userMap = JSON.decode(user_list);
+    var list = new record_list_content.fromJson(userMap);
+    //staffList staffs = new staffList(Staffs: new List(2).add(value));
+    /*StaticList.staff_id.clear();
+    StaticList.staff_list.clear();*/
+    for(int i = userMap.length;i>0;i--){
+        /*staff wid = new staff(list.id, list.name);
+        StaticList.staff_id.add(wid.id);
+        print('name:'+wid.name);
+        StaticList.staff_list.add(wid.name);*/
+        
+        if(list.time_end == null){
+            StaticList.colform_list.add(new ColForm(list.name,list.id,list.record_token));
+            print("added colform ${list.name} ${list.id} ${list.record_token}");
+        }else if(list.time_end != null){
+          for(var obj in StaticList.colform_list){
+            if(obj.name == list.name){
+              StaticList.colform_list.remove(obj);
+              print("deleted colform ${list.name} ${list.id} ${list.record_token}");
+              break;
+            }
+          }
+        } 
+    }
+  }
+  //possible solution: use /records to find name first
+  static void get_record_data(String id, String time)async{
+    /*var url = StaticList.get_record_data_url+"id="+id+"&time=${time}";
+    await requestWrap(url,(response)=>get_record_data_proc(response));*/
+
+    records_send filter = new records_send(null, name, 4, null, null, time, null);
+    request_basic_send data = new request_basic_send(token, id, soc, JSON.encode(filter));
+    String url = records;
+
+    postWrap(url,{
+        HttpHeaders.contentTypeHeader: "application/json",
+        "callMethod" : "DOCTOR_AVAILABILITY"
+      },
+      JSON.encode(data),
+      (response)=>get_record_data_proc(response)
+    );
+  }
+
+  static void get_record_data_proc(http.Response response){
+    //print("Response body: ${response.body}");
+
+    StaticList.entries = new record_entries.fromJson(json.decode(response.body));
+  }
+
 
 }
 
