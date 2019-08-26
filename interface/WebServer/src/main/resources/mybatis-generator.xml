@@ -74,6 +74,10 @@
         		enableCountByExample="true" enableUpdateByExample="true" 
         		enableDeleteByExample="true" enableSelectByExample="true" 
         		selectByExampleQueryId="true"></table> 
+        <table tableName="forms" domainObjectName = "forms"
+                enableCountByExample="true" enableUpdateByExample="true" 
+        		enableDeleteByExample="true" enableSelectByExample="true" 
+        		selectByExampleQueryId="true"></table> 
          
     </context>  
 </generatorConfiguration>

@@ -36,6 +36,28 @@ import net.sf.json.JSONObject;
 @Controller
 @RequestMapping("/api")
 public class ResourceController {
+	
+	
+	@RequestMapping(value= "/form_config")
+	@ResponseBody
+	public Map<String,Object> form_config(HttpServletRequest request)throws Exception{
+		Map<String,Object> ret = new HashMap<String,Object>();
+		JSONObject jsonObject = General.getRequest(request.getInputStream());
+		JSONObject parameters = JSONObject.fromObject(jsonObject.get("parameters"));
+		String type = parameters.getString("type");
+		switch(type) {
+		case "add":
+			break;
+		case "del":
+			break;
+		case "change":
+			break;
+		case "query":
+			break;
+		}
+		return ret;
+	}
+	
     @Autowired
     private GridFsTemplate gridFsTemplate;
     @RequestMapping(value = "/upload", method = RequestMethod.POST)

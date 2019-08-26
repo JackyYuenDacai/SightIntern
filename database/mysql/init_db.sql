@@ -52,6 +52,13 @@ create table users_token(
   expire datetime
 );
 
+create table forms(
+  id nvarchar(64) primary key,
+  soc nvarchar(512),
+  user_id nvarchar(64),
+  form_data nvarchar(8192)
+);
+
 insert into users values('test','Test user','Test',0,'Test user',md5('test'),'TEST','');
 insert into soc_list values('CARITAS','Caritas School');
 /*
