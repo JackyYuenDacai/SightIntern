@@ -41,7 +41,7 @@ class request_basic_send {
   final String token;
   final String id;
   final String soc;
-  final Map<String, dynamic> parameters;
+  final String parameters;
 
   request_basic_send(this.token, this.id, this.soc, this.parameters);
 
@@ -88,8 +88,10 @@ class records_send {
   final bool registered;
   final DateTime time_start;
   final DateTime time_end;
+  final String id;
+  final String if_form;
 
-  records_send(this.location, this.name, this.role, this.status, this.registered, this.time_start, this.time_end);
+  records_send(this.location, this.name, this.role, this.status, this.registered, this.time_start, this.time_end, this.id, this.if_form);
 
   Map<String, dynamic> toJson() =>
     {
@@ -99,20 +101,32 @@ class records_send {
       'status': status,
       'registered': registered,
       'time_start': time_start,
-      'time_end': time_end 
+      'time_end': time_end, 
+      'id': id,
+      'if_form': if_form
     };
 }
 
-class record_receive {
-  final List<String> record_list;
+class record_received {
+  final List<record_list_content> record_list;
 
-  record_receive(this.record_list);
+  record_received({this.record_list,});
 
-  record_receive.fromJson(Map<String, dynamic> json)
-      : record_list = json[''];
+  /*record_receive.fromJson(Map<String, dynamic> json)
+      : record_list = json[null];*/
+
+  factory record_received.fromJson(List<dynamic> parsedJson) {
+
+    List<record_list_content> record_list = new List<record_list_content>();
+    record_list = parsedJson.map((i)=>record_list_content.fromJson(i)).toList();
+
+    return new record_received(
+      record_list: record_list
+    );
+  }
 }
 
-class record_list_content {
+/*class record_list_content {
   final String id;
   final String name;
   final String tag_id;
@@ -131,5 +145,30 @@ class record_list_content {
         time_end = json['time_end'],
         duration = json['duration'],
         record_token = json['record_token'];
+}*/
+
+class record_list_content {
+  final String id;
+  final String name;
+  final String tag_id;
+  final DateTime time_start;
+  final DateTime time_end;
+  final Duration duration;
+  final String record_token;
+
+  record_list_content({this.id, this.name, this.tag_id, this.time_start, this.time_end, this.duration, this.record_token});
+
+  factory record_list_content.fromJson(Map<String, dynamic> json){
+    return new record_list_content(
+      id: json['id'],
+      name: json['name'],
+      tag_id: json['tag_id'],
+      time_start: json['time_start'],
+      time_end: json['time_end'],
+      duration: json['duration'],
+      record_token: json['record_token'],
+    );
+  }
+
 }
 

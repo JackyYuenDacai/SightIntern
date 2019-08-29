@@ -66,25 +66,26 @@ class connection{
   }
 
   static void get_staff_list(String location){
-    records_send filter = new records_send(location, null, 2, null, null, null, null);
-    request_basic_send data = new request_basic_send(token, id, soc, JSON.encode(filter));
+    records_send filter = new records_send(location, null, 2, null, null, null, null, null, null);
+    request_basic_send data = new request_basic_send(token, id, soc, jsonEncode(filter));
     String url = records;
 
     postWrap(url,{
         HttpHeaders.contentTypeHeader: "application/json",
         "callMethod" : "DOCTOR_AVAILABILITY"
       },
-      JSON.encode(data),
+      jsonEncode(data),
       (response)=>get_staff_list_proc(response)
     );  
   }
 
   static void get_staff_list_proc(http.Response response){
-    Map basicMap = JSON.decode(response);
+    //String sResp = String(response);
+    Map basicMap = jsonDecode(response.body);
     var basic_response = new request_basic_receive.fromJson(basicMap);
-    Map listMap = JSON.decode(basic_response.data);
+    Map listMap = jsonDecode(basic_response.data);
     var user_list = new record_list_content.fromJson(listMap);
-    Map userMap = JSON.decode(user_list);
+    Map userMap = jsonDecode(user_list);
     var list = new record_list_content.fromJson(userMap);
     //staffList staffs = new staffList(Staffs: new List(2).add(value));
     StaticList.staff_id.clear();
@@ -98,25 +99,25 @@ class connection{
   }
 
   static void get_pop_list(String location){
-    records_send filter = new records_send(location, null, 4, null, null, null, null);
-    request_basic_send data = new request_basic_send(token, id, soc, JSON.encode(filter));
+    records_send filter = new records_send(location, null, 4, null, null, null, null, null, null);
+    request_basic_send data = new request_basic_send(token, id, soc, jsonEncode(filter));
     String url = records;
 
     postWrap(url,{
         HttpHeaders.contentTypeHeader: "application/json",
         "callMethod" : "DOCTOR_AVAILABILITY"
       },
-      JSON.encode(data),
+      jsonEncode(data),
       (response)=>get_staff_list_proc(response)
     );  
   }
 
   static void get_pop_list_proc(http.Response response){
-    Map basicMap = JSON.decode(response);
+    Map basicMap = jsonDecode(response.body);
     var basic_response = new request_basic_receive.fromJson(basicMap);
-    Map listMap = JSON.decode(basic_response.data);
-    var user_list = new record_list_content.fromJson(listMap);
-    Map userMap = JSON.decode(user_list);
+    Map listMap = jsonDecode(basic_response.data);
+    var user_list = new record_received.fromJson(listMap);
+    Map userMap = jsonDecode(user_list);
     var list = new record_list_content.fromJson(userMap);
     //staffList staffs = new staffList(Staffs: new List(2).add(value));
     /*StaticList.staff_id.clear();
@@ -146,15 +147,15 @@ class connection{
     /*var url = StaticList.get_record_data_url+"id="+id+"&time=${time}";
     await requestWrap(url,(response)=>get_record_data_proc(response));*/
 
-    records_send filter = new records_send(null, name, 4, null, null, time, null);
-    request_basic_send data = new request_basic_send(token, id, soc, JSON.encode(filter));
+    records_send filter = new records_send(null, null, 4, null, null, time, null, id, null);
+    request_basic_send data = new request_basic_send(token, id, soc, jsonEncode(filter));
     String url = records;
 
     postWrap(url,{
         HttpHeaders.contentTypeHeader: "application/json",
         "callMethod" : "DOCTOR_AVAILABILITY"
       },
-      JSON.encode(data),
+      jsonEncode(data),
       (response)=>get_record_data_proc(response)
     );
   }
@@ -162,7 +163,7 @@ class connection{
   static void get_record_data_proc(http.Response response){
     //print("Response body: ${response.body}");
 
-    StaticList.entries = new record_entries.fromJson(json.decode(response.body));
+    StaticList.entries = new record_entries.fromJson(jsonDecode(response.body));
   }
 
 
