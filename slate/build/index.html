@@ -246,13 +246,19 @@
                     <a href="#api-tag_config" class="toc-h2 toc-link" data-title="/api/tag_config">/api/tag_config</a>
                   </li>
                   <li>
-                    <a href="#api-update_token" class="toc-h2 toc-link" data-title="/api/update_token">/api/update_token</a>
+                    <a href="#api-token_update" class="toc-h2 toc-link" data-title="/api/token_update">/api/token_update</a>
                   </li>
                   <li>
                     <a href="#api-upload" class="toc-h2 toc-link" data-title="/api/upload">/api/upload</a>
                   </li>
                   <li>
                     <a href="#api-resource" class="toc-h2 toc-link" data-title="/api/resource">/api/resource</a>
+                  </li>
+                  <li>
+                    <a href="#api-login" class="toc-h2 toc-link" data-title="/api/login">/api/login</a>
+                  </li>
+                  <li>
+                    <a href="#api-form_config" class="toc-h2 toc-link" data-title="/api/form_config">/api/form_config</a>
                   </li>
               </ul>
           </li>
@@ -316,11 +322,7 @@
 </blockquote>
 <pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
     </span><span class="s2">"record_token"</span><span class="p">:</span><span class="w"> </span><span class="err">Master</span><span class="w"> </span><span class="err">token</span><span class="w"> </span><span class="err">of</span><span class="w"> </span><span class="err">that</span><span class="w"> </span><span class="err">record</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"form"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-        </span><span class="s2">"Q_KEY0"</span><span class="p">:</span><span class="w"> </span><span class="err">A_KEY</span><span class="mi">0</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"Q_KEY1"</span><span class="p">:</span><span class="w"> </span><span class="err">A_KEY</span><span class="mi">1</span><span class="p">,</span><span class="w">
-        </span><span class="err">…</span><span class="w">
-    </span><span class="p">}</span><span class="w">
+    </span><span class="s2">"form"</span><span class="p">:</span><span class="w"> </span><span class="err">stringyfied</span><span class="w"> </span><span class="err">form</span><span class="w"> </span><span class="err">data</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
 <blockquote>
@@ -333,6 +335,8 @@
 <p>This interface is to submit filled form and form a complete record.</p>
 
 <p>Each submit requires the user to have the master record token of that set of record before submitting.</p>
+
+<p>Data submitted to database is in string form instead of JSON.</p>
 <h2 id='api-records'>/api/records</h2>
 <blockquote>
 <p>request parameters</p>
@@ -427,7 +431,7 @@
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
 <p>This interface handles all the request related to edit or add tag information.</p>
-<h2 id='api-update_token'>/api/update_token</h2>
+<h2 id='api-token_update'>/api/token_update</h2>
 <blockquote>
 <p>request parameters</p>
 </blockquote>
@@ -439,7 +443,7 @@
 <p>data received</p>
 </blockquote>
 <pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
-
+    </span><span class="s2">"token"</span><span class="p">:</span><span class="err">updated</span><span class="w"> </span><span class="err">token</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
 <p>This interface updates token and rent token for another 24 hours.</p>
@@ -480,7 +484,56 @@
 <p>And can directly used the link as resource in html.</p>
 
 <p>Cookies Needed: id token</p>
-<h1 id='errors'>Errors</h1>
+<h2 id='api-login'>/api/login</h2>
+<blockquote>
+<p>request parameters</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+    </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="err">Users'</span><span class="w"> </span><span class="err">Id</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"soc"</span><span class="p">:</span><span class="w"> </span><span class="err">Users'</span><span class="w"> </span><span class="err">institution</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"pwd"</span><span class="p">:</span><span class="w"> </span><span class="err">MD</span><span class="mi">5</span><span class="w"> </span><span class="err">encoded</span><span class="w"> </span><span class="err">password</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<blockquote>
+<p>data received</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+    </span><span class="s2">"token"</span><span class="p">:</span><span class="w"> </span><span class="err">Access</span><span class="w"> </span><span class="err">Token</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<p>This interface handles login requests.</p>
+
+<p>Will return access token when id, soc, and pwd matches.</p>
+<h2 id='api-form_config'>/api/form_config</h2>
+<blockquote>
+<p>request parameters</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+    </span><span class="s2">"type"</span><span class="p">:</span><span class="err">add/del/change/query/list</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"id"</span><span class="p">:</span><span class="err">Id</span><span class="w"> </span><span class="err">of</span><span class="w"> </span><span class="err">the</span><span class="w"> </span><span class="err">form</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"soc"</span><span class="p">:</span><span class="err">Institution</span><span class="w"> </span><span class="err">code</span><span class="w"> </span><span class="err">where</span><span class="w"> </span><span class="err">the</span><span class="w"> </span><span class="err">form</span><span class="w"> </span><span class="err">belongs</span><span class="w"> </span><span class="err">to</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"form"</span><span class="p">:</span><span class="w"> </span><span class="err">stringyfied</span><span class="w"> </span><span class="err">form</span><span class="w"> </span><span class="err">data</span><span class="w"> </span><span class="err">when</span><span class="w"> </span><span class="err">need</span><span class="w"> </span><span class="err">to</span><span class="w"> </span><span class="err">add/change</span><span class="w"> </span><span class="err">the</span><span class="w"> </span><span class="err">form</span><span class="w"> </span><span class="err">data</span><span class="w"> </span><span class="err">stored</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<blockquote>
+<p>data received</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="err">When</span><span class="w"> </span><span class="err">query</span><span class="w"> </span><span class="err">for</span><span class="w"> </span><span class="err">one</span><span class="w"> </span><span class="err">form</span><span class="w"> </span><span class="err">with</span><span class="w"> </span><span class="err">Id</span><span class="w"> </span><span class="err">and</span><span class="w"> </span><span class="err">Soc</span><span class="w">
+</span><span class="p">{</span><span class="w">
+    </span><span class="s2">"id"</span><span class="p">:</span><span class="err">Id</span><span class="w"> </span><span class="err">of</span><span class="w"> </span><span class="err">the</span><span class="w"> </span><span class="err">form</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"soc"</span><span class="p">:</span><span class="err">Institution</span><span class="w"> </span><span class="err">code</span><span class="w"> </span><span class="err">where</span><span class="w"> </span><span class="err">the</span><span class="w"> </span><span class="err">form</span><span class="w"> </span><span class="err">belongs</span><span class="w"> </span><span class="err">to</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"form"</span><span class="p">:</span><span class="w">  </span><span class="err">stringyfied</span><span class="w"> </span><span class="err">form</span><span class="w"> </span><span class="err">data</span><span class="w">
+</span><span class="p">}</span><span class="w">
+
+</span><span class="err">When</span><span class="w"> </span><span class="err">list</span><span class="w"> </span><span class="err">for</span><span class="w"> </span><span class="err">multiple</span><span class="w"> </span><span class="err">forms</span><span class="w"> </span><span class="err">using</span><span class="w"> </span><span class="err">Soc</span><span class="w">
+</span><span class="p">{</span><span class="w">
+    </span><span class="s2">"forms"</span><span class="p">:[{</span><span class="w">
+        </span><span class="s2">"id"</span><span class="p">:</span><span class="err">Id</span><span class="w"> </span><span class="err">of</span><span class="w"> </span><span class="err">the</span><span class="w"> </span><span class="err">form</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"soc"</span><span class="p">:</span><span class="err">Institution</span><span class="w"> </span><span class="err">code</span><span class="w"> </span><span class="err">where</span><span class="w"> </span><span class="err">the</span><span class="w"> </span><span class="err">form</span><span class="w"> </span><span class="err">belongs</span><span class="w"> </span><span class="err">to</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"form"</span><span class="p">:</span><span class="w">  </span><span class="err">stringyfied</span><span class="w"> </span><span class="err">form</span><span class="w"> </span><span class="err">data</span><span class="w">
+        </span><span class="p">},{</span><span class="err">...</span><span class="p">},{</span><span class="err">...</span><span class="p">}]</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre><h1 id='errors'>Errors</h1>
 <p>These are the errors that may occur and the error code return in data recevied json package.</p>
 
 <table><thead>

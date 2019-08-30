@@ -11,11 +11,7 @@ Exclude the interfaces related to resources, which they need id and token noted 
 ```json
 {
 	"record_token": Master token of that record,
-	"form": {
-		"Q_KEY0": A_KEY0,
-		"Q_KEY1": A_KEY1,
-		…
-	}
+	"form": stringyfied form data
 }
 ```
 
@@ -30,6 +26,8 @@ Exclude the interfaces related to resources, which they need id and token noted 
 This interface is to submit filled form and form a complete record.
 
 Each submit requires the user to have the master record token of that set of record before submitting.
+
+Data submitted to database is in string form instead of JSON.
 
 ##/api/records
 > request parameters
@@ -133,7 +131,7 @@ This interface handles all the request related to edit or add user information.
 ```
 This interface handles all the request related to edit or add tag information.
 
-##/api/update_token
+##/api/token_update
 > request parameters
 
 ```json
@@ -146,7 +144,7 @@ This interface handles all the request related to edit or add tag information.
 
 ```json
 {
-
+	"token":updated token
 }
 ```
 This interface updates token and rent token for another 24 hours.
@@ -192,3 +190,60 @@ This interface retreat files from server
 And can directly used the link as resource in html.
 
 Cookies Needed: id token
+
+
+##/api/login
+> request parameters
+
+```json
+{
+	"id": Users' Id,
+	"soc": Users' institution,
+	"pwd": MD5 encoded password
+}
+```
+
+> data received
+
+```json
+{
+	"token": Access Token
+}
+```
+
+This interface handles login requests.
+
+Will return access token when id, soc, and pwd matches.
+
+
+##/api/form_config
+> request parameters
+
+```json
+{
+	"type":add/del/change/query/list,
+	"id":Id of the form,
+	"soc":Institution code where the form belongs to,
+	"form": stringyfied form data when need to add/change the form data stored
+}
+```
+
+> data received
+
+```json
+When query for one form with Id and Soc
+{
+	"id":Id of the form,
+	"soc":Institution code where the form belongs to,
+	"form":  stringyfied form data
+}
+
+When list for multiple forms using Soc
+{
+	"forms":[{
+		"id":Id of the form,
+		"soc":Institution code where the form belongs to,
+		"form":  stringyfied form data
+		},{...},{...}]
+}
+```

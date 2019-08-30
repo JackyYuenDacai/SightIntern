@@ -37,7 +37,7 @@ public class LoginController {
 	@Autowired
 	private users_tokenService UsersTokenService;
 	
-	private static final Logger LOG= LoggerFactory.getLogger(LoginInterceptor.class);
+	private static final Logger LOG= LoggerFactory.getLogger(LoginController.class);
 	
     @RequestMapping(value = "/login")
     @ResponseBody

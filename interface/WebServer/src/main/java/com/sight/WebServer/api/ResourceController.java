@@ -4,7 +4,9 @@ import java.io.BufferedReader;
 import java.io.ByteArrayInputStream;
 import java.io.InputStream;
 import java.io.InputStreamReader;
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
@@ -28,7 +30,9 @@ import com.mongodb.gridfs.GridFSDBFile;
 import com.mongodb.gridfs.GridFSFile;
 import com.mongodb.gridfs.GridFSInputFile;
 import com.sight.WebServer.data.dao.users_filesSqlProvider;
+import com.sight.WebServer.data.model.forms;
 import com.sight.WebServer.data.model.users_files;
+import com.sight.WebServer.data.service.formsService;
 import com.sight.WebServer.utils.General;
 
 import net.sf.json.JSONObject;
@@ -37,23 +41,87 @@ import net.sf.json.JSONObject;
 @RequestMapping("/api")
 public class ResourceController {
 	
+	@Autowired
+	formsService FormsService;
+	
 	
 	@RequestMapping(value= "/form_config")
 	@ResponseBody
 	public Map<String,Object> form_config(HttpServletRequest request)throws Exception{
+	
 		Map<String,Object> ret = new HashMap<String,Object>();
+		Map<String,Object> dat = new HashMap<String,Object>();
 		JSONObject jsonObject = General.getRequest(request.getInputStream());
-		JSONObject parameters = JSONObject.fromObject(jsonObject.get("parameters"));
-		String type = parameters.getString("type");
-		switch(type) {
-		case "add":
-			break;
-		case "del":
-			break;
-		case "change":
-			break;
-		case "query":
-			break;
+		try {
+			JSONObject parameters = JSONObject.fromObject(jsonObject.get("parameters"));
+			String type = parameters.getString("type");
+			String id = null;
+			String soc = null;
+			String form = null;
+			switch(type) {
+			case "add":
+				id = parameters.getString("id");
+				soc = parameters.getString("soc");
+				form = parameters.getString("form");
+				if(FormsService.addFormById(id, soc, form) == true) {
+					ret.put("error",0);
+				}else {
+					ret.put("error", 502);
+					ret.put("error_msg","");
+				}
+				break;
+			case "del":
+				id = parameters.getString("id");
+				soc = parameters.getString("soc");
+				if(FormsService.delFormsById(id, soc) == true) {
+					ret.put("error",0);
+				}else {
+					ret.put("error", 502);
+					ret.put("error_msg","");
+				}
+				break;
+			case "change":
+				id = parameters.getString("id");
+				soc = parameters.getString("soc");
+				form = parameters.getString("form");
+				if(FormsService.updateFormById(id, soc, form) == true) {
+					ret.put("error",0);
+				}else {
+					ret.put("error", 502);
+					ret.put("error_msg","");
+				}
+		
+				break;
+			case "list":
+				soc = parameters.getString("soc");
+				List<JSONObject> fms = new ArrayList<JSONObject>();
+				List<forms> Forms = FormsService.getFormsBySoc(soc);
+				Forms.forEach( fs -> {
+					JSONObject jsono = new JSONObject();
+					jsono.put("id", fs.getId());
+					jsono.put("soc", fs.getSoc());
+					jsono.put("form", fs.getFormData());
+					fms.add(jsono);
+				});
+				dat.put("form", fms);
+				break;
+			case "query":
+				soc = parameters.getString("soc");
+				id = parameters.getString("id");
+				forms fm = FormsService.getFormById(id, soc);
+				if(fm != null) {
+					dat.put("form",fm.getFormData());
+					ret.put("error",0);
+				}else {
+					ret.put("error",502);
+					ret.put("error_msg","form not found!");
+				}
+				break;
+			}
+		}
+		catch(Exception ex) {
+			ret.put("error", 202);
+			ret.put("error_msg",ex.getMessage());
 		}
 		return ret;
 	}
