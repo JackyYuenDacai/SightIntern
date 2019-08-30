@@ -114,7 +114,7 @@ This interface handles all the request related to edit or add user information.
 
 ```json
 {
-	"type": add/del,
+	"type": add/del/query,
 	"soc": Institution id,
 	"id": users’ id,
 	"role": users’ role,
@@ -126,10 +126,19 @@ This interface handles all the request related to edit or add user information.
 > data received
 
 ```json
+if query
 {
+	"tags":[
+		{
+			"tag_type": Tag's type,
+			"tag_id": Tag's Id
+		},
+		{...},{...}]
 }
 ```
 This interface handles all the request related to edit or add tag information.
+
+When query, the interface will return all tags' info related to that user id.
 
 ##/api/token_update
 > request parameters
@@ -247,3 +256,7 @@ When list for multiple forms using Soc
 		},{...},{...}]
 }
 ```
+
+When in need of query for all the form owned by one soc, uses type list.
+
+When in need of query for one form using soc and id, uses type query.

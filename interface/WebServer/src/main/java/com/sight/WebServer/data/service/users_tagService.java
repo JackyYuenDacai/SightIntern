@@ -1,5 +1,7 @@
 package com.sight.WebServer.data.service;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -19,10 +21,10 @@ public class users_tagService {
 		UsersTagExample.createCriteria().andTagIdEqualTo(tagId);
 		return UsersTagMapper.selectByExample(UsersTagExample).get(0);
 	}
-	public users_tag getUsersTagById(String Id) {
+	public List<users_tag> getUsersTagById(String Id) {
 		users_tagExample UsersTagExample = new users_tagExample();
 		UsersTagExample.createCriteria().andIdEqualTo(Id);
-		return UsersTagMapper.selectByExample(UsersTagExample).get(0);
+		return UsersTagMapper.selectByExample(UsersTagExample);
 	}
 	public boolean deleteUsersTagByTagId(String tagId) {
 		boolean ret = false;

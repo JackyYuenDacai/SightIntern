@@ -416,7 +416,7 @@
 <p>request parameters</p>
 </blockquote>
 <pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
-    </span><span class="s2">"type"</span><span class="p">:</span><span class="w"> </span><span class="err">add/del</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"type"</span><span class="p">:</span><span class="w"> </span><span class="err">add/del/query</span><span class="p">,</span><span class="w">
     </span><span class="s2">"soc"</span><span class="p">:</span><span class="w"> </span><span class="err">Institution</span><span class="w"> </span><span class="err">id</span><span class="p">,</span><span class="w">
     </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="err">users’</span><span class="w"> </span><span class="err">id</span><span class="p">,</span><span class="w">
     </span><span class="s2">"role"</span><span class="p">:</span><span class="w"> </span><span class="err">users’</span><span class="w"> </span><span class="err">role</span><span class="p">,</span><span class="w">
@@ -427,10 +427,19 @@
 <blockquote>
 <p>data received</p>
 </blockquote>
-<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+<pre class="highlight json tab-json"><code><span class="err">if</span><span class="w"> </span><span class="err">query</span><span class="w">
+</span><span class="p">{</span><span class="w">
+    </span><span class="s2">"tags"</span><span class="p">:[</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+            </span><span class="s2">"tag_type"</span><span class="p">:</span><span class="w"> </span><span class="err">Tag's</span><span class="w"> </span><span class="err">type</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"tag_id"</span><span class="p">:</span><span class="w"> </span><span class="err">Tag's</span><span class="w"> </span><span class="err">Id</span><span class="w">
+        </span><span class="p">},</span><span class="w">
+        </span><span class="p">{</span><span class="err">...</span><span class="p">},{</span><span class="err">...</span><span class="p">}]</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
 <p>This interface handles all the request related to edit or add tag information.</p>
+
+<p>When query, the interface will return all tags&#39; info related to that user id.</p>
 <h2 id='api-token_update'>/api/token_update</h2>
 <blockquote>
 <p>request parameters</p>
@@ -533,7 +542,11 @@
         </span><span class="s2">"form"</span><span class="p">:</span><span class="w">  </span><span class="err">stringyfied</span><span class="w"> </span><span class="err">form</span><span class="w"> </span><span class="err">data</span><span class="w">
         </span><span class="p">},{</span><span class="err">...</span><span class="p">},{</span><span class="err">...</span><span class="p">}]</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre><h1 id='errors'>Errors</h1>
+</span></code></pre>
+<p>When in need of query for all the form owned by one soc, uses type list.</p>
+
+<p>When in need of query for one form using soc and id, uses type query.</p>
+<h1 id='errors'>Errors</h1>
 <p>These are the errors that may occur and the error code return in data recevied json package.</p>
 
 <table><thead>
