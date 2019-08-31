@@ -101,11 +101,11 @@ public class RecordController {
 					//REGISTERED
 					List<RecordBuffer> Records = recordBufferService.findOngoingRecord(id,location);
 					//ONLY CARE ABOUT ID AND LOCATION NOW
-					LOG.info("records :" + Records.size());
+					
 					List<Map<String,String>> data = new  ArrayList<Map<String,String>>();
 					for(RecordBuffer RM : Records) {
 						Map<String,String> sto = new  HashMap<String,String>();
-						LOG.info("records :"+RM.id +" "+RM.token);
+						LOG.info("records :"+RM.id +" "+RM.token+" "+RM.time);
 						sto.put("id", RM.id);
 						sto.put("name",UsersService.getUserById(RM.id).getName());
 						sto.put("time_start", RM.time);
@@ -145,16 +145,33 @@ public class RecordController {
 	@RequestMapping(value = "/submit")
     @ResponseBody
     public Map<String, Object> submit_record(HttpServletRequest request) throws Exception {
+		LOG.info("submit:enter");
 		Map<String,Object> ret = new HashMap<String,Object>();
 		JSONObject jsonObject = General.getRequest(request.getInputStream());
 		JSONObject parameters = jsonObject.getJSONObject("parameters");
-		String record_token = parameters.getString("record_token");
-		JSONObject form = parameters.getJSONObject("form");
-		RecordBuffer RB = recordBufferService.findByTokenAndRemove(record_token);
-		Date now = new Date();// CURRENT TIME AS THE TIME OF STUDENT GO OUT 
 		
+		try {
 		
-		ret.put("error", 0);
+			String record_token = parameters.getString("record_token");
+			String form = parameters.getString("form");
+			RecordBuffer RB = recordBufferService.findByTokenAndRemove(record_token);
+			// CURRENT TIME AS THE TIME OF STUDENT GO OUT 
+			LOG.info("submit record: find record success");
+			if(RB!= null) {
+			RecordService.submitRecord(RB.id, RB.location, RB.tag_id, RB.time, General.getDateTime(), "", record_token, form);
+			
+			LOG.info("submit record: success");
+			ret.put("error", 0);
+			}else {
+				ret.put("error",202);
+				ret.put("error_msg","no such record/wrong token");
+			}
+		
+		}catch(Exception ex) {
+			//LOG.error("error_msg " + ex.getMessage());
+			ret.put("error", 502);
+			ret.put("error_msg", ex.getMessage());
+		}
 		return ret;
 	}	
 }

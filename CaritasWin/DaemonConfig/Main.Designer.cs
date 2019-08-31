@@ -61,9 +61,14 @@
             this.button4 = new System.Windows.Forms.Button();
             this.LogListview = new System.Windows.Forms.ListView();
             this.TestTab = new System.Windows.Forms.TabPage();
+            this.button21 = new System.Windows.Forms.Button();
+            this.button20 = new System.Windows.Forms.Button();
+            this.button19 = new System.Windows.Forms.Button();
+            this.button18 = new System.Windows.Forms.Button();
+            this.button17 = new System.Windows.Forms.Button();
             this.button14 = new System.Windows.Forms.Button();
             this.button13 = new System.Windows.Forms.Button();
-            this.button12 = new System.Windows.Forms.Button();
+            this.SubmitTestButton = new System.Windows.Forms.Button();
             this.button11 = new System.Windows.Forms.Button();
             this.button10 = new System.Windows.Forms.Button();
             this.button9 = new System.Windows.Forms.Button();
@@ -412,9 +417,14 @@
             // 
             // TestTab
             // 
+            this.TestTab.Controls.Add(this.button21);
+            this.TestTab.Controls.Add(this.button20);
+            this.TestTab.Controls.Add(this.button19);
+            this.TestTab.Controls.Add(this.button18);
+            this.TestTab.Controls.Add(this.button17);
             this.TestTab.Controls.Add(this.button14);
             this.TestTab.Controls.Add(this.button13);
-            this.TestTab.Controls.Add(this.button12);
+            this.TestTab.Controls.Add(this.SubmitTestButton);
             this.TestTab.Controls.Add(this.button11);
             this.TestTab.Controls.Add(this.button10);
             this.TestTab.Controls.Add(this.button9);
@@ -428,6 +438,53 @@
             this.TestTab.TabIndex = 3;
             this.TestTab.Text = "TestTab";
             this.TestTab.UseVisualStyleBackColor = true;
+            // 
+            // button21
+            // 
+            this.button21.Location = new System.Drawing.Point(65, 706);
+            this.button21.Name = "button21";
+            this.button21.Size = new System.Drawing.Size(167, 71);
+            this.button21.TabIndex = 13;
+            this.button21.Text = "Delete tag 1014";
+            this.button21.UseVisualStyleBackColor = true;
+            this.button21.Click += new System.EventHandler(this.button21_Click);
+            // 
+            // button20
+            // 
+            this.button20.Location = new System.Drawing.Point(276, 600);
+            this.button20.Name = "button20";
+            this.button20.Size = new System.Drawing.Size(167, 71);
+            this.button20.TabIndex = 12;
+            this.button20.Text = "Register tag 1014";
+            this.button20.UseVisualStyleBackColor = true;
+            this.button20.Click += new System.EventHandler(this.button20_Click);
+            // 
+            // button19
+            // 
+            this.button19.Location = new System.Drawing.Point(65, 600);
+            this.button19.Name = "button19";
+            this.button19.Size = new System.Drawing.Size(167, 71);
+            this.button19.TabIndex = 11;
+            this.button19.Text = "Del form";
+            this.button19.UseVisualStyleBackColor = true;
+            // 
+            // button18
+            // 
+            this.button18.Location = new System.Drawing.Point(276, 486);
+            this.button18.Name = "button18";
+            this.button18.Size = new System.Drawing.Size(167, 71);
+            this.button18.TabIndex = 10;
+            this.button18.Text = "Set form";
+            this.button18.UseVisualStyleBackColor = true;
+            // 
+            // button17
+            // 
+            this.button17.Location = new System.Drawing.Point(65, 486);
+            this.button17.Name = "button17";
+            this.button17.Size = new System.Drawing.Size(167, 71);
+            this.button17.TabIndex = 9;
+            this.button17.Text = "Get form";
+            this.button17.UseVisualStyleBackColor = true;
             // 
             // button14
             // 
@@ -446,15 +503,17 @@
             this.button13.TabIndex = 7;
             this.button13.Text = "Get Record";
             this.button13.UseVisualStyleBackColor = true;
+            this.button13.Click += new System.EventHandler(this.button13_Click);
             // 
-            // button12
+            // SubmitTestButton
             // 
-            this.button12.Location = new System.Drawing.Point(276, 278);
-            this.button12.Name = "button12";
-            this.button12.Size = new System.Drawing.Size(167, 73);
-            this.button12.TabIndex = 6;
-            this.button12.Text = "Test tag submit";
-            this.button12.UseVisualStyleBackColor = true;
+            this.SubmitTestButton.Location = new System.Drawing.Point(276, 278);
+            this.SubmitTestButton.Name = "SubmitTestButton";
+            this.SubmitTestButton.Size = new System.Drawing.Size(167, 73);
+            this.SubmitTestButton.TabIndex = 6;
+            this.SubmitTestButton.Text = "Test tag 1014 submit";
+            this.SubmitTestButton.UseVisualStyleBackColor = true;
+            this.SubmitTestButton.Click += new System.EventHandler(this.SubmitTestButton_Click_1);
             // 
             // button11
             // 
@@ -462,8 +521,9 @@
             this.button11.Name = "button11";
             this.button11.Size = new System.Drawing.Size(167, 73);
             this.button11.TabIndex = 5;
-            this.button11.Text = "Test tag Scanned";
+            this.button11.Text = "Test tag 1014 Scanned";
             this.button11.UseVisualStyleBackColor = true;
+            this.button11.Click += new System.EventHandler(this.button11_Click);
             // 
             // button10
             // 
@@ -599,7 +659,7 @@
         private System.Windows.Forms.TabPage TestTab;
         private System.Windows.Forms.Button button14;
         private System.Windows.Forms.Button button13;
-        private System.Windows.Forms.Button button12;
+        private System.Windows.Forms.Button SubmitTestButton;
         private System.Windows.Forms.Button button11;
         private System.Windows.Forms.Button button10;
         private System.Windows.Forms.Button button9;
@@ -611,5 +671,10 @@
         private System.Windows.Forms.ToolStripStatusLabel toolStripStatusLabel1;
         private System.Windows.Forms.ToolStripStatusLabel toolStripStatusLabel2;
         private System.Windows.Forms.Button button16;
+        private System.Windows.Forms.Button button19;
+        private System.Windows.Forms.Button button18;
+        private System.Windows.Forms.Button button17;
+        private System.Windows.Forms.Button button20;
+        private System.Windows.Forms.Button button21;
     }
 }

@@ -178,7 +178,73 @@ namespace DaemonConfig
 
         private void AttachTagButton_Click(object sender, EventArgs e)
         {
+            
+        }
 
+        private void button11_Click(object sender, EventArgs e)
+        {
+            richTextBox1.Text = Request.TagScanned("Test", "1014", Utils.currentTime()) + "\n" + richTextBox1.Text;
+        }
+
+        private void button20_Click(object sender, EventArgs e)
+        {
+            if(Request.AttachTag(Request.Id, Request.SOC, "RFID", "1014") == 0)
+            {
+                richTextBox1.Text = "tag attach success" + "\n" + richTextBox1.Text;
+            }
+            else
+            {
+                richTextBox1.Text = "tag attach failed" + "\n" + richTextBox1.Text;
+            }
+        }
+
+        private void button21_Click(object sender, EventArgs e)
+        {
+            if (Request.DetachTag("RFID", "1014") == 0)
+            {
+                richTextBox1.Text = "tag detach success" + "\n" + richTextBox1.Text;
+            }
+            else
+            {
+                richTextBox1.Text = "tag detach failed" + "\n" + richTextBox1.Text;
+            }
+        }
+
+        private void button13_Click(object sender, EventArgs e)
+        {
+            List<record_info_entity> rie = Request.getRecord();
+            if(rie.Count == 0)
+            {
+                richTextBox1.Text = "zero record returned" + "\n" + richTextBox1.Text;
+            }
+            else
+            {
+                rie.ForEach(ri =>
+                {
+                    richTextBox1.Text = ri.tag_type + "\n" + richTextBox1.Text;
+                    richTextBox1.Text = ri.tag_id + "\n" + richTextBox1.Text;
+                    richTextBox1.Text = ri.location + "\n" + richTextBox1.Text;
+                    richTextBox1.Text = ri.record_token + "\n" + richTextBox1.Text;
+                });
+            }
+        }
+
+
+
+
+        private void SubmitTestButton_Click_1(object sender, EventArgs e)
+        {
+            string str = richTextBox1.Text;
+            string record_token = str.Split(new[] { '\r', '\n' }).FirstOrDefault();
+            richTextBox1.Text = "submit trial with" + "  " + record_token + "\n" + richTextBox1.Text;
+            if (Request.submit(record_token, "Test form") == 0)
+            {
+                richTextBox1.Text = "submit success" + "\n" + richTextBox1.Text;
+            }
+            else
+            {
+                richTextBox1.Text = "submit failed" + "\n" + richTextBox1.Text;
+            }
         }
     }
 }

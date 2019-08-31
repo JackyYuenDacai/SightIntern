@@ -33,9 +33,10 @@ public class RecordBufferService {
 	public RecordBuffer findByTokenAndRemove(String token) {
 		RecordBuffer ret = null;
 		for(RecordBuffer RB : RecordList) {
-			if(RB.token .equals( token)) {
+			if(RB.token.equals(token)) {
 				ret = RB;
 				RecordList.remove(RB);
+				LOG.info("record buffer: record found and delete "+ret.token);
 				break;
 			}
 		}
@@ -99,8 +100,8 @@ public class RecordBufferService {
 	public List<RecordBuffer> findOngoingRecord(String id,String location){
 		List<RecordBuffer> RetList = new ArrayList<RecordBuffer>();
 		for(RecordBuffer RB : RecordList) 
-			if(id == null || id.equals("") || RB.id .equals( id))
-			if(location == null || location.equals("") || RB.location .equals(location)) 
+			if(id == null 		|| id.equals("") 		|| RB.id .equals( id))
+			if(location == null || location.equals("") 	|| RB.location .equals(location)) 
 					RetList.add(RB);
 		
 

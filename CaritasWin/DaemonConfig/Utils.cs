@@ -25,7 +25,8 @@ namespace DaemonConfig
         }
         static public String currentTime()
         {
-            return DateTime.Now.ToLocalTime().ToString();
+
+            return DateTime.Now.ToLocalTime().ToString("yyyy-MM-dd HH:mm:ss");
         }
     }
 }
