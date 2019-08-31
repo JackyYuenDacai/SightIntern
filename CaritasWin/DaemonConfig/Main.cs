@@ -246,5 +246,18 @@ namespace DaemonConfig
                 richTextBox1.Text = "submit failed" + "\n" + richTextBox1.Text;
             }
         }
+
+        private void DetachTagButton_Click(object sender, EventArgs e)
+        {
+            int ret = Request.DetachTag("RFID", "1014");
+            if(ret == 0)
+            {
+
+            }
+            else
+            {
+
+            }
+        }
     }
 }
