@@ -40,6 +40,7 @@ public class TagController {
     @ResponseBody
     public Map<String, Object> tag_scanned(HttpServletRequest request) throws Exception {
 		Map<String,Object> ret = new HashMap<String,Object>();
+		Map<String,Object> dat = new HashMap<String,Object>();
 		JSONObject jsonObject = General.getRequest(request.getInputStream());
 		JSONObject parameters = JSONObject.fromObject(jsonObject.get("parameters"));
 		
@@ -57,6 +58,8 @@ public class TagController {
 			RecordEntity.setTime(time);
 			mongoTemplate.save(RecordEntity);
 			ret.put("error", 0);
+			dat.put("record_id",RecordEntity.getId());
+			ret.put("data", dat);
 			return ret;
 		}catch(Exception ex) {
 			ex.printStackTrace();
@@ -91,7 +94,7 @@ public class TagController {
 				tag_id = parameters.getString("tag_id");
 				id = parameters.getString("id");
 				tag_type = parameters.getString("tag_type");
-				if(UsersTagService.getUsersTagByTagId(tag_id)== null) {
+				if(UsersTagService.getUsersTagByTagId(tag_id) == null) {
 					UsersTagService.addUsersTag(id, tag_type, tag_id);
 					ret.put("error", 0);
 					return ret;

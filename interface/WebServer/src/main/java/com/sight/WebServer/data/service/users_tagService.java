@@ -19,7 +19,12 @@ public class users_tagService {
 	public users_tag getUsersTagByTagId(String tagId) {	
 		users_tagExample UsersTagExample = new users_tagExample();
 		UsersTagExample.createCriteria().andTagIdEqualTo(tagId);
-		return UsersTagMapper.selectByExample(UsersTagExample).get(0);
+		List<users_tag> utl = UsersTagMapper.selectByExample(UsersTagExample);
+		if(utl.size()>0)
+			return utl.get(0);
+		else 
+			return null;
+		
 	}
 	public List<users_tag> getUsersTagById(String Id) {
 		users_tagExample UsersTagExample = new users_tagExample();

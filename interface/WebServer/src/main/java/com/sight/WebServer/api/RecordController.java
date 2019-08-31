@@ -9,6 +9,8 @@ import java.util.Map;
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -36,6 +38,8 @@ public class RecordController {
 	@Autowired
 	private recordService RecordService;
 	
+	private static final Logger LOG= LoggerFactory.getLogger(RecordController.class);
+	
 	@RequestMapping(value = "/records")
     @ResponseBody
     public Map<String, Object> record_query(HttpServletRequest request) throws Exception {
@@ -43,17 +47,20 @@ public class RecordController {
 		
 		JSONObject jsonObject = General.getRequest(request.getInputStream());
 		JSONObject parameters = JSONObject.fromObject(jsonObject.get("parameters"));
-		String registered = parameters.getString("registered");
-		String status = parameters.getString("status");
-		String location = parameters.getString("location");
-		String name = parameters.getString("name");
-		String role = parameters.getString("role");
-		String time_start = parameters.getString("time_start");
-		String time_end = parameters.getString("time_end");
-		String id = jsonObject.getString("id");
-		String IfForm = parameters.getString("if_form");
-		if(registered == "true") {
-			if(status == "done") {
+		String registered,status,location,name,role,time_start,time_end,id,IfForm;
+		try {registered = parameters.getString("registered");}catch(Exception ex) {registered = "true";}
+		try {status = parameters.getString("status");}catch(Exception ex) {status = "";}
+		try {location = parameters.getString("location");}catch(Exception ex) {location = "";}
+		try {name = parameters.getString("name");}catch(Exception ex) {name = "";}
+		try {role = parameters.getString("role");}catch(Exception ex) {role = "";}
+		try {time_start = parameters.getString("time_start");}catch(Exception ex) {time_start = "";}
+		try {time_end = parameters.getString("time_end");}catch(Exception ex) {time_end = "";}
+		try {id = parameters.getString("id");}catch(Exception ex) {id = "";}
+		try {IfForm = parameters.getString("status");}catch(Exception ex) {IfForm = "";}
+
+		
+		if(registered .equals( "true")) {
+			if(status .equals( "done")) {
 				//RecordService
 				List<record_master> Records = RecordService.findDoneRecord(id, location, time_start, time_end);
 				List<Map<String,String>> data = new  ArrayList<Map<String,String>>();
@@ -64,7 +71,7 @@ public class RecordController {
 					sto.put("time_end", General.DateToString(RM.getRecordOut()));
 					sto.put("record_token", RM.getToken());
 					sto.put("location", RM.getLocation());
-					if(IfForm == null || IfForm == "true")
+					if(IfForm .equals( "") || IfForm .equals(  "true"))
 					sto.put("form",RM.getData());
 					data.add(sto);
 				}
@@ -72,9 +79,9 @@ public class RecordController {
 				ret.put("error", 0);
 				return ret;
 			}else
-			if(status =="ongoing") {
+			if(status .equals( "ongoing")) {
 				//recordBufferService
-				if(registered == "false") {
+				if(registered .equals( "false")) {
 					//NOT REGISTERED
 					List<RecordBuffer> Records = recordBufferService.findUnattached();
 					List<Map<String,String>> data = new  ArrayList<Map<String,String>>();
@@ -94,9 +101,11 @@ public class RecordController {
 					//REGISTERED
 					List<RecordBuffer> Records = recordBufferService.findOngoingRecord(id,location);
 					//ONLY CARE ABOUT ID AND LOCATION NOW
+					LOG.info("records :" + Records.size());
 					List<Map<String,String>> data = new  ArrayList<Map<String,String>>();
 					for(RecordBuffer RM : Records) {
 						Map<String,String> sto = new  HashMap<String,String>();
+						LOG.info("records :"+RM.id +" "+RM.token);
 						sto.put("id", RM.id);
 						sto.put("name",UsersService.getUserById(RM.id).getName());
 						sto.put("time_start", RM.time);
