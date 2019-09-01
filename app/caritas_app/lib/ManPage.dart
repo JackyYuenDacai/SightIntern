@@ -7,6 +7,8 @@ import './I8N.dart';
 import './pop.dart';
 import './menu.dart';
 import './main.dart';
+import 'RFIDPage.dart';
+import 'network_request.dart';
 
 class ManPage extends StatefulWidget {
   @override
@@ -46,6 +48,17 @@ class _ManPageState extends State<ManPage> {
                     //Navigator.of(context).pushNamed('/DataPage');
                   });
                   Navigator.of(context).pushNamed('/DataPage');
+
+                  
+                  if(!RFIDPage.IsNetwork){
+                    print('no network');
+                  }else{
+                    network_request.post_submit_form(id,unitok,answer); //////////
+                  
+                
+      setState((){});
+    }
+  
 
                 },
                 child: new Text("Confirm"),

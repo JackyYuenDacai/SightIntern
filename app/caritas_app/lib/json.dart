@@ -153,7 +153,7 @@ class record_list_content {
   final String tag_id;
   final DateTime time_start;
   final DateTime time_end;
-  final Duration duration;
+  final DateTime duration;
   final String record_token;
 
   record_list_content({this.id, this.name, this.tag_id, this.time_start, this.time_end, this.duration, this.record_token});
