@@ -28,6 +28,10 @@ public class record_masterSqlProvider {
         SQL sql = new SQL();
         sql.INSERT_INTO("record_master");
         
+        if (record.getToken() != null) {
+            sql.VALUES("token", "#{token,jdbcType=VARCHAR}");
+        }
+        
         if (record.getId() != null) {
             sql.VALUES("id", "#{id,jdbcType=VARCHAR}");
         }
@@ -52,26 +56,22 @@ public class record_masterSqlProvider {
             sql.VALUES("data", "#{data,jdbcType=VARCHAR}");
         }
         
-        if (record.getToken() != null) {
-            sql.VALUES("token", "#{token,jdbcType=VARCHAR}");
-        }
-        
         return sql.toString();
     }
 
     public String selectByExample(record_masterExample example) {
         SQL sql = new SQL();
         if (example != null && example.isDistinct()) {
-            sql.SELECT_DISTINCT("id");
+            sql.SELECT_DISTINCT("token");
         } else {
-            sql.SELECT("id");
+            sql.SELECT("token");
         }
+        sql.SELECT("id");
         sql.SELECT("type");
         sql.SELECT("location");
         sql.SELECT("record_in");
         sql.SELECT("record_out");
         sql.SELECT("data");
-        sql.SELECT("token");
         sql.FROM("record_master");
         applyWhere(sql, example, false);
         
@@ -88,6 +88,10 @@ public class record_masterSqlProvider {
         
         SQL sql = new SQL();
         sql.UPDATE("record_master");
+        
+        if (record.getToken() != null) {
+            sql.SET("token = #{record.token,jdbcType=VARCHAR}");
+        }
         
         if (record.getId() != null) {
             sql.SET("id = #{record.id,jdbcType=VARCHAR}");
@@ -113,10 +117,6 @@ public class record_masterSqlProvider {
             sql.SET("data = #{record.data,jdbcType=VARCHAR}");
         }
         
-        if (record.getToken() != null) {
-            sql.SET("token = #{record.token,jdbcType=VARCHAR}");
-        }
-        
         applyWhere(sql, example, true);
         return sql.toString();
     }
@@ -125,13 +125,13 @@ public class record_masterSqlProvider {
         SQL sql = new SQL();
         sql.UPDATE("record_master");
         
+        sql.SET("token = #{record.token,jdbcType=VARCHAR}");
         sql.SET("id = #{record.id,jdbcType=VARCHAR}");
         sql.SET("type = #{record.type,jdbcType=VARCHAR}");
         sql.SET("location = #{record.location,jdbcType=VARCHAR}");
         sql.SET("record_in = #{record.recordIn,jdbcType=TIMESTAMP}");
         sql.SET("record_out = #{record.recordOut,jdbcType=TIMESTAMP}");
         sql.SET("data = #{record.data,jdbcType=VARCHAR}");
-        sql.SET("token = #{record.token,jdbcType=VARCHAR}");
         
         record_masterExample example = (record_masterExample) parameter.get("example");
         applyWhere(sql, example, true);
@@ -141,6 +141,10 @@ public class record_masterSqlProvider {
     public String updateByPrimaryKeySelective(record_master record) {
         SQL sql = new SQL();
         sql.UPDATE("record_master");
+        
+        if (record.getId() != null) {
+            sql.SET("id = #{id,jdbcType=VARCHAR}");
+        }
         
         if (record.getType() != null) {
             sql.SET("type = #{type,jdbcType=VARCHAR}");
@@ -162,11 +166,7 @@ public class record_masterSqlProvider {
             sql.SET("data = #{data,jdbcType=VARCHAR}");
         }
         
-        if (record.getToken() != null) {
-            sql.SET("token = #{token,jdbcType=VARCHAR}");
-        }
-        
-        sql.WHERE("id = #{id,jdbcType=VARCHAR}");
+        sql.WHERE("token = #{token,jdbcType=VARCHAR}");
         
         return sql.toString();
     }

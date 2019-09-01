@@ -25,19 +25,19 @@ public interface record_masterMapper {
 
     @Delete({
         "delete from record_master",
-        "where id = #{id,jdbcType=VARCHAR}"
+        "where token = #{token,jdbcType=VARCHAR}"
     })
-    int deleteByPrimaryKey(String id);
+    int deleteByPrimaryKey(String token);
 
     @Insert({
-        "insert into record_master (id, type, ",
-        "location, record_in, ",
-        "record_out, data, ",
-        "token)",
-        "values (#{id,jdbcType=VARCHAR}, #{type,jdbcType=VARCHAR}, ",
-        "#{location,jdbcType=VARCHAR}, #{recordIn,jdbcType=TIMESTAMP}, ",
-        "#{recordOut,jdbcType=TIMESTAMP}, #{data,jdbcType=VARCHAR}, ",
-        "#{token,jdbcType=VARCHAR})"
+        "insert into record_master (token, id, ",
+        "type, location, ",
+        "record_in, record_out, ",
+        "data)",
+        "values (#{token,jdbcType=VARCHAR}, #{id,jdbcType=VARCHAR}, ",
+        "#{type,jdbcType=VARCHAR}, #{location,jdbcType=VARCHAR}, ",
+        "#{recordIn,jdbcType=TIMESTAMP}, #{recordOut,jdbcType=TIMESTAMP}, ",
+        "#{data,jdbcType=VARCHAR})"
     })
     int insert(record_master record);
 
@@ -46,32 +46,32 @@ public interface record_masterMapper {
 
     @SelectProvider(type=record_masterSqlProvider.class, method="selectByExample")
     @Results({
-        @Result(column="id", property="id", jdbcType=JdbcType.VARCHAR, id=true),
+        @Result(column="token", property="token", jdbcType=JdbcType.VARCHAR, id=true),
+        @Result(column="id", property="id", jdbcType=JdbcType.VARCHAR),
         @Result(column="type", property="type", jdbcType=JdbcType.VARCHAR),
         @Result(column="location", property="location", jdbcType=JdbcType.VARCHAR),
         @Result(column="record_in", property="recordIn", jdbcType=JdbcType.TIMESTAMP),
         @Result(column="record_out", property="recordOut", jdbcType=JdbcType.TIMESTAMP),
-        @Result(column="data", property="data", jdbcType=JdbcType.VARCHAR),
-        @Result(column="token", property="token", jdbcType=JdbcType.VARCHAR)
+        @Result(column="data", property="data", jdbcType=JdbcType.VARCHAR)
     })
     List<record_master> selectByExample(record_masterExample example);
 
     @Select({
         "select",
-        "id, type, location, record_in, record_out, data, token",
+        "token, id, type, location, record_in, record_out, data",
         "from record_master",
-        "where id = #{id,jdbcType=VARCHAR}"
+        "where token = #{token,jdbcType=VARCHAR}"
     })
     @Results({
-        @Result(column="id", property="id", jdbcType=JdbcType.VARCHAR, id=true),
+        @Result(column="token", property="token", jdbcType=JdbcType.VARCHAR, id=true),
+        @Result(column="id", property="id", jdbcType=JdbcType.VARCHAR),
         @Result(column="type", property="type", jdbcType=JdbcType.VARCHAR),
         @Result(column="location", property="location", jdbcType=JdbcType.VARCHAR),
         @Result(column="record_in", property="recordIn", jdbcType=JdbcType.TIMESTAMP),
         @Result(column="record_out", property="recordOut", jdbcType=JdbcType.TIMESTAMP),
-        @Result(column="data", property="data", jdbcType=JdbcType.VARCHAR),
-        @Result(column="token", property="token", jdbcType=JdbcType.VARCHAR)
+        @Result(column="data", property="data", jdbcType=JdbcType.VARCHAR)
     })
-    record_master selectByPrimaryKey(String id);
+    record_master selectByPrimaryKey(String token);
 
     @UpdateProvider(type=record_masterSqlProvider.class, method="updateByExampleSelective")
     int updateByExampleSelective(@Param("record") record_master record, @Param("example") record_masterExample example);
@@ -84,13 +84,13 @@ public interface record_masterMapper {
 
     @Update({
         "update record_master",
-        "set type = #{type,jdbcType=VARCHAR},",
+        "set id = #{id,jdbcType=VARCHAR},",
+          "type = #{type,jdbcType=VARCHAR},",
           "location = #{location,jdbcType=VARCHAR},",
           "record_in = #{recordIn,jdbcType=TIMESTAMP},",
           "record_out = #{recordOut,jdbcType=TIMESTAMP},",
-          "data = #{data,jdbcType=VARCHAR},",
-          "token = #{token,jdbcType=VARCHAR}",
-        "where id = #{id,jdbcType=VARCHAR}"
+          "data = #{data,jdbcType=VARCHAR}",
+        "where token = #{token,jdbcType=VARCHAR}"
     })
     int updateByPrimaryKey(record_master record);
 }

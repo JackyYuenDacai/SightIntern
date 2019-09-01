@@ -30,13 +30,14 @@ create table soc_list(
 );
 
 create table record_master(
-  id nvarchar(128) primary key,
+  token nvarchar(128) primary key,
+  id nvarchar(128) ,
   type nvarchar(128),
   location nvarchar(128),
   record_in datetime,
   record_out datetime,
-  data nvarchar(2048),
-  token nvarchar(128)
+  data nvarchar(2048)
+
 );
 
 create table users_files(

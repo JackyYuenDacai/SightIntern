@@ -3,6 +3,8 @@ package com.sight.WebServer.data.model;
 import java.util.Date;
 
 public class record_master {
+    private String token;
+
     private String id;
 
     private String type;
@@ -15,7 +17,13 @@ public class record_master {
 
     private String data;
 
-    private String token;
+    public String getToken() {
+        return token;
+    }
+
+    public void setToken(String token) {
+        this.token = token == null ? null : token.trim();
+    }
 
     public String getId() {
         return id;
@@ -63,13 +71,5 @@ public class record_master {
 
     public void setData(String data) {
         this.data = data == null ? null : data.trim();
-    }
-
-    public String getToken() {
-        return token;
-    }
-
-    public void setToken(String token) {
-        this.token = token == null ? null : token.trim();
     }
 }
