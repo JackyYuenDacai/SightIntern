@@ -472,11 +472,17 @@
 </span></code></pre>
 <p>POST method</p>
 
-<p>This interface upload files toward user.</p>
+<p>This interface upload files.</p>
 
 <p>Directly upload file through conventional upload method</p>
 
-<p>Cookies Needed: id token</p>
+<p>Parameters Needed: id token</p>
+
+<p>Return file_id if successful</p>
+
+<p>Sample upload link:</p>
+
+<p>http://localhost:8888/api/upload?id=Test&amp;token=wi3ij34mo5</p>
 <h2 id='api-resource'>/api/resource</h2>
 <blockquote>
 <p>request parameters</p>
@@ -492,7 +498,9 @@
 
 <p>And can directly used the link as resource in html.</p>
 
-<p>Cookies Needed: id token</p>
+<p>Parameters Needed: id token file_id</p>
+
+<p>Return file content if successful.</p>
 <h2 id='api-login'>/api/login</h2>
 <blockquote>
 <p>request parameters</p>
