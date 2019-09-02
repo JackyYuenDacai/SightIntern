@@ -89,9 +89,9 @@ class studentList{
 class record_entry{
   final DateTime time_in;
   final DateTime interval;
-  final String location;
+  ///final String location;
   //final Map<String,dynamic> data_json;
-  record_entry(this.time_in,this.interval,this.location/*,this.data_json*/);
+  record_entry(this.time_in,this.interval/*,this.location,this.data_json*/);
   /*factory record_entry.fromJson(Map<String,dynamic> json){
     return new record_entry(
       new DateFormat("yyyy-MM-dd HH:mm:ss").parse(json['time']),

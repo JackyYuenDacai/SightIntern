@@ -161,9 +161,38 @@ class connection{
   }
 
   static void get_record_data_proc(http.Response response){
-    //print("Response body: ${response.body}");
+    Map basicMap = jsonDecode(response.body);
+    var basic_response = new request_basic_receive.fromJson(basicMap);
+    Map listMap = jsonDecode(basic_response.data);
+    var user_list = new record_list_content.fromJson(listMap);
+    Map userMap = jsonDecode(user_list);
+    var list = new record_list_content.fromJson(userMap);
+    //staffList staffs = new staffList(Staffs: new List(2).add(value));
+    
+    StaticList.entries.add(new record_entry(list.time_start, list.duration));//record_entries(list.time_start,)
+  //Location for record?
+  }
 
-    StaticList.entries = new record_entries.fromJson(jsonDecode(response.body));
+  static void post_submit_form(String id,String unitok,Map<String,String> json_data){
+    var url = StaticList.submit_form_api_url;
+    url = url + 'id=' + id +'&';
+    url = url + 'unitok=' + unitok +'&';
+    postWrap(url,{
+        HttpHeaders.contentTypeHeader: "application/json",
+        "callMethod" : "DOCTOR_AVAILABILITY"
+      },
+      json.encode(json_data),
+      (response){
+        if(response.body == 'success'){
+          for(ColForm a in StaticList.colform_list){
+            if(a.id == id){
+              StaticList.colform_list.remove(a);
+              break;
+            }
+          }
+        }
+        ;
+      });
   }
 
 

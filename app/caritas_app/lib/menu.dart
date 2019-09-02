@@ -13,7 +13,9 @@ class MyMenu_RFID extends StatelessWidget{
             UserAccountsDrawerHeader(
               accountName: new Text(StaticList.location),
               currentAccountPicture: new CircleAvatar(
-              backgroundImage: AssetImage('images/pic1.jpg'), radius: 35.0,),) ,
+              /*backgroundImage: AssetImage('images/pic1.jpg'),*/
+              backgroundImage: new NetworkImage('https://picsum.photos/250?image=9'),
+               radius: 35.0,),) ,
             ListTile(title: Text(I8N.of(context).rfid_title),
               leading: new CircleAvatar(child: new Icon(Icons.directions_walk),),
               onTap: () {
@@ -43,7 +45,9 @@ class MyMenu_Data extends StatelessWidget{
             UserAccountsDrawerHeader(
               accountName: new Text(StaticList.location),
               currentAccountPicture: new CircleAvatar(
-                backgroundImage: AssetImage('images/pic1.jpg'), radius: 35.0,),) ,
+              /*backgroundImage: AssetImage('images/pic1.jpg'),*/
+              backgroundImage: new NetworkImage('https://picsum.photos/250?image=9'),
+               radius: 35.0,),) ,
             ListTile(title: Text(I8N.of(context).rfid_title),
               leading: new CircleAvatar(child: new Icon(Icons.directions_walk),),
               onTap: () {
@@ -74,7 +78,9 @@ class MyMenu_Manual extends StatelessWidget{
             UserAccountsDrawerHeader(
               accountName: new Text(StaticList.location),
               currentAccountPicture: new CircleAvatar(
-              backgroundImage: AssetImage('images/pic1.jpg'), radius: 35.0,),) ,
+              /*backgroundImage: AssetImage('images/pic1.jpg'),*/
+              backgroundImage: new NetworkImage('https://picsum.photos/250?image=9'),
+               radius: 35.0,),) ,
             ListTile(title: Text(I8N.of(context).rfid_title),
               leading: new CircleAvatar(child: new Icon(Icons.directions_walk),),
               onTap: () {
