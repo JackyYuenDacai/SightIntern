@@ -2,6 +2,7 @@ package com.sight.WebServer.api;
 
 import java.io.BufferedReader;
 import java.io.ByteArrayInputStream;
+import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.util.ArrayList;
@@ -9,12 +10,15 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.Part;
 
 import org.apache.tomcat.jni.FileInfo;
 import org.bson.types.ObjectId;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.mongodb.core.query.Criteria;
 import org.springframework.data.mongodb.core.query.Query;
@@ -23,18 +27,23 @@ import org.springframework.data.mongodb.gridfs.GridFsTemplate;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.multipart.MultipartFile;
 
 import com.mongodb.gridfs.GridFS;
 import com.mongodb.gridfs.GridFSDBFile;
 import com.mongodb.gridfs.GridFSFile;
 import com.mongodb.gridfs.GridFSInputFile;
+import com.sight.WebServer.data.dao.users_filesMapper;
 import com.sight.WebServer.data.dao.users_filesSqlProvider;
 import com.sight.WebServer.data.model.forms;
 import com.sight.WebServer.data.model.users_files;
+import com.sight.WebServer.data.service.RecordBufferService;
 import com.sight.WebServer.data.service.formsService;
 import com.sight.WebServer.utils.General;
 
+import jdk.internal.jline.internal.Log;
 import net.sf.json.JSONObject;
 
 @Controller
@@ -44,6 +53,7 @@ public class ResourceController {
 	@Autowired
 	formsService FormsService;
 	
+	private static final Logger LOG= LoggerFactory.getLogger(ResourceController.class);
 	
 	@RequestMapping(value= "/form_config")
 	@ResponseBody
@@ -128,10 +138,49 @@ public class ResourceController {
 	
     @Autowired
     private GridFsTemplate gridFsTemplate;
+    @Autowired
+    private users_filesMapper Users_FilesMapper;
+    
+    @RequestMapping(value = "/upload")
+    @ResponseBody
+    public Map<String,Object> uploadFile(@RequestParam("id") String id,@RequestParam("token") String token,MultipartFile file){
+    	Map<String,Object> ret = new HashMap<String,Object>();
+    	String user_id = "test";
+    	try {
+    	if (!file.isEmpty()) {  
+	        String fileName = file.getOriginalFilename();
+	        // get file stream
+	        InputStream ins = file.getInputStream();
+	        // get file type
+	        String contentType = file.getContentType();
+	        // store file in mongodb
+	        ObjectId objectId = gridFsTemplate.store(ins, fileName, contentType);
+	        
+	        users_files UsersFiles = new users_files();
+	        UsersFiles.setFileId(General.RandomToken());
+	        UsersFiles.setId(ObjectId.get().toString());
+	        UsersFiles.setPid(user_id);
+	        UsersFiles.setFileType(contentType);
+	        Users_FilesMapper.insertSelective(UsersFiles);
+	        //UsersFilesSqlProvider.insertSelective(UsersFiles);
+	        
+	        ret.put("error", 0);
+    	}else {
+    		ret.put("error", 502);
+    	}
+    	}catch(Exception ex) {
+    		ret.put("error", 502);
+    		LOG.error(ex.getMessage());
+    	}
+    	return ret;
+    }
+    
+    /*
     @RequestMapping(value = "/upload", method = RequestMethod.POST)
     @ResponseBody
     public Map<String, Object> uploadFile(HttpServletRequest request) throws Exception {
     	//JSONObject request_para = JSONObject.request.getInputStream().
+    	
     	Map<String,Object> ret = new HashMap<String,Object>();
     	JSONObject jsonObject = General.getRequest(request.getInputStream());
     	Part part = request.getPart("file");
@@ -139,17 +188,19 @@ public class ResourceController {
         InputStream ins = part.getInputStream();
         String contentType = part.getContentType();
         
+        LOG.info("resource upload:enter");
+        
         try {
 	        JSONObject parameters = JSONObject.fromObject(jsonObject.get("parameters"));
 	        String user_id = parameters.getString("id");
 	        String file_data = parameters.getString("file_data");
 	        String file_name = user_id + General.RandomPostfix();
 	        ObjectId gridFSFile = gridFsTemplate.store(ins, file_name, contentType);
-			/*
+			
 				"file_type": img/raw/...,
 			    "file_data": Stringifyed file data,
 			    "id": users' id,
-			 */
+			 
 	        //success
 	        users_filesSqlProvider UsersFilesSqlProvider = new users_filesSqlProvider();
 	        users_files UsersFiles = new users_files();
@@ -167,7 +218,7 @@ public class ResourceController {
 		return ret;
 
     }
-    
+    */
     @SuppressWarnings("deprecation")
 	@RequestMapping(value = "/resource")
     @ResponseBody
@@ -191,7 +242,7 @@ public class ResourceController {
             fileName = new String(fileName.getBytes("UTF-8"), "ISO-8859-1");
         }
         //NOTIFY BROWSER TO DOWNLOAD
-        response.setContentType(gfsfile.getContentType());
+        //response.setContentType(gfsfile.getContentType());
         response.setHeader("Content-Disposition", "attachment;filename=\"" + fileName + "\"");	
         GridFsResource gridfsResource = gridFsTemplate.getResource(gfsfile);
         gridfsResource.getInputStream().transferTo(response.getOutputStream());
