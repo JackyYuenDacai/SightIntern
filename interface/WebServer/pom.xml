@@ -23,6 +23,12 @@
 		    <groupId>org.mybatis.generator</groupId>
 		    <artifactId>mybatis-generator-maven-plugin</artifactId>
 		    <version>1.3.7</version>
+		    <exclusions>
+		    	<exclusion>
+		    		<groupId>javax.annotation</groupId>
+		    		<artifactId>jsr250-api</artifactId>
+		    	</exclusion>
+		    </exclusions>
 		</dependency>
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
@@ -75,6 +81,18 @@
 	</dependencies>
 
 	<build>
+		<extensions>
+	        <extension>
+	            <groupId>javax.annotation</groupId>
+	            <artifactId>javax.annotation-api</artifactId>
+	            <version>1.3.2</version>
+	        </extension>
+	        <extension>
+	            <groupId>javax.annotation</groupId>
+	            <artifactId>jsr250-api</artifactId>
+	            <version>1.0</version>
+	        </extension>
+	    </extensions>
 		<plugins>
 			<plugin>
 				<groupId>org.springframework.boot</groupId>
@@ -93,6 +111,13 @@
 						</goals>
 					</execution>
 				</executions>
+			    <dependencies>
+			        <dependency>
+			            <groupId>mysql</groupId>
+			            <artifactId>mysql-connector-java</artifactId>
+			            <version>${mysql.version}</version>
+			        </dependency>
+			    </dependencies>
 				<configuration>
 					<!-- generator 工具配置文件的位置 -->
 					<configurationFile>src/main/resources/mybatis-generator.xml</configurationFile>

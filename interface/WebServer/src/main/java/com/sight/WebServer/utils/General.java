@@ -19,7 +19,6 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import com.sight.WebServer.interceptor.LoginInterceptor;
-import com.sun.org.apache.xml.internal.security.utils.Base64;
 
 import jdk.internal.jline.internal.Log;
 import net.sf.json.JSONObject;
@@ -78,7 +77,7 @@ public class General {
         // 确定计算方法
         MessageDigest md5 = MessageDigest.getInstance("MD5");
         // 加密字符串
-        return bytesToHexString(md5.digest(Base64.encode(STR.getBytes("utf-8")).getBytes()));
+        return bytesToHexString(md5.digest(STR.getBytes("utf-8")));
        
     }
 	public static Date getTokenExpireDate() {

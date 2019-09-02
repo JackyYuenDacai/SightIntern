@@ -10,8 +10,10 @@ import org.mybatis.spring.annotation.MapperScan;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.boot.builder.SpringApplicationBuilder;
 import org.springframework.boot.web.embedded.tomcat.TomcatServletWebServerFactory;
 import org.springframework.boot.web.servlet.ServletComponentScan;
+import org.springframework.boot.web.servlet.support.SpringBootServletInitializer;
 import org.springframework.context.annotation.Bean;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.data.redis.serializer.RedisSerializer;
@@ -21,7 +23,7 @@ import com.sight.WebServer.WebServerApplication;
 @MapperScan(value = "com.sight.WebServer.data.dao")
 @ServletComponentScan(basePackages = "com.sight.WebServer.filter")
 @SpringBootApplication
-public class WebServerApplication {
+public class WebServerApplication extends SpringBootServletInitializer{
 	@Autowired
 	private RedisTemplate redisTemplate = null;
 	public static void main(String[] args) {
@@ -36,7 +38,11 @@ public class WebServerApplication {
 		redisTemplate.setKeySerializer (stringSerializer);
 		redisTemplate .setHashKeySerializer(stringSerializer);
 	}
-	
+    @Override//为了打包springboot项目
+    protected SpringApplicationBuilder configure(
+            SpringApplicationBuilder builder) {
+        return builder.sources(this.getClass());
+    }
 	/*
     @Bean
     public Connector connector(){
