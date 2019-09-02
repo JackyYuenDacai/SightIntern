@@ -41,6 +41,9 @@ import com.sight.WebServer.data.model.forms;
 import com.sight.WebServer.data.model.users_files;
 import com.sight.WebServer.data.service.RecordBufferService;
 import com.sight.WebServer.data.service.formsService;
+import com.sight.WebServer.data.service.usersService;
+import com.sight.WebServer.data.service.users_filesService;
+import com.sight.WebServer.data.service.users_tokenService;
 import com.sight.WebServer.utils.General;
 
 import jdk.internal.jline.internal.Log;
@@ -52,6 +55,16 @@ public class ResourceController {
 	
 	@Autowired
 	formsService FormsService;
+	@Autowired
+	usersService UsersService;
+	@Autowired
+	users_tokenService UsersTokenService;
+	@Autowired
+	users_filesService UsersFilesService;
+    @Autowired
+    private GridFsTemplate gridFsTemplate;
+    @Autowired
+    private users_filesMapper Users_FilesMapper;
 	
 	private static final Logger LOG= LoggerFactory.getLogger(ResourceController.class);
 	
@@ -136,115 +149,79 @@ public class ResourceController {
 		return ret;
 	}
 	
-    @Autowired
-    private GridFsTemplate gridFsTemplate;
-    @Autowired
-    private users_filesMapper Users_FilesMapper;
+
     
     @RequestMapping(value = "/upload")
     @ResponseBody
     public Map<String,Object> uploadFile(@RequestParam("id") String id,@RequestParam("token") String token,MultipartFile file){
     	Map<String,Object> ret = new HashMap<String,Object>();
-    	String user_id = "test";
+    	Map<String,Object> dat = new HashMap<String,Object>();
+    	String user_id = id;
     	try {
-    	if (!file.isEmpty()) {  
-	        String fileName = file.getOriginalFilename();
-	        // get file stream
-	        InputStream ins = file.getInputStream();
-	        // get file type
-	        String contentType = file.getContentType();
-	        // store file in mongodb
-	        ObjectId objectId = gridFsTemplate.store(ins, fileName, contentType);
-	        
-	        users_files UsersFiles = new users_files();
-	        UsersFiles.setFileId(General.RandomToken());
-	        UsersFiles.setId(ObjectId.get().toString());
-	        UsersFiles.setPid(user_id);
-	        UsersFiles.setFileType(contentType);
-	        Users_FilesMapper.insertSelective(UsersFiles);
-	        //UsersFilesSqlProvider.insertSelective(UsersFiles);
-	        
-	        ret.put("error", 0);
-    	}else {
-    		ret.put("error", 502);
-    	}
+    		if(UsersTokenService.getUserTokenById(user_id).getToken() == token)
+		    	if (!file.isEmpty()) {  
+			        String fileName = file.getOriginalFilename();
+			        // get file stream
+			        InputStream ins = file.getInputStream();
+			        // get file type
+			        String contentType = file.getContentType();
+			        // store file in mongodb
+			        ObjectId objectId = gridFsTemplate.store(ins, fileName, contentType);
+			        
+			        users_files UsersFiles = new users_files();
+			        UsersFiles.setFileId(General.RandomToken());
+			        UsersFiles.setId(ObjectId.get().toString());
+			        UsersFiles.setPid(user_id);
+			        UsersFiles.setFileType(contentType);
+			        Users_FilesMapper.insertSelective(UsersFiles);
+			        //UsersFilesSqlProvider.insertSelective(UsersFiles);
+			        dat.put("file_id", ObjectId.get().toString());
+			        ret.put("data", dat);
+			        ret.put("error", 0);
+		    	}else {
+		    		ret.put("error", 502);
+		    	}
+    		else {
+    			ret.put("error", 401);
+    		}
     	}catch(Exception ex) {
     		ret.put("error", 502);
     		LOG.error(ex.getMessage());
     	}
     	return ret;
     }
-    
-    /*
-    @RequestMapping(value = "/upload", method = RequestMethod.POST)
-    @ResponseBody
-    public Map<String, Object> uploadFile(HttpServletRequest request) throws Exception {
-    	//JSONObject request_para = JSONObject.request.getInputStream().
-    	
-    	Map<String,Object> ret = new HashMap<String,Object>();
-    	JSONObject jsonObject = General.getRequest(request.getInputStream());
-    	Part part = request.getPart("file");
-        String fileName = part.getSubmittedFileName();
-        InputStream ins = part.getInputStream();
-        String contentType = part.getContentType();
-        
-        LOG.info("resource upload:enter");
-        
-        try {
-	        JSONObject parameters = JSONObject.fromObject(jsonObject.get("parameters"));
-	        String user_id = parameters.getString("id");
-	        String file_data = parameters.getString("file_data");
-	        String file_name = user_id + General.RandomPostfix();
-	        ObjectId gridFSFile = gridFsTemplate.store(ins, file_name, contentType);
-			
-				"file_type": img/raw/...,
-			    "file_data": Stringifyed file data,
-			    "id": users' id,
-			 
-	        //success
-	        users_filesSqlProvider UsersFilesSqlProvider = new users_filesSqlProvider();
-	        users_files UsersFiles = new users_files();
-	        UsersFiles.setId(ObjectId.get().toString());
-	        UsersFiles.setPid(user_id);
-	        UsersFiles.setFileType(contentType);
-	        UsersFilesSqlProvider.insertSelective(UsersFiles);
-	        
-        }catch(Exception ex) {
-        	ret.put("error",502);
-        	ret.put("error_msg", ex.getMessage());
-        	return ret;
-        }
-		ret.put("error", 0);
-		return ret;
-
-    }
-    */
-    @SuppressWarnings("deprecation")
-	@RequestMapping(value = "/resource")
+ 
+    @RequestMapping(value = "/resource")
     @ResponseBody
     public void resource_get(HttpServletRequest request, HttpServletResponse response) throws Exception {
-    	Map<String,Object> ret = new HashMap<String,Object>();
+    	
     	String fileId = request.getParameter("file_id");
-        Query query = Query.query(Criteria.where("_id").is(fileId));
-        
-        com.mongodb.client.gridfs.model.GridFSFile gfsfile = gridFsTemplate.findOne(query);
-        if (gfsfile == null) {
-           
-            return ;
-        }
-        String fileName = gfsfile.getFilename().replace(",", "");
-        if (request.getHeader("User-Agent").toUpperCase().contains("MSIE") ||
-                request.getHeader("User-Agent").toUpperCase().contains("TRIDENT")
-                || request.getHeader("User-Agent").toUpperCase().contains("EDGE")) {
-            fileName = java.net.URLEncoder.encode(fileName, "UTF-8");
-        } else {
-            //NOT IE BROWSER?
-            fileName = new String(fileName.getBytes("UTF-8"), "ISO-8859-1");
-        }
-        //NOTIFY BROWSER TO DOWNLOAD
-        //response.setContentType(gfsfile.getContentType());
-        response.setHeader("Content-Disposition", "attachment;filename=\"" + fileName + "\"");	
-        GridFsResource gridfsResource = gridFsTemplate.getResource(gfsfile);
-        gridfsResource.getInputStream().transferTo(response.getOutputStream());
+    	String token = request.getParameter("token");
+    	String id = request.getParameter("id");
+    	users_files ufs = UsersFilesService.getUsersFilesById(fileId);
+    	if(UsersTokenService.getUserTokenById(id).getToken() == token)
+    	if(ufs != null) 
+    	{
+    	
+	        Query query = Query.query(Criteria.where("_id").is(fileId));
+	        com.mongodb.client.gridfs.model.GridFSFile gfsfile = gridFsTemplate.findOne(query);
+	        if (gfsfile == null) {
+	            return ;
+	        }
+	        String fileName = gfsfile.getFilename().replace(",", "");
+	        if (request.getHeader("User-Agent").toUpperCase().contains("MSIE") ||
+	                request.getHeader("User-Agent").toUpperCase().contains("TRIDENT")
+	                || request.getHeader("User-Agent").toUpperCase().contains("EDGE")) {
+	            fileName = java.net.URLEncoder.encode(fileName, "UTF-8");
+	        } else {
+	            //NOT IE BROWSER?
+	            fileName = new String(fileName.getBytes("UTF-8"), "ISO-8859-1");
+	        }
+	        //NOTIFY BROWSER TO DOWNLOAD
+	        //response.setContentType(gfsfile.getContentType());
+	        response.setHeader("Content-Disposition", "attachment;filename=\"" + fileName + "\"");	
+	        GridFsResource gridfsResource = gridFsTemplate.getResource(gfsfile);
+	        gridfsResource.getInputStream().transferTo(response.getOutputStream());
+    	}
     }
 }

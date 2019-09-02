@@ -175,11 +175,17 @@ This interface updates token and rent token for another 24 hours.
 ```
 POST method
 
-This interface upload files toward user.
+This interface upload files.
 
 Directly upload file through conventional upload method
 
-Cookies Needed: id token
+Parameters Needed: id token
+
+Return file_id if successful
+
+Sample upload link:
+
+http://localhost:8888/api/upload?id=Test&token=wi3ij34mo5
 
 ##/api/resource
 > request parameters
@@ -198,9 +204,9 @@ This interface retreat files from server
 
 And can directly used the link as resource in html.
 
-Cookies Needed: id token
+Parameters Needed: id token file_id
 
-
+Return file content if successful.
 ##/api/login
 > request parameters
 
