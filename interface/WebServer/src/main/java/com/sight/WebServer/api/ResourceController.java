@@ -158,7 +158,7 @@ public class ResourceController {
     	Map<String,Object> dat = new HashMap<String,Object>();
     	String user_id = id;
     	try {
-    		if(UsersTokenService.getUserTokenById(user_id).getToken() == token)
+    		if(UsersTokenService.getUserTokenById(user_id).getToken() .equals( token))
 		    	if (!file.isEmpty()) {  
 			        String fileName = file.getOriginalFilename();
 			        // get file stream

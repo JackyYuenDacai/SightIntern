@@ -6,7 +6,7 @@
 <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 </head>
 <body>
-    <form id="form1" action="http://localhost:8888/api/upload" target="frame1" method="post" enctype="multipart/form-data">
+    <form id="form1" action="http://localhost:8888/api/upload?id=test&token=725bed0fba9e9866bcca1cada6d27748" target="frame1" method="post" enctype="multipart/form-data">
         <input type="file" name="file">
         <input type="button" value="上传" onclick="upload()">
     </form>
