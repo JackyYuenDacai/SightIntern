@@ -10,6 +10,7 @@ Error Code | Meaning
 303 | Invalid
 401 | Token expired
 502 | Failed
+900 | Undetermined error
 
 ## 101 Privilege error
 

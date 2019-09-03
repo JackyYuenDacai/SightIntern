@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 set -o errexit #abort if any command fails
-me=$(basename "$0")
+me="Jacky Yuen"
 
 help_message="\
 Usage: $me [-c FILE] [<options>]
