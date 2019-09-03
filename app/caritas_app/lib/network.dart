@@ -18,12 +18,12 @@ class connection{
 
   static var client = new http.Client();
   static http.Response ajaxResponse = new http.Response("",200);
-  static String full_server_addr = 'http://192.168.31.2:8080/WebInterface';
+  static String full_server_addr = 'http://35.200.70.172:8080/WebInterface';
   
   static String token_update = full_server_addr+'/api/token_update';
   static String login = full_server_addr+'/api/login';
   static String records = full_server_addr+'/api/records';
-  static String submit = full_server_addr+'/api/submit';
+  static String form_config = full_server_addr+'/api/form_config';
 
     ///what is it doing? Send request to url, call function (process) with response given as parameter///
   static void requestWrap(String url,ProcessFunc process) async{
@@ -67,7 +67,7 @@ class connection{
 
   static void get_staff_list(String location){
     records_send filter = new records_send(location, null, 2, null, null, null, null, null, null);
-    request_basic_send data = new request_basic_send(token, id, soc, jsonEncode(filter));
+    request_basic_send data = new request_basic_send(token, StaticList.location, StaticList.soc, jsonEncode(filter));
     String url = records;
 
     postWrap(url,{
@@ -174,9 +174,10 @@ class connection{
   }
 
   static void post_submit_form(String id,String unitok,Map<String,String> json_data){
-    var url = StaticList.submit_form_api_url;
+    String url = form_config;
+    url = url + 'type=add&';
     url = url + 'id=' + id +'&';
-    url = url + 'unitok=' + unitok +'&';
+    url = url + 'soc=Caritas&'; 
     postWrap(url,{
         HttpHeaders.contentTypeHeader: "application/json",
         "callMethod" : "DOCTOR_AVAILABILITY"
@@ -195,6 +196,22 @@ class connection{
       });
   }
 
+  static void get_token(String location){
+    String url = token_update;
 
+    postWrap(url,{
+        HttpHeaders.contentTypeHeader: "application/json",
+        "callMethod" : "DOCTOR_AVAILABILITY"
+      },
+      //jsonEncode(data),
+      (response)=>get_token_proc(response)
+    );  
+  }
+
+  static void get_token_proc(http.Response response){
+    Map basicMap = jsonDecode(response.body);
+    var basic_response = new request_basic_receive.fromJson(basicMap);
+    Map tokenMap = jsonDecode(basic_response.data);
+    var token_response = new token_update_received.fromJson(tokenMap);
+    StaticList.token = token_response.token;
 }
-

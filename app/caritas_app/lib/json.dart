@@ -172,3 +172,15 @@ class record_list_content {
 
 }
 
+class token_update_received {
+  final String token;
+  final String name;
+  final int privilege;
+
+  token_update_received(this.token, this.name, this.privilege);
+
+  token_update_received.fromJson(Map<String, dynamic> json)
+      : token = json['token'],
+        name = json['name'],
+        privilege = json['privilege'];
+}

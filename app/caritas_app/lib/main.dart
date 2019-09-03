@@ -7,7 +7,6 @@ import './DataPage.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import './I8N.dart';
 import 'network_request.dart';
-import 'SettingPage.dart';
 import 'dart:convert';
 import 'package:convert/convert.dart';
 import 'package:crypto/crypto.dart';

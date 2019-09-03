@@ -144,6 +144,8 @@ class StaticList{
   static List<ColForm> colform_list = new List<ColForm>();
   static List<DataForm> datform_list = new List<DataForm>();
   static String location = '?';
+  static String soc = 'Caritas';
+  static String token;
   static record_entries entries;
   static List<String> student_id = new List<String>();
   static List<String> student_name = new List<String>();
@@ -155,7 +157,7 @@ class StaticList{
 
   static List<String> password = new List<String>();
 
-  static String server_addr = 'http://192.168.31.2:8080';//'http://192.168.31.2:8080';
+  static String server_addr = 'http://35.200.70.172:8080';//'http://192.168.31.2:8080';
   static String getpop_api_url = server_addr+'/WebInterface/get_pops_list?location=';
   static String getstaff_api_url = server_addr+'/WebInterface/get_staff_list?location=';
   static String submit_form_api_url = server_addr+'/WebInterface/submit_form?';
