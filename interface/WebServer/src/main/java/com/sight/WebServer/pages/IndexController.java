@@ -11,7 +11,7 @@ public class IndexController implements ErrorController{
 
     @RequestMapping(value = PATH)
     public String error() {
-        return "Error occured. Details please refer to documentation.";
+        return "{\"error\":900,\"error_msg\":\"undetermined error\"}";
     }
 
     @Override
