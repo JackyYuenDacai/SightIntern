@@ -53,6 +53,7 @@ create table users_token(
   expire datetime
 );
 
+
 create table forms(
   id nvarchar(64) primary key,
   soc nvarchar(512),
