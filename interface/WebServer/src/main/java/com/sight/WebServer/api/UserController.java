@@ -38,16 +38,17 @@ public class UserController {
 		Map<String,Object> ret = new HashMap<String,Object>();
 		JSONObject jsonObject = General.getRequest(request.getInputStream());
 		JSONObject parameters = JSONObject.fromObject(jsonObject.get("parameters"));
-		String type = parameters.getString("type");
-		String soc = parameters.getString("soc");
-		String id = parameters.getString("id");
-		String name = parameters.getString("name");
-		String role = parameters.getString("role");
-		String icon_id = parameters.getString("icon_id");
-		String pwd = parameters.getString("pwd");
-		String extra = parameters.getString("extra");
+	
+		String type = null; if(parameters.containsKey("type")) type = parameters.getString("type");
+		String soc = null;  if(parameters.containsKey("soc")) soc = parameters.getString("soc");
+		String id = null;  if(parameters.containsKey("id")) id = parameters.getString("id");
+		String name = null;  if(parameters.containsKey("name")) name = parameters.getString("name");
+		String role = null;  if(parameters.containsKey("role")) type = parameters.getString("role");
+		String icon_id = null;  if(parameters.containsKey("icon_id")) type = parameters.getString("icon_id");
+		String pwd = null;  if(parameters.containsKey("pwd")) pwd = parameters.getString("pwd");
+		String extra = null;  if(parameters.containsKey("extra")) extra = parameters.getString("extra");
 		
-		if(type == "add") {
+		if(type.equals("add")) {
 
 			if(UsersService.getUserById("id")!=null) {
 				ret.put("error", 502);
@@ -66,18 +67,18 @@ public class UserController {
 			
 			ret.put("error", 0);
 			return ret;
-		}else if(type == "edit"){
+		}else if(type.equals("edit")){
 			
-			if(name != "") {
+			if(name != null) {
 				UsersService.updateUserName(id, name);
 			}
-			if(extra != "") {
+			if(extra != null) {
 				UsersService.updateUserExtra(id, extra);
 			}
-			if(pwd != "") {
+			if(pwd != null) {
 				UsersService.updateUserPwd(id,pwd);
 			}
-			if(icon_id !="") {
+			if(icon_id != null) {
 				UsersIconService.updateUserIcon(id, icon_id);
 			}
 			ret.put("error", 0);
