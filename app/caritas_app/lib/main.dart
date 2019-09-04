@@ -6,6 +6,7 @@ import './pop.dart';
 import './DataPage.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import './I8N.dart';
+import 'network.dart';
 import 'network_request.dart';
 import 'dart:convert';
 import 'package:convert/convert.dart';
@@ -172,6 +173,7 @@ class _LoginPageState extends State<LoginPage> {
                 padding: EdgeInsets.fromLTRB(20.0, 15.0, 20.0, 15.0),
                 onPressed: (){
                   StaticList.location = _user;
+                  connection.get_token(_user);
                   _password = generateMd5(_password);
                   String soc = "Caritas";
                   String url = network_request.login+"soc="+soc+"&id=${_user}&pwd=${_password}";
