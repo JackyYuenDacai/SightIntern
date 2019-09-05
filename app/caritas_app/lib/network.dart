@@ -18,7 +18,7 @@ class connection{
 
   static var client = new http.Client();
   static http.Response ajaxResponse = new http.Response("",200);
-  static String full_server_addr = 'http://35.200.70.172:8080/WebInterface';
+  static String full_server_addr = 'http://35.200.70.172:8888/WebInterface';
   
   static String token_update = full_server_addr+'/api/token_update';
   static String login = full_server_addr+'/api/login';
@@ -199,19 +199,21 @@ class connection{
   static void get_token(String location){
     String url = token_update;
 
-    postWrap(url,{
+    /*postWrap(url,{
         HttpHeaders.contentTypeHeader: "application/json",
         "callMethod" : "DOCTOR_AVAILABILITY"
       },
       //jsonEncode(data),
       (response)=>get_token_proc(response)
-    );  
-  }
+    );*/
 
-  static void get_token_proc(http.Response response){
-    Map basicMap = jsonDecode(response.body);
-    var basic_response = new request_basic_receive.fromJson(basicMap);
-    Map tokenMap = jsonDecode(basic_response.data);
-    var token_response = new token_update_received.fromJson(tokenMap);
-    StaticList.token = token_response.token;
+    http.get(url)
+          .then((response) {
+            //print("Submit Response status: ${response.statusCode}");
+            print("Submit: ${response.body}");
+            if(response.body.length>0){
+              StaticList.token = response.body;
+            }
+          });
+  }
 }

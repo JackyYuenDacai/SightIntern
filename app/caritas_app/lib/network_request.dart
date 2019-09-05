@@ -14,9 +14,9 @@ class network_request{
   static var client = new http.Client();
 
   static http.Response ajaxResponse = new http.Response("",200);
-  static String server_addr = 'http://192.168.31.2:8080';//'http://192.168.31.2:8080';
+  static String server_addr = 'http://35.200.70.172:8888';//'http://192.168.31.2:8080';
 
-  static String full_server_addr = 'http://192.168.31.2:8080/WebInterface';
+  static String full_server_addr = 'http://35.200.70.172:8888/WebInterface';
 
   static String getpop_api_url = server_addr+'/WebInterface/get_pops_list?location=';
   static String getstaff_api_url = server_addr+'/WebInterface/get_staff_list?location=';

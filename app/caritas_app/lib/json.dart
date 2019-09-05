@@ -172,7 +172,7 @@ class record_list_content {
 
 }
 
-class token_update_received {
+/*class token_update_received {
   final String token;
   final String name;
   final int privilege;
@@ -183,4 +183,4 @@ class token_update_received {
       : token = json['token'],
         name = json['name'],
         privilege = json['privilege'];
-}
+}*/
