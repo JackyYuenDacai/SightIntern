@@ -260,6 +260,9 @@
                   <li>
                     <a href="#api-form_config" class="toc-h2 toc-link" data-title="/api/form_config">/api/form_config</a>
                   </li>
+                  <li>
+                    <a href="#api-search_user" class="toc-h2 toc-link" data-title="/api/search_user">/api/search_user</a>
+                  </li>
               </ul>
           </li>
           <li>
@@ -554,8 +557,33 @@
 <p>When in need of query for all the form owned by one soc, uses type list.</p>
 
 <p>When in need of query for one form using soc and id, uses type query.</p>
+<h2 id='api-search_user'>/api/search_user</h2>
+<blockquote>
+<p>request parameters</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+    </span><span class="s2">"type"</span><span class="p">:</span><span class="s2">"id"</span><span class="err">/</span><span class="s2">"name"</span><span class="w"> </span><span class="err">search</span><span class="w"> </span><span class="err">by</span><span class="w"> </span><span class="err">id</span><span class="w"> </span><span class="err">or</span><span class="w"> </span><span class="err">name</span><span class="w">  
+    </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="err">if</span><span class="w"> </span><span class="err">search</span><span class="w"> </span><span class="err">by</span><span class="w"> </span><span class="err">id</span><span class="w">
+    </span><span class="s2">"name"</span><span class="w"> </span><span class="err">if</span><span class="w"> </span><span class="err">search</span><span class="w"> </span><span class="err">by</span><span class="w"> </span><span class="err">name</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<blockquote>
+<p>data received</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+    </span><span class="p">[{</span><span class="s2">"id"</span><span class="p">:</span><span class="err">...</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"name"</span><span class="p">:</span><span class="err">...</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"extra"</span><span class="p">:</span><span class="err">...</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"role"</span><span class="p">:</span><span class="err">...</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"icon_id"</span><span class="p">:</span><span class="err">...</span><span class="w">
+        </span><span class="p">},{</span><span class="err">...</span><span class="p">},{</span><span class="err">...</span><span class="p">}]</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<p>When in need of query user by name, uses type name;</p>
+
+<p>When in need of query user by id uses type id;</p>
 <h1 id='errors'>Errors</h1>
-<p>These are the errors that may occur and the error code return in data recevied json package.</p>
+<p>These are the errors that may occur and the error code return in data received JSON package.</p>
 
 <table><thead>
 <tr>

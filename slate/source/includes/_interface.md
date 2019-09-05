@@ -266,3 +266,31 @@ When list for multiple forms using Soc
 When in need of query for all the form owned by one soc, uses type list.
 
 When in need of query for one form using soc and id, uses type query.
+
+##/api/search_user
+> request parameters
+
+```json
+{
+	"type":"id"/"name" search by id or name  
+	"id": if search by id
+	"name" if search by name
+}
+```
+
+> data received
+
+```json
+{
+	[{"id":...,
+		"name":...,
+		"extra":...,
+		"role":...,
+		"icon_id":...
+		},{...},{...}]
+}
+```
+
+When in need of query user by name, uses type name;
+
+When in need of query user by id uses type id;
