@@ -282,7 +282,7 @@ When in need of query for one form using soc and id, uses type query.
 
 ```json
 {
-	[{"id":...,
+	"users":[{"id":...,
 		"name":...,
 		"extra":...,
 		"role":...,
