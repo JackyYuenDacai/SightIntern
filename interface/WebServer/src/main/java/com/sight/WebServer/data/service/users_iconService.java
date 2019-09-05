@@ -43,4 +43,14 @@ public class users_iconService {
 		}
 		return ret;
 	}
+	
+	public users_icon getUserIconById(String id) {
+		users_icon UsersIcon = null;
+		try {
+			UsersIcon = UsersIconMapper.selectByPrimaryKey(id);
+		}catch(Exception ex) {
+			ex.printStackTrace();
+		}
+		return UsersIcon;
+	}
 }

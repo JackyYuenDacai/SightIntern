@@ -75,18 +75,24 @@ public class ResourceController {
 		Map<String,Object> ret = new HashMap<String,Object>();
 		Map<String,Object> dat = new HashMap<String,Object>();
 		JSONObject jsonObject = General.getRequest(request.getInputStream());
+		String id = jsonObject.getString("id");
+		String token = jsonObject.getString("token");
 		try {
 			JSONObject parameters = JSONObject.fromObject(jsonObject.get("parameters"));
 			String type = parameters.getString("type");
-			String id = null;
-			String soc = null;
+			String form_id = null;
+			String form_soc = null;
 			String form = null;
 			switch(type) {
 			case "add":
-				id = parameters.getString("id");
-				soc = parameters.getString("soc");
+				if(UsersService.getUserById(id).getPrivilege()>=1) {
+					ret.put("error", 101);
+					ret.put("error_msg", "only administrator,teacher,staff have been authorized to alter form data.");
+				}
+				form_id = parameters.getString("id");
+				form_soc = parameters.getString("soc");
 				form = parameters.getString("form");
-				if(FormsService.addFormById(id, soc, form) == true) {
+				if(FormsService.addFormById(form_id, form_soc, form) == true) {
 					ret.put("error",0);
 				}else {
 					ret.put("error", 502);
@@ -94,9 +100,13 @@ public class ResourceController {
 				}
 				break;
 			case "del":
-				id = parameters.getString("id");
-				soc = parameters.getString("soc");
-				if(FormsService.delFormsById(id, soc) == true) {
+				if(UsersService.getUserById(id).getPrivilege()>=1) {
+					ret.put("error", 101);
+					ret.put("error_msg", "only administrator,teacher,staff have been authorized to alter form data.");
+				}
+				form_id = parameters.getString("id");
+				form_soc = parameters.getString("soc");
+				if(FormsService.delFormsById(form_id, form_soc) == true) {
 					ret.put("error",0);
 				}else {
 					ret.put("error", 502);
@@ -104,10 +114,14 @@ public class ResourceController {
 				}
 				break;
 			case "change":
-				id = parameters.getString("id");
-				soc = parameters.getString("soc");
+				if(UsersService.getUserById(id).getPrivilege()>=1) {
+					ret.put("error", 101);
+					ret.put("error_msg", "only administrator,teacher,staff have been authorized to alter form data.");
+				}
+				form_id = parameters.getString("id");
+				form_soc = parameters.getString("soc");
 				form = parameters.getString("form");
-				if(FormsService.updateFormById(id, soc, form) == true) {
+				if(FormsService.updateFormById(form_id, form_soc, form) == true) {
 					ret.put("error",0);
 				}else {
 					ret.put("error", 502);
@@ -116,9 +130,9 @@ public class ResourceController {
 		
 				break;
 			case "list":
-				soc = parameters.getString("soc");
+				form_soc = parameters.getString("soc");
 				List<JSONObject> fms = new ArrayList<JSONObject>();
-				List<forms> Forms = FormsService.getFormsBySoc(soc);
+				List<forms> Forms = FormsService.getFormsBySoc(form_soc);
 				Forms.forEach( fs -> {
 					JSONObject jsono = new JSONObject();
 					jsono.put("id", fs.getId());
@@ -129,9 +143,9 @@ public class ResourceController {
 				dat.put("form", fms);
 				break;
 			case "query":
-				soc = parameters.getString("soc");
-				id = parameters.getString("id");
-				forms fm = FormsService.getFormById(id, soc);
+				form_soc = parameters.getString("soc");
+				form_id = parameters.getString("id");
+				forms fm = FormsService.getFormById(form_id, form_soc);
 				if(fm != null) {
 					dat.put("form",fm.getFormData());
 					ret.put("error",0);
@@ -158,7 +172,7 @@ public class ResourceController {
     	Map<String,Object> dat = new HashMap<String,Object>();
     	String user_id = id;
     	try {
-    		if(UsersTokenService.getUserTokenById(user_id).getToken() .equals( token))
+    		if(UsersTokenService.getUserTokenById(user_id).getToken().equals( token))
 		    	if (!file.isEmpty()) {  
 			        String fileName = file.getOriginalFilename();
 			        // get file stream

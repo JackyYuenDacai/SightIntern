@@ -61,7 +61,7 @@ public class UserController {
 			User.setName(name);
 			User.setRole(role);
 			User.setPwd(pwd);
-			
+			User.setSoc(soc);
 			UsersService.addUser(User);
 			UsersIconService.addUserIcon(id, icon_id);
 			
@@ -80,6 +80,9 @@ public class UserController {
 			}
 			if(icon_id != null) {
 				UsersIconService.updateUserIcon(id, icon_id);
+			}
+			if(soc != null) {
+				//UsersService.updateUserSoc(id,soc);
 			}
 			ret.put("error", 0);
 			return ret;
@@ -103,21 +106,33 @@ public class UserController {
 		JSONObject jsonObject = General.getRequest(request.getInputStream());
 		JSONObject parameters = JSONObject.fromObject(jsonObject.get("parameters"));
 		String type = parameters.getString("type");
+		String token = jsonObject.getString("token");
+		String uid = jsonObject.getString("id");
 		
 		try {
 		List<users> UsersList = null;
 		switch(type) {
-		case "id":	String id = parameters.getString("id"); UsersList=UsersService.searchUserById(id);		break;
-		case "name":String name = parameters.getString("name");UsersList=UsersService.searchUserByName(name);	break;
+			case "id":	
+				String sid = parameters.getString("id"); 
+				UsersList=UsersService.searchUserById(sid);		
+				break;
+			case "name":
+				String sname = parameters.getString("name");
+				UsersList=UsersService.searchUserByName(sname);	
+				break;
 		}
 		Map<String,Object> data = new HashMap<String,Object>();
 		List<JSONObject> users =  new ArrayList<JSONObject>();
+		int upi = UsersService.getUserById(uid).getPrivilege();
 		for(users US : UsersList) {
+			if(US.getPrivilege()<upi && US.getParentId().contains(uid) == false)
+				continue;
 			JSONObject u = new JSONObject();
 			u.put("id", US.getId());
 			u.put("name", US.getName());
 			u.put("extra", US.getExtra());
 			u.put("role", US.getRole());
+			u.put("icon_id", UsersIconService.getUserIconById(US.getId()));
 			users.add(u);
 		}
 		data.put("users", users);

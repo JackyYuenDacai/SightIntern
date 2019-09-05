@@ -1,5 +1,6 @@
 package com.sight.WebServer.data.service;
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -86,5 +87,37 @@ public class usersService {
 			ex.printStackTrace();
 		}
 		return ret;
+	}
+	public List<String> getParents(String id,String soc){
+		List<String>ret = new ArrayList<String>();
+		try {
+			usersExample UsersExample = new usersExample();
+			UsersExample.createCriteria().andIdEqualTo(id).andSocEqualTo(soc);
+			users User = UsersMapper.selectByExample(UsersExample).get(0);
+			String buf = User.getParentId();
+			for(String a: buf.split(",")) {
+				ret.add(a);
+			}
+		}catch(Exception ex) {
+			ex.printStackTrace();
+		}
+		return ret;
+	}
+	public boolean setParentId(String id,String soc,String parent_id) {
+		boolean ret = false;
+		try {
+			usersExample UsersExample = new usersExample();
+			UsersExample.createCriteria().andIdEqualTo(id);
+			users User = UsersMapper.selectByExample(UsersExample).get(0);
+			User.setParentId(parent_id);
+			UsersMapper.updateByExampleSelective(User, UsersExample);
+			ret = true;
+		}catch(Exception ex) {
+			ex.printStackTrace();
+		}
+		return ret;
+	}
+	public boolean delParentId(String id,String soc) {
+		return setParentId(id,soc,"");
 	}
 }

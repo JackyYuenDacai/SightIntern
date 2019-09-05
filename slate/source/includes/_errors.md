@@ -1,6 +1,6 @@
 # Errors
 
-These are the errors that may occur and the error code return in data recevied json package.
+These are the errors that may occur and the error code return in data received JSON package.
 
 Error Code | Meaning
 ---------- | -------

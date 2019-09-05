@@ -62,6 +62,7 @@ create table forms(
 );
 
 insert into users values('test','Test user','Test',0,'Test user',md5('test'),'TEST','');
+insert into users_icon values('test','TEST_VALUE');
 insert into soc_list values('CARITAS','Caritas School');
 
 /*
