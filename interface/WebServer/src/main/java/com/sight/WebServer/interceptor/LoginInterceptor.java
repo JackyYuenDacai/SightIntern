@@ -16,7 +16,11 @@ import net.sf.json.JSONObject;
 import java.io.BufferedReader;
 import java.io.InputStream;
 import java.io.InputStreamReader;
+import java.util.Arrays;
+import java.util.Collections;
 import java.util.Date;
+import java.util.HashSet;
+import java.util.Set;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
@@ -29,6 +33,12 @@ public class LoginInterceptor implements HandlerInterceptor{
 	private usersService UsersService;
 	@Resource
 	private users_tokenService UsersTokenService;
+	
+	private static final Set<String> EXCLUDE_PATH = Collections.unmodifiableSet(new HashSet<>(
+            Arrays.asList(
+            		"/api/upload"
+            		)));
+	
     @Override
     public boolean preHandle(HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse, Object o) throws Exception {
         
@@ -36,10 +46,14 @@ public class LoginInterceptor implements HandlerInterceptor{
         String body = requestWrapper.getBody();
         LOG.info("login preHandler: "+body);
         JSONObject jsonObject = JSONObject.fromObject(body);
+        JSONObject ret = new JSONObject();
+    	String path = httpServletRequest.getRequestURI().substring(httpServletRequest.getContextPath().length()).replaceAll("[/]+$", "");
+        boolean excludedPath = EXCLUDE_PATH.contains(path);
         /*
     	"token": login token,
     	"id": Account id,
          */
+        if(excludedPath)return true;
         String token = jsonObject.getString("token");
         String id = jsonObject.getString("id");
         users_token UsersToken = UsersTokenService.getUserTokenById(id);
@@ -47,8 +61,11 @@ public class LoginInterceptor implements HandlerInterceptor{
         	LOG.info("login interceptor: valid");
         	return true;
         }
-        else
+        else {
+        	ret.put("error", 401);
+        	httpServletResponse.getOutputStream().write(ret.toString().getBytes());
         	return false;
+        }
         
     }
  
