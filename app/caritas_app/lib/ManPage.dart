@@ -1,3 +1,4 @@
+import 'package:caritas_app/network.dart';
 import 'package:flutter/material.dart';
 import 'package:connectivity/connectivity.dart';
 import 'package:flutter_datetime_picker/flutter_datetime_picker.dart';
@@ -8,6 +9,7 @@ import './pop.dart';
 import './menu.dart';
 import './main.dart';
 import 'RFIDPage.dart';
+import './network.dart';
 import 'network_request.dart';
 
 class ManPage extends StatefulWidget {
@@ -53,7 +55,7 @@ class _ManPageState extends State<ManPage> {
                   if(!RFIDPage.IsNetwork){
                     print('no network');
                   }else{
-                    network_request.post_submit_form(id,unitok,answer); //////////
+                    connection.post_submit_form(StaticList.location,null,answer); //////////
                   
                 
       setState((){});

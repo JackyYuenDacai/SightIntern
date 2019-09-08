@@ -184,3 +184,27 @@ class record_list_content {
         name = json['name'],
         privilege = json['privilege'];
 }*/
+
+class login_send {
+  final String id;
+  final String soc;
+  final String pwd;
+
+  login_send(this.id, this.soc, this.pwd);
+
+  Map<String, dynamic> toJson() =>
+    {
+      'id': id,
+      'soc': soc,
+      'pwd': pwd 
+    };
+}
+
+class login_receive {
+  final String token;
+
+  login_receive(this.token);
+
+  login_receive.fromJson(Map<String, dynamic> json)
+      : token = json['token']
+}

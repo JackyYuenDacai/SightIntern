@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
 import './columnWidget.dart';
 import './RFIDPage.dart';
@@ -12,6 +14,8 @@ import 'dart:convert';
 import 'package:convert/convert.dart';
 import 'package:crypto/crypto.dart';
 import 'package:http/http.dart' as http;
+import './json.dart';
+
 
 void main() => runApp(MyApp());
 
@@ -172,23 +176,10 @@ class _LoginPageState extends State<LoginPage> {
                 minWidth: MediaQuery.of(context).size.width,
                 padding: EdgeInsets.fromLTRB(20.0, 15.0, 20.0, 15.0),
                 onPressed: (){
-                  StaticList.location = _user;
-                  connection.get_token(_user);
-                  _password = generateMd5(_password);
-                  String soc = "Caritas";
-                  String url = network_request.login+"soc="+soc+"&id=${_user}&pwd=${_password}";
-                  http.get(url)
-                    .then((response) {
-                      //print("Submit Response status: ${response.statusCode}");
-                      print("Submit: ${response.body}");
-                      if(response.body.startsWith("error", 0)){
-                        print('The user wants to login with $_user and $_password');
-                        Navigator.pushNamed(context, '/RFIDPage');
-                      }
-                    }
-                  );
-                  /*print('The user wants to login with $_user and $_password');
-                  Navigator.pushNamed(context, '/RFIDPage');*/
+                  connection.send_login(StaticList.soc, _user, _password);
+                  sleep(const Duration(seconds:5)); //to be changed later
+                  if (StaticList.login_status == 1)       
+                    Navigator.pushNamed(context, '/RFIDPage');
                 },
                 child: Text("Login",
                   textAlign: TextAlign.center,
@@ -199,5 +190,6 @@ class _LoginPageState extends State<LoginPage> {
           ],
         ),
       );
-    } 
+    }
   }
+

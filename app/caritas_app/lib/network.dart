@@ -100,7 +100,7 @@ class connection{
 
   static void get_pop_list(String location){
     records_send filter = new records_send(location, null, 4, null, null, null, null, null, null);
-    request_basic_send data = new request_basic_send(token, id, soc, jsonEncode(filter));
+    request_basic_send data = new request_basic_send(StaticList.token, StaticList.location, StaticList.soc, jsonEncode(filter));
     String url = records;
 
     postWrap(url,{
@@ -215,5 +215,29 @@ class connection{
               StaticList.token = response.body;
             }
           });
+  }
+
+  static void send_login(String soc, String id, String pwd){
+    String url = login;
+    login_send json_data = new login_send(id, soc, pwd);
+    postWrap(url,{
+        HttpHeaders.contentTypeHeader: "application/json",
+        "callMethod" : "DOCTOR_AVAILABILITY"
+      },
+      jsonEncode(json_data),
+      (response)=>send_login_proc(response)
+    );  
+  }
+
+  static void send_login_proc(http.Response response){
+    Map basicMap = jsonDecode(response.body);
+    var response_json = new request_basic_receive.fromJson(basicMap);
+    if (response_json.error == 0){
+      Map tokenMap = jsonDecode(response_json.data);
+      var token_pack = new login_receive.fromJson(tokenMap);
+      StaticList.token = token_pack.token;
+      StaticList.login_status = 1;
+    }
+    else StaticList.login_status = 2;
   }
 }
