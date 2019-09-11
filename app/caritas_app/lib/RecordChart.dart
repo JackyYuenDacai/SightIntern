@@ -85,35 +85,35 @@ class _DialogContentState extends State<DialogContent>{
     DateTime nowtmp = desire;
     DateTime nowDateTime = new DateTime(nowtmp.year, nowtmp.month, 0, 0, 0);
     DateTime endDateTime = new DateTime(nowtmp.year, nowtmp.month+1 , 0, 0, 0);
-
+    //look at pop.dart: 0 is 'diaper', 1 is 'mistake', 2 is 'toilet'
     if(StaticList?.entries?.entries != null)
     for(record_entry ent in StaticList.entries.entries){
       if(ent.time_in.isAfter(nowDateTime) == true && ent.time_in.isBefore(endDateTime) == true){
         record_sum ++;
         //print(ent.data_json);
         var timestring = DateFormat('MM/dd').format(ent.time_in);
-        if(ent.data_json['toilet'] == 'wee' || ent.data_json['toilet'] == 'poo'){
+        if(ent.form_data[2] =='wee' || ent.form_data[2] == 'poo'){
           success_sum ++;
 
-          if(ent.data_json['toilet'] == 'wee')
+          if(ent.form_data[2] == 'wee')
             toilet_wee_sum ++;
           else
             toilet_poo_sum ++;
-            if(ent.data_json['assigned_time'] == true)
+            if(ent.interval != null)//originally bool'assigned_time'
               data.add(new ClicksPerYear(ent.time_in.day,ent.time_in.hour+ent.time_in.minute/60,Colors.green));
             else
               data.add(new ClicksPerYear(ent.time_in.day,ent.time_in.hour+ent.time_in.minute/60,Colors.blue));
         }else{
               data.add(new ClicksPerYear(ent.time_in.day,ent.time_in.hour+ent.time_in.minute/60,Colors.red));
         }
-        if(ent.data_json['diaper'] == 'dirty'){
+        if(ent.form_data[0] == 'dirty'){
           clean_diaper_sum ++;
         }
-        if(ent.data_json['mistake'] == 'wee')
+        if(ent.form_data[1] == 'wee')
           clean_diaper_wee ++;
-        if(ent.data_json['mistake'] == 'poo')
+        if(ent.form_data[1] == 'poo')
           clean_diaper_poo ++;
-        if(ent.data_json['mistake'] == 'both'){
+        if(ent.form_data[1] == 'both'){
           clean_diaper_wee ++;
           clean_diaper_poo ++;
         }

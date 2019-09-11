@@ -208,3 +208,21 @@ class login_receive {
   login_receive.fromJson(Map<String, dynamic> json)
       : token = json['token']
 }
+
+class form_config_send {
+  final String type;
+  final String id;
+  final String soc;
+  final List<String> form;
+
+
+  form_config_send(this.type, this.id, this.soc, this.form);
+
+  Map<String, dynamic> toJson() =>
+    {
+      'type': type,
+      'id': id,
+      'soc': soc,
+      'form': form
+    };
+}

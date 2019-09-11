@@ -89,9 +89,9 @@ class studentList{
 class record_entry{
   final DateTime time_in;
   final DateTime interval;
-  ///final String location;
-  //final Map<String,dynamic> data_json;
-  record_entry(this.time_in,this.interval/*,this.location,this.data_json*/);
+  //final String location;
+  final List<String> form_data;
+  record_entry(this.time_in,this.interval/*,this.location*/,this.data_json);
   /*factory record_entry.fromJson(Map<String,dynamic> json){
     return new record_entry(
       new DateFormat("yyyy-MM-dd HH:mm:ss").parse(json['time']),
@@ -173,16 +173,16 @@ class StaticList{
   //https://github.com/flutter/flutter/issues/14518 
   static List<question> QuestionList = <question>[
     new question('驗片','diaper',<String>['不適用','淨片','污片'],<String>['na','clean','dirty'],0),
-      new question('遺便','mistake',<String>['不適用','小便','大便','大、小便'],<String>['na','wee','poo','both'],0),
-      new question('如廁','toilet',<String>['不適用','無排出','小便','大便','大、小便'],<String>['na','nothing','wee','poo','both'],0),
-      new question('大便量','poo',<String>['不適用','少','中','多'],<String>['na','few','normal','much'],0),
-      new question('大便質','poo_consistency',<String>['軟','硬','爛','稀'],<String>['soft','hard','rot','dilute'],0),
-      new question('大便色','poo_color',<String>['true','false'],<String>['true','false'],2),
-      new question('黃','poo_color_yellow',<String>['true','false'],<String>['true','false'],1),
-      new question('棕','poo_color_brown',<String>['true','false'],<String>['true','false'],1),
-      new question('黑','poo_color_black',<String>['true','false'],<String>['true','false'],1),
-      new question('含血','poo_consist_blood',<String>['true','false'],<String>['true','false'],1),
-      new question('含潺','poo_consist_goo',<String>['true','false'],<String>['true','false'],1),
+    new question('遺便','mistake',<String>['不適用','小便','大便','大、小便'],<String>['na','wee','poo','both'],0),
+    new question('如廁','toilet',<String>['不適用','無排出','小便','大便','大、小便'],<String>['na','nothing','wee','poo','both'],0),
+    new question('大便量','poo',<String>['不適用','少','中','多'],<String>['na','few','normal','much'],0),
+    new question('大便質','poo_consistency',<String>['軟','硬','爛','稀'],<String>['soft','hard','rot','dilute'],0),
+    new question('大便色','poo_color',<String>['true','false'],<String>['true','false'],2),
+    new question('黃','poo_color_yellow',<String>['true','false'],<String>['true','false'],1),
+    new question('棕','poo_color_brown',<String>['true','false'],<String>['true','false'],1),
+    new question('黑','poo_color_black',<String>['true','false'],<String>['true','false'],1),
+    new question('含血','poo_consist_blood',<String>['true','false'],<String>['true','false'],1),
+    new question('含潺','poo_consist_goo',<String>['true','false'],<String>['true','false'],1),
   ];
 }
 

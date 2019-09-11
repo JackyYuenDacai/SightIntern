@@ -143,6 +143,10 @@ class connection{
     }
   }
   //possible solution: use /records to find name first
+  /////
+  ///
+  ///
+  ///WHAT SHOULD THIS USE? /api/records OR /api/form_config? 
   static void get_record_data(String id, String time)async{
     /*var url = StaticList.get_record_data_url+"id="+id+"&time=${time}";
     await requestWrap(url,(response)=>get_record_data_proc(response));*/
@@ -160,24 +164,21 @@ class connection{
     );
   }
 
+
   static void get_record_data_proc(http.Response response){
     Map basicMap = jsonDecode(response.body);
     var basic_response = new request_basic_receive.fromJson(basicMap);
     Map listMap = jsonDecode(basic_response.data);
     var user_list = new record_list_content.fromJson(listMap);
-    Map userMap = jsonDecode(user_list);
-    var list = new record_list_content.fromJson(userMap);
     //staffList staffs = new staffList(Staffs: new List(2).add(value));
     
-    StaticList.entries.add(new record_entry(list.time_start, list.duration));//record_entries(list.time_start,)
+    record_entries().entries.add(new record_entry(user_list.time_start, user_list.duration, listMap));//record_entries(list.time_start,)
   //Location for record?
   }
 
-  static void post_submit_form(String id,String unitok,Map<String,String> json_data){
+  static void post_submit_form(String id,String unitok, List<String>form_data){
     String url = form_config;
-    url = url + 'type=add&';
-    url = url + 'id=' + id +'&';
-    url = url + 'soc=Caritas&'; 
+    form_config_send json_data = new form_config_send("add", null, StaticList.soc, form_data);
     postWrap(url,{
         HttpHeaders.contentTypeHeader: "application/json",
         "callMethod" : "DOCTOR_AVAILABILITY"
