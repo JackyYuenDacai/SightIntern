@@ -36,7 +36,7 @@ public class LoginInterceptor implements HandlerInterceptor{
 	
 	private static final Set<String> EXCLUDE_PATH = Collections.unmodifiableSet(new HashSet<>(
             Arrays.asList(
-            		"/api/upload"
+            		"/api/upload","/api/login","/api/resource"
             		)));
 	
     @Override
