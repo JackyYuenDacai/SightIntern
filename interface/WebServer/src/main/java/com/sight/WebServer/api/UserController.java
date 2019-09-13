@@ -41,7 +41,7 @@ public class UserController {
 		Map<String,Object> ret = new HashMap<String,Object>();
 		JSONObject jsonObject = General.getRequest(request.getInputStream());
 		JSONObject parameters = JSONObject.fromObject(jsonObject.get("parameters"));
-	
+		Map<String,Object> data = new HashMap<String,Object>();
 		String type = null; if(parameters.containsKey("type")) type = parameters.getString("type");
 		String soc = null;  if(parameters.containsKey("soc")) soc = parameters.getString("soc");
 		String id = null;  if(parameters.containsKey("id")) id = parameters.getString("id");
@@ -89,6 +89,23 @@ public class UserController {
 			}
 			ret.put("error", 0);
 			return ret;
+		}
+		else if(type.contentEquals("query")){
+			users User = UsersService.getUserById(id);
+			if(User==null) {
+				ret.put("error", 502);
+				return ret;
+			}else {
+				data.put("id", User.getId());
+				data.put("soc", User.getSoc());
+				data.put("role", User.getRole());
+				data.put("privilege", User.getPrivilege());
+				data.put("icon_id", UsersIconService.getUserIconById(id).getIconId());
+				data.put("extra", User.getExtra());
+				ret.put("data", data);
+				ret.put("error", 0);
+			}
+			
 		}
 		ret.put("error", 502);
 		return ret;
