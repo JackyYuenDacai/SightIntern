@@ -25,6 +25,7 @@ import org.springframework.data.mongodb.core.query.Query;
 import org.springframework.data.mongodb.gridfs.GridFsResource;
 import org.springframework.data.mongodb.gridfs.GridFsTemplate;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -49,6 +50,7 @@ import com.sight.WebServer.utils.General;
 import jdk.internal.jline.internal.Log;
 import net.sf.json.JSONObject;
 
+@CrossOrigin
 @Controller
 @RequestMapping("/api")
 public class ResourceController {

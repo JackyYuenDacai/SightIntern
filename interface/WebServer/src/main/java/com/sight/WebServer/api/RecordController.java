@@ -13,6 +13,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
@@ -25,6 +26,8 @@ import com.sight.WebServer.data.service.users_tokenService;
 import com.sight.WebServer.utils.General;
 
 import net.sf.json.JSONObject;
+
+@CrossOrigin
 @Controller
 @RequestMapping("/api")
 public class RecordController {

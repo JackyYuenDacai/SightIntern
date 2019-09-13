@@ -17,6 +17,9 @@ import org.springframework.boot.web.servlet.support.SpringBootServletInitializer
 import org.springframework.context.annotation.Bean;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.data.redis.serializer.RedisSerializer;
+import org.springframework.web.servlet.config.annotation.CorsRegistry;
+import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
+import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;
 
 import com.sight.WebServer.WebServerApplication;
 
@@ -43,6 +46,7 @@ public class WebServerApplication extends SpringBootServletInitializer{
             SpringApplicationBuilder builder) {
         return builder.sources(this.getClass());
     }
+
 	/*
     @Bean
     public Connector connector(){
