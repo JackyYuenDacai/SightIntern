@@ -67,7 +67,7 @@ class connection{
 
   static void get_staff_list(String location){
     records_send filter = new records_send(location, null, 2, null, null, null, null, null, null);
-    request_basic_send data = new request_basic_send(token, StaticList.location, StaticList.soc, jsonEncode(filter));
+    request_basic_send data = new request_basic_send(StaticList.token, StaticList.location, StaticList.soc, jsonEncode(filter));
     String url = records;
 
     postWrap(url,{
@@ -84,13 +84,13 @@ class connection{
     Map basicMap = jsonDecode(response.body);
     var basic_response = new request_basic_receive.fromJson(basicMap);
     Map listMap = jsonDecode(basic_response.data);
-    var user_list = new record_list_content.fromJson(listMap);
-    Map userMap = jsonDecode(user_list);
-    var list = new record_list_content.fromJson(userMap);
+    var list = new record_list_content.fromJson(listMap);
+    /*Map userMap = jsonDecode(user_list);
+    var list = new record_list_content.fromJson(userMap);*/
     //staffList staffs = new staffList(Staffs: new List(2).add(value));
     StaticList.staff_id.clear();
     StaticList.staff_list.clear();
-    for(int i = userMap.length;i>0;i--){
+    for(int i = listMap.length;i>0;i--){
         staff wid = new staff(list.id, list.name);
         StaticList.staff_id.add(wid.id);
         print('name:'+wid.name);
@@ -116,13 +116,13 @@ class connection{
     Map basicMap = jsonDecode(response.body);
     var basic_response = new request_basic_receive.fromJson(basicMap);
     Map listMap = jsonDecode(basic_response.data);
-    var user_list = new record_received.fromJson(listMap);
-    Map userMap = jsonDecode(user_list);
-    var list = new record_list_content.fromJson(userMap);
+    var list = new record_list_content.fromJson(listMap);
+    /*Map userMap = jsonDecode(user_list);
+    var list = new record_list_content.fromJson(userMap);*/
     //staffList staffs = new staffList(Staffs: new List(2).add(value));
     /*StaticList.staff_id.clear();
     StaticList.staff_list.clear();*/
-    for(int i = userMap.length;i>0;i--){
+    for(int i = listMap.length;i>0;i--){
         /*staff wid = new staff(list.id, list.name);
         StaticList.staff_id.add(wid.id);
         print('name:'+wid.name);
@@ -147,12 +147,12 @@ class connection{
   ///
   ///
   ///WHAT SHOULD THIS USE? /api/records OR /api/form_config? 
-  static void get_record_data(String id, String time)async{
+  static void get_record_data(String id, DateTime time)async{
     /*var url = StaticList.get_record_data_url+"id="+id+"&time=${time}";
     await requestWrap(url,(response)=>get_record_data_proc(response));*/
 
     records_send filter = new records_send(null, null, 4, null, null, time, null, id, null);
-    request_basic_send data = new request_basic_send(token, id, soc, jsonEncode(filter));
+    request_basic_send data = new request_basic_send(StaticList.token, id, StaticList.soc, jsonEncode(filter));
     String url = records;
 
     postWrap(url,{
@@ -172,7 +172,8 @@ class connection{
     var user_list = new record_list_content.fromJson(listMap);
     //staffList staffs = new staffList(Staffs: new List(2).add(value));
     
-    record_entries().entries.add(new record_entry(user_list.time_start, user_list.duration, listMap));//record_entries(list.time_start,)
+    record_entries().entries.add(new record_entry(user_list.time_start, user_list.duration, listMap.values));//record_entries(list.time_start,)
+    ///.value for Map?
   //Location for record?
   }
 

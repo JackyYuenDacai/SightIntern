@@ -19,7 +19,9 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:path_provider/path_provider.dart';
 
-import 'network_request.dart';
+//import 'network_request.dart';
+
+import './network.dart';
 
 import 'I8N.dart';
 
@@ -79,7 +81,7 @@ class _DialogContentState extends State<DialogContent>{
     //print('DESIRE');
     //print(desire);
     //////////
-    network_request.get_record_data(id,DateFormat('yyyy-MM-dd HH:mm:ss').format(desire));
+    connection.get_record_data(id,desire/*DateFormat('yyyy-MM-dd HH:mm:ss').format(desire)*/);
     List<ClicksPerYear> data =[];
     List<charts.Series<ClicksPerYear,int>> chart_series =[];
     DateTime nowtmp = desire;

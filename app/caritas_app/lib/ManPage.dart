@@ -10,7 +10,7 @@ import './menu.dart';
 import './main.dart';
 import 'RFIDPage.dart';
 import './network.dart';
-import 'network_request.dart';
+//import 'network_request.dart';
 
 class ManPage extends StatefulWidget {
   @override
@@ -75,7 +75,7 @@ class _ManPageState extends State<ManPage> {
           );
         });
   }
-  Map<String,String> answer = new Map<String,String>();
+  List<String> answer = new List<String>();
   answerSelected(String title,String value){
     //print(title);
     //print(value);
@@ -83,7 +83,8 @@ class _ManPageState extends State<ManPage> {
       if(i.title == title){
         for(int j = 0; j < i.answer.length;j++){
           if(i.answer[j] == value){
-            answer[i.id] = i.answer_id[j];
+            //////////
+            answer[11] = i.answer_id[j];///let id be [11], need to change later
             print(i.answer_id[j]);
           }
         }
@@ -95,7 +96,7 @@ class _ManPageState extends State<ManPage> {
       if(i.title == title){
         //print(i.id);
         for(int j = 0; j < i.answer.length;j++){
-          if(i.answer_id[j] == answer[i.id]){
+          if(i.answer_id[j] == answer[11]){///let id be [11], need to change later
             return i.answer[j];
           }
         }

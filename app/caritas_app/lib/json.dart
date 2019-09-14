@@ -206,7 +206,7 @@ class login_receive {
   login_receive(this.token);
 
   login_receive.fromJson(Map<String, dynamic> json)
-      : token = json['token']
+      : token = json['token'];
 }
 
 class form_config_send {

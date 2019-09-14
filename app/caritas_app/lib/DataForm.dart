@@ -19,13 +19,16 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:path_provider/path_provider.dart';
 
-import 'network_request.dart';
+//import 'network_request.dart';
 
 import 'I8N.dart';
 
 import 'RecordChart.dart';
 
 import './main.dart';
+
+import './network.dart';
+
 class DataForm extends StatefulWidget{
   String name,id;
   DataForm([String n='Name',String i='Id']) : name=n,id=i

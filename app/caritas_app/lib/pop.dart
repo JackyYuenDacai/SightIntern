@@ -91,7 +91,7 @@ class record_entry{
   final DateTime interval;
   //final String location;
   final List<String> form_data;
-  record_entry(this.time_in,this.interval/*,this.location*/,this.data_json);
+  record_entry(this.time_in,this.interval/*,this.location*/,this.form_data);
   /*factory record_entry.fromJson(Map<String,dynamic> json){
     return new record_entry(
       new DateFormat("yyyy-MM-dd HH:mm:ss").parse(json['time']),

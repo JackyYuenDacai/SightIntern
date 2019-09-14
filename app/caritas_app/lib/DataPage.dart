@@ -11,9 +11,12 @@ import './pop.dart';
 import './DataForm.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import './I8N.dart';
-import 'network_request.dart';
+//import 'network_request.dart';
 import './menu.dart';
 import './main.dart';
+
+import './network.dart';
+
 class DataPage extends StatefulWidget {
   @override
   State<StatefulWidget> createState() {

@@ -6,9 +6,12 @@ import './ManPage.dart';
 import 'RFIDPage.dart';
 import 'package:http/http.dart' as http;
 import 'pop.dart';
-import 'network_request.dart';
+//import 'network_request.dart';
 import './I8N.dart';
 import './main.dart';
+
+import './network.dart';
+
 class ColForm extends StatefulWidget{
   String name,id,unitok;
   ColForm([String n='Name',String i='Id',String t='']) : name=n,id=i,unitok=t
@@ -52,13 +55,13 @@ class _ColFormState extends State<ColForm> with SingleTickerProviderStateMixin {
         print('no network');
     }else{
       ///
-      network_request.post_submit_form(id,unitok,answer); //////////
+      connection.post_submit_form(id,unitok,answer); //////////
       
       setState((){});
     }
   }
 
-  Map<String,String> answer = new Map<String,String>();
+  List<String> answer = new List<String>();
   answerSelected(String title,String value){
     //print(title);
     //print(value);
@@ -66,7 +69,7 @@ class _ColFormState extends State<ColForm> with SingleTickerProviderStateMixin {
       if(i.title == title){
         for(int j = 0; j < i.answer.length;j++){
           if(i.answer[j] == value){
-            answer[i.id] = i.answer_id[j];
+            answer[11] = i.answer_id[j];///let id be [11], need to change later
             print(i.answer_id[j]);
           }
         }
@@ -78,7 +81,7 @@ class _ColFormState extends State<ColForm> with SingleTickerProviderStateMixin {
       if(i.title == title){
         //print(i.id);
         for(int j = 0; j < i.answer.length;j++){
-          if(i.answer_id[j] == answer[i.id]){
+          if(i.answer_id[j] == answer[11]){///let id be [11], need to change later
             return i.answer[j];
           }
         }
@@ -107,7 +110,7 @@ class _ColFormState extends State<ColForm> with SingleTickerProviderStateMixin {
                 new SizedBox(height:10),
                 new DropdownButton<String>(
                   hint: Container(width:180.0,child:Text("Staff Responsible")),
-                  value: answer['staff'] ?? null ,
+                  value: answer[12] ?? null ,///let staff be [12], need to change later
                   items: StaticList.staff_list.map((String value) {
                     return new DropdownMenuItem<String>(
                       value: value,
@@ -118,7 +121,7 @@ class _ColFormState extends State<ColForm> with SingleTickerProviderStateMixin {
                     ));
                   }).toList(),
                   onChanged: (String value) {setState(() {
-                    answer['staff'] = value;
+                    answer[12] = value;///let staff be [12], need to change later
                   });},
 
                   style: new TextStyle(

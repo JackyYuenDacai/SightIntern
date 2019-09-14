@@ -10,9 +10,12 @@ import 'dart:convert';
 import './pop.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import './I8N.dart';
-import 'network_request.dart';
+//import 'network_request.dart';
 import './menu.dart';
 import './main.dart';
+
+import './network.dart';
+
 class RFIDPage extends StatefulWidget {
   static var IsNetwork = true;
   @override
@@ -31,8 +34,8 @@ class _RFIDPageState extends State<RFIDPage> {
 
     try{
       this.setState((){
-        network_request.get_pop_list(StaticList.location);////////////////////here get pop list
-        network_request.get_staff_list(StaticList.location);////////////////////////////////////////////////////////////////////
+        connection.get_pop_list(StaticList.location);////////////////////here get pop list
+        connection.get_staff_list(StaticList.location);////////////////////////////////////////////////////////////////////
       });
       ajaxCall.reset();
     }catch(e){
