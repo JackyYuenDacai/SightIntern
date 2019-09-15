@@ -104,6 +104,8 @@ public class UserController {
 				data.put("extra", User.getExtra());
 				ret.put("data", data);
 				ret.put("error", 0);
+				
+				return ret;
 			}
 			
 		}

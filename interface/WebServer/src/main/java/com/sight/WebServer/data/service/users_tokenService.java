@@ -13,12 +13,14 @@ import com.sight.WebServer.data.model.*;
 import com.sight.WebServer.interceptor.LoginInterceptor;
 
 import jdk.internal.jline.internal.Log;
+
 @Service
 public class users_tokenService {
+	
 	@Autowired
 	private users_tokenMapper UsersTokenMapper;
 	
-	private static final Logger LOG= LoggerFactory.getLogger(LoginInterceptor.class);
+	private static final Logger LOG= LoggerFactory.getLogger(users_tokenService.class);
 	
 	public boolean addUsersToken(users_token UsersToken) {
 		boolean ret = false;
@@ -45,9 +47,15 @@ public class users_tokenService {
 		}
 		return ret;
 	}
-	public users_token getUserTokenById(String id) {
+	public boolean IsTokenExist(String token) {
 		users_tokenExample UsersTokenExample = new users_tokenExample();
-		UsersTokenExample.createCriteria().andIdEqualTo(id);
-		return UsersTokenMapper.selectByExample(UsersTokenExample).get(0);
+		UsersTokenExample.createCriteria().andTokenEqualTo(token);
+		return !(UsersTokenMapper.selectByExample(UsersTokenExample).size() == 0);
+	}
+	public users_token getUserTokenById(String id) {
+		//users_tokenExample UsersTokenExample = new users_tokenExample();
+		//UsersTokenExample.createCriteria().and;
+		
+		return UsersTokenMapper.selectByPrimaryKey(id);
 	}
 }

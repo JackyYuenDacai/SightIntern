@@ -2,10 +2,13 @@ package com.sight.WebServer.interceptor;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.servlet.HandlerInterceptor;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.sight.WebServer.data.dao.users_tokenMapper;
 import com.sight.WebServer.data.model.users_token;
 import com.sight.WebServer.data.service.usersService;
 import com.sight.WebServer.data.service.users_tokenService;
@@ -26,13 +29,16 @@ import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+
 public class LoginInterceptor implements HandlerInterceptor{
 	
     private static final Logger LOG= LoggerFactory.getLogger(LoginInterceptor.class);
-	@Resource
+    @Autowired
 	private usersService UsersService;
-	@Resource
+	@Autowired
 	private users_tokenService UsersTokenService;
+	@Autowired
+	private users_tokenMapper UsersTokenMapper;
 	
 	private static final Set<String> EXCLUDE_PATH = Collections.unmodifiableSet(new HashSet<>(
             Arrays.asList(
@@ -57,7 +63,7 @@ public class LoginInterceptor implements HandlerInterceptor{
         String token = jsonObject.getString("token");
         String id = jsonObject.getString("id");
         users_token UsersToken = UsersTokenService.getUserTokenById(id);
-        if(UsersToken.getToken() .compareTo(token) == 0 && UsersToken.getExpire().after(new Date())) {
+        if(UsersToken.getToken().compareTo(token) == 0 && UsersToken.getExpire().after(new Date())) {
         	LOG.info("login interceptor: valid");
         	return true;
         }
